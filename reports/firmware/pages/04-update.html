@@ -13,27 +13,39 @@
       </div>
       <div class="af-flow">
         <div class="af-flow-step sig">
-          <div class="af-flow-num">گام ۱ ـ فرمان</div>
+          <div class="af-flow-num">گام ۱ — فرمان</div>
           <div class="af-flow-title">پیامک <span class="af-ltr">#COM:913</span></div>
-          <ul class="af-flow-list"><li>برنامهٔ اصلی نشست داده را می‌بندد: <span class="af-ltr">AT+CIPSHUT</span> و <span class="af-ltr">AT+SAPBR=0,1</span> — اصلاح <span class="idtag">MAIN-011</span></li><li>سپس ریست می‌کند تا بوت‌لودر قدیمی با وضعیت «دستور به‌روزرسانی» بیدار شود</li></ul>
-        </div>
-        <div class="af-flow-arrow"><span class="a">←</span><span class="p">ریست گرم</span></div>
-        <div class="af-flow-step">
-          <div class="af-flow-num">گام ۲ ـ دانلود فلشر</div>
-          <div class="af-flow-title">بوت‌لودر <span class="af-ltr">00.02.05</span></div>
-          <ul class="af-flow-list"><li>با اعتبارنامهٔ ذخیره‌شده در W25Q از FTP لاگین می‌کند</li><li>فایل <span class="af-ltr">FLASHER.bin</span> (۱۰٬۱۹۰ بایت) را می‌کشد، CRC را بررسی و در <span class="af-ltr">0x08002000</span> می‌نویسد</li></ul>
-        </div>
-        <div class="af-flow-arrow"><span class="a">←</span><span class="p">پرش</span></div>
-        <div class="af-flow-step">
-          <div class="af-flow-num">گام ۳ ـ فلشر</div>
-          <div class="af-flow-title">نوشتن بوت‌لودر جدید</div>
-          <ul class="af-flow-list"><li>اول دلیل ریست را روی W25Q می‌نویسد (<span class="af-ltr">FOTA_WITH_DEFAULT</span>) تا حتی در شکست، بوت‌لودر جدید سراغ FTP برود</li><li>بعد ۴ صفحهٔ فلش (<span class="af-ltr">0x08000000..1FFF</span>) را پاک، ۷٬۴۸۰ بایت تصویر <span class="af-ltr">02.06</span> را می‌نویسد و بایت‌به‌بایت راستی‌آزمایی می‌کند — تا ۵ تلاش</li></ul>
+          <ul class="af-flow-list"><li>برنامه، نشست GPRS را می‌بندد (<span class="af-ltr">CIPSHUT+SAPBR</span>)</li><li>ریستِ گرم با وضعیت «به‌روزرسانی» — <span class="idtag">MAIN-011</span></li></ul>
         </div>
         <div class="af-flow-arrow"><span class="a">←</span><span class="p">ریست</span></div>
         <div class="af-flow-step">
-          <div class="af-flow-num">گام ۴ ـ بوت‌لودر جدید</div>
+          <div class="af-flow-num">گام ۲ — دانلود فلشر</div>
+          <div class="af-flow-title">بوت‌لودرِ قدیمی <span class="af-ltr">00.02.05</span></div>
+          <ul class="af-flow-list"><li>لاگین FTP با اعتبارنامهٔ ذخیره‌شده در W25Q</li><li>دانلود <span class="af-ltr">FLASHER.bin</span> و نوشتن در <span class="af-ltr">0x08002000</span></li></ul>
+        </div>
+        <div class="af-flow-arrow"><span class="a">←</span><span class="p">پرش</span></div>
+        <div class="af-flow-step">
+          <div class="af-flow-num">گام ۳ — فلشر</div>
+          <div class="af-flow-title">نوشتن بوت‌لودر جدید</div>
+          <ul class="af-flow-list"><li>پاک‌کردن ۴ صفحهٔ بوت‌لودر و نوشتن <span class="af-ltr">02.06</span></li><li>راستی‌آزماییِ بایت‌به‌بایت — حداکثر ۵ تلاش</li></ul>
+        </div>
+        <div class="af-flow-arrow"><span class="a">←</span><span class="p">ریست</span></div>
+        <div class="af-flow-step">
+          <div class="af-flow-num">گام ۴ — بوت‌لودر جدید</div>
           <div class="af-flow-title"><span class="af-ltr">00.02.06</span> در کنترل</div>
-          <ul class="af-flow-list"><li>تا موفقیت FTP به پرش به برنامه امتناع می‌کند؛ برنامهٔ <span class="af-ltr">B1.06.60</span> را می‌کشد</li><li>پیش از پرش، MSP را از جدول بردارهای برنامه تنظیم می‌کند — اصلاح <span class="idtag">FOTA-001</span></li></ul>
+          <ul class="af-flow-list"><li>دانلود و راستی‌آزماییِ برنامهٔ <span class="af-ltr">B1.06.60</span></li><li>تنظیمِ پشته (MSP) و پرش به برنامه — <span class="idtag">FOTA-001</span></li></ul>
+        </div>
+      </div>
+      <div class="fota-map">
+        <div class="fm-seg">
+          <div class="fm-addr">0x08000000 – 0x08001FFF</div>
+          <div class="fm-name">بوت‌لودر — ۴ صفحهٔ فلش</div>
+          <div class="fm-sub">فلشر همین ناحیه را با تصویرِ <span class="af-ltr">02.06</span> (۷٬۸۰ بایت) بازنویسی می‌کند</div>
+        </div>
+        <div class="fm-seg sig">
+          <div class="fm-addr">0x08002000 …</div>
+          <div class="fm-name">ناحیهٔ برنامه</div>
+          <div class="fm-sub">در هنگامِ به‌روزرسانی، فلشر (۱۰٬۱۹۰ بایت) اینجا اجرا می‌شود؛ بعد بوت‌لودر جدید برنامهٔ اصلی را همین‌جا می‌نویسد</div>
         </div>
       </div>
       <figcaption class="af-figure-foot"><span>منبع: بخش عمیق‌خوانی زنجیرهٔ FOTA/FLASH در دفتر ثبت تغییرات؛ نشانی‌ها و اندازه‌ها از کد</span><span class="af-ltr">0x08000000 / 0x08002000</span></figcaption>
@@ -45,7 +57,7 @@
         <thead><tr><th style="width:34%">مهارت</th><th style="width:30%"><span class="af-ltr">00.02.05</span> (قدیم)</th><th style="width:36%"><span class="af-ltr">02.06</span> + فلشر (جدید)</th></tr></thead>
         <tbody>
           <tr><td class="td-bold">جایگزینی خودِ بوت‌لودر در میدان</td><td>غیرممکن — بوت‌لودر نمی‌تواند از روی خودش پاک شود</td><td>ممکن با همان زنجیرهٔ شکل ۲، بدون دسترسی فیزیکی (SWD)</td></tr>
-          <tr><td class="td-bold">اعتبارنامهٔ FTP ذخیره‌شده در مسیرهای بازیابی</td><td>فقط در حالت «دستور کاربر»؛ در حالت‌های شکست، حساب کارخانه (احتمالاً اشتباه)</td><td>در <b>همه</b> حالت‌ها از W25Q خوانده می‌شود — <span class="idtag">FOTA-002</span></td></tr>
+          <tr><td class="td-bold">اعتبارنامهٔ FTP ذخیره‌شده در مسیرهای بازیابی</td><td>فقط در حالت «دستور کاربر»؛ در حالت‌های شکست، حسابِ پیش‌فرضِ قدیمی (احتمالاً اشتباه)</td><td>در <b>همه</b> حالت‌ها از W25Q خوانده می‌شود — <span class="idtag">FOTA-002</span></td></tr>
           <tr><td class="td-bold">تنظیم MSP پیش از پرش به برنامه</td><td>خیر — پرش با پشتهٔ خودِ بوت‌لودر (<span class="idtag">FOTA-001</span>)</td><td>بلی — <span class="af-ltr">MSR MSP</span> از <span class="af-ltr">0x08002000</span></td></tr>
           <tr><td class="td-bold">نام فایل FTP بلندتر از ۳۰ کاراکتر</td><td>غیرممکن — بافر ۳۱ بایتی بدون پایان‌دهنده</td><td>تا ۳۹ کاراکتر — بافر ۴۰ بایتی، همیشه ختم‌شده — <span class="idtag">FOTA-003</span></td></tr>
           <tr><td class="td-bold">بازگشت به برنامهٔ سالم اگر فلش ناقص بماند</td><td>همیشه به محل برنامه پرش می‌کرد، حتی اگر خراب باشد</td><td>حالت‌های <span class="af-ltr">FOTA_WITH_DEFAULT</span>/<span class="af-ltr">FOTA_WRITE_FAIL</span> به پرش امتناع می‌کنند و برنامه را دوباره از FTP می‌کشند</td></tr>

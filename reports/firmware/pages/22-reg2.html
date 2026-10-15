@@ -25,15 +25,15 @@
             <td class="td-bold">Flash</td>
             <td class="refs"><span class="path">Core/w25q32jv/w25Protocol.c:1280-1290 (new)؛ w25qWritePacket() شاخهٔ isUpdate==SET</span></td>
             <td>پرچمِ «ارسال شد» با ثابتِ تعریف‌نشده W25Q_RECORD_FIRST_SECTOR_ADDR محاسبه می‌شد (خواننده از recordsArea.w25qRecordFirstSectorAddr استفاده می‌کند)؛ فقط با logging فعال دیده می‌شد: رکوردِ ارسالی هرگز «فرستاده» نشد و رکوردِ دیگری غلط «فرستاده» شد</td>
-            <td>استفاده از همان توصیف‌گرِ ناحیهٔ رکوردها که خواننده استفاده می‌کند. انتظار: هر رکورد دقیقاً یک‌بار روی سرور ظاهر شود؛ تکرار/شکافِ دائمیِ مسیر در logging-enabled devices برطرف شود</td>
+            <td>استفاده از همان توصیف‌گرِ ناحیهٔ رکوردها که خواننده استفاده می‌کند. انتظار: هر رکورد دقیقاً یک‌بار روی سرور ظاهر شود؛ تکرار/شکافِ دائمی در سمتِ سرور برطرف شود</td>
             <td>تست‌شده؛ بدون logging: رفتارِ قبل و بعد یکسان</td>
           </tr>
           <tr>
             <td class="td-id"><span class="idtag">FOTA-002</span><small>ردیف ۳</small></td>
             <td class="td-bold">FOTA</td>
             <td class="refs"><span class="path">Fota 02.06/Core/Src/GSM.c:421-457 (new)؛ fotaNextState()</span></td>
-            <td>اعتبارنامهٔ FTPِ ذخیره‌شده (ftpData در W25Q) فقط در حالتِ FOTA_USER_COMMAND اعمال می‌شد؛ در حالت‌های بازیابی، حسابِ درج‌شدهٔ کارخانه استفاده می‌شد → در ناوگانی با حسابِ سفارشی، اولین شکست = گیرکردنِ دائمی در بوت‌لودر با اپلیکیشنِ نیمه‌نوشت‌شده</td>
-            <td>بارگذاری FTP_SERV/USER/PASS_VARYING از W25Q در بالای fotaNextState() برای همهٔ حالت‌ها (USER_COMMAND, WRITE_FAIL, WITH_DEFAULT, FIRST_TIME, TRY_DEFAULT_PATH, TRY_LAST_CHANCE) با تستِ چهارتاییِ اعتبار تا سکتورِ پاک‌شده Defaults را تسخیر نکند</td>
+            <td>اعتبارنامهٔ FTPِ ذخیره‌شده (ftpData در W25Q) فقط در حالتِ FOTA_USER_COMMAND اعمال می‌شد؛ در حالت‌های بازیابی، حسابِ درج‌شدهٔ پیش‌فرض استفاده می‌شد → در ناوگانی با حسابِ سفارشی، اولین شکست = گیرکردنِ دائمی در بوت‌لودر با اپلیکیشنِ نیمه‌نوشت‌شده</td>
+            <td>بارگذاری FTP_SERV/USER/PASS_VARYING از W25Q در بالای fotaNextState() برای همهٔ حالت‌ها (USER_COMMAND, WRITE_FAIL, WITH_DEFAULT, FIRST_TIME, TRY_DEFAULT_PATH, TRY_LAST_CHANCE) با تستِ چهارتاییِ اعتبار تا سکتورِ پاک‌شدهٔ Defaults اشغال نشود</td>
             <td>تست‌شده؛ لاگِ FTP: کاربرِ ذخیره‌شده در همهٔ تلاش‌ها</td>
           </tr>
           <tr>
@@ -49,7 +49,7 @@
             <td class="td-bold">GSM</td>
             <td class="refs"><span class="path">sim868.c:121-148,8223-8416,8535-8540 (new)؛ simPowerSeqStep_t در SIM_STAGE_POWER_ON_REGULATOR</span></td>
             <td>سه شکست: needPowerOf هرگز پاک نمی‌شد (هر دور روشن/خاموش)؛ ماژولِ گیرکرده با STATUS=1 تا ابد AT می‌شد و ریلِ برق هیچ‌وقت قطع نمی‌شد؛ STATUSِ شناورِ بالا = «ماژول روشن» کاذب. همچنین Delay(1000) مسدودکننده تا مرزِ IWDG</td>
-            <td>ماشین‌حالتِ ۷ مرحله‌ایِ غیرمسدود: پالسِ PWRKEY=1800ms + استراحت=3500ms (SIM_PWRKEY_PULSE_MS/SIM_POWER_DOWN_MS)؛ پاک‌شدنِ needPowerOf در لحظهٔ مصرف؛ پس از ۳ دورِ ناموفق (SIM_POWER_MAX_LAPS) قطعِ ریل با Sim_Disable_PWR → Sim_USART_Recover() → Sim_Enable_PWR. انتظار: ~۱۵.۹ ثانیه شواهد پیش از قطعِ ریل — «کند» از «گیرکرده» جدا می‌شود</td>
+            <td>ماشین‌حالتِ ۷ مرحله‌ایِ غیرمسدود: پالسِ PWRKEY=1800ms + استراحت=3500ms (SIM_PWRKEY_PULSE_MS/SIM_POWER_DOWN_MS)؛ پاک‌شدنِ needPowerOf در لحظهٔ مصرف؛ پس از ۳ دورِ ناموفق (SIM_POWER_MAX_LAPS) قطعِ ریل با Sim_Disable_PWR → Sim_USART_Recover() → Sim_Enable_PWR. انتظار: ≈۱۵.۹ ثانیه شواهد پیش از قطعِ ریل — «کند» از «گیرکرده» جدا می‌شود</td>
             <td>تست‌شده؛ io204 باید PWR_SEQ_* را در چند ثانیه بگذراند</td>
           </tr>
         </tbody>

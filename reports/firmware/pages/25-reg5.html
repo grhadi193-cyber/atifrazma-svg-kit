@@ -17,7 +17,7 @@
             <td class="td-bold">GPS</td>
             <td class="refs"><span class="path">Core/sim868/gps/gps.c:46-64,1689-1751؛ gps.h:37-72 (new)؛ fixedGPS_works()</span></td>
             <td>تستِ زاویهٔ دو فیکسِ پشت‌سرهم با ضریب BEARING_ANGLE_FACTOR=0.7f: در ترافیکِ کند (فاصلهٔ ۲-۵ متر) نویز → دورِ کاذب ۱۵ درجه = اسپرِ نقشه + رگبارِ رکورد</td>
-            <td>زنجیرهٔ سه‌نقطه‌ایِ فاصله‌محور: anchor → mid → valid، هر پایّه بین BEARING_MIN_BASELINE_METER=20 و BEARING_MAX_BASELINE_METER=250 متر. انتظار: ساختِ «دور ۱۵ درجه» حالا به خطای عرضی ~۵.۲ متر نیاز دارد (قبل ۱.۳)؛ دورِ واقعی با اولین پایّهٔ ۲۰ متری گزارش می‌شود</td>
+            <td>زنجیرهٔ سه‌نقطه‌ایِ فاصله‌محور: anchor → mid → valid، هر پایّه بین BEARING_MIN_BASELINE_METER=20 و BEARING_MAX_BASELINE_METER=250 متر. انتظار: ساختِ «دور ۱۵ درجه» حالا به خطای عرضی ≈۵.۲ متر نیاز دارد (قبل ۱.۳)؛ دورِ واقعی با اولین پایّهٔ ۲۰ متری گزارش می‌شود</td>
             <td>تست‌شده؛ مرز: دورِ خیلی تنگ کمی دیرتر</td>
           </tr>
           <tr>
@@ -48,7 +48,7 @@
             <td class="td-id"><span class="idtag">FOTA-004</span><small>ردیف ۵</small></td>
             <td class="td-bold">FOTA</td>
             <td class="refs"><span class="path">Fota 02.06/Core/Src/consts.c:4,107-109 (new)؛ fotaVersion، FTP_*_DEFAULT</span></td>
-            <td>بعد از ارتقا، #GETVER هنوز 00.02.05 نشان می‌داد (نتیجهٔ FLASH-001 از راه دور قابل‌تأیید نبود) و حسابِ FTPِ پیش‌فرضِ fallback حسابِ قدیمیِ کارخانه بود</td>
+            <td>بعد از ارتقا، #GETVER هنوز 00.02.05 نشان می‌داد (نتیجهٔ FLASH-001 از راه دور قابل‌تأیید نبود) و حسابِ FTPِ پیش‌فرضِ fallback حسابِ قدیمیِ پیش‌فرض بود</td>
             <td>fotaVersion «00.02.05»→«00.02.06» + FTP_SERV/USER/PASS_DEFAULT به مقادیرِ تولیدیِ جدیدِ B1.06.60. انتظار: #GETVER نسخهٔ FOTA را 00.02.06 گزارش دهد؛ fallback فقط با حسابِ جدیدِ سرور کار می‌کند</td>
             <td>تست‌شده؛ حسابِ FTP باید هم‌زمان روی سرور ساخته شود</td>
           </tr>

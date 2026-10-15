@@ -52,11 +52,18 @@
   .ev.test::before{background:var(--af-ok)} .ev.open::before{background:var(--af-sun)}
 
   /* جدول ثبت جامع: سطرهای پرمتن */
-  .reg .af-table{font-size:7.4pt;line-height:1.75}
-  .reg .af-table thead th{font-size:7.3pt}
+  .reg .af-table{font-size:7.2pt;line-height:1.55}
+  .reg .af-table thead th{font-size:7.2pt}
+  /* نقشهٔ فلش برای دیاگرام زنجیرهٔ FOTA */
+  .fota-map{display:grid;grid-template-columns:5fr 7fr;gap:3mm;margin-top:4mm}
+  .fota-map .fm-seg{border:1.5px solid var(--af-ink-10);border-top:3px solid var(--af-ink);border-radius:10px;padding:2.2mm 3.2mm;background:var(--af-ink-05)}
+  .fota-map .fm-seg.sig{border-top-color:var(--af-signal)}
+  .fota-map .fm-addr{font-family:var(--af-mono);direction:ltr;text-align:left;font-size:6.9pt;font-weight:700;color:var(--af-signal-deep)}
+  .fota-map .fm-name{font-size:7.6pt;font-weight:800;color:var(--af-ink);margin-top:1mm}
+  .fota-map .fm-sub{font-size:7pt;color:var(--af-ink-60);margin-top:.6mm;line-height:1.7}
   .reg .af-table tbody td{padding:2.3mm 2.6mm}
   .reg .af-table thead th{font-size:7pt;padding:2mm 2.2mm}
-  .reg .af-table tbody td{padding:1.8mm 2.2mm;vertical-align:top;line-height:1.6}
+  .reg .af-table tbody td{padding:1.5mm 2.2mm;vertical-align:top;line-height:1.5}
   .reg .af-table td.td-id{white-space:nowrap}
   .reg .af-table td.td-id .idtag{font-size:7.2pt}
   .reg .af-table td.td-id small{display:block;font-size:6.4pt;color:var(--af-ink-60);font-weight:600;margin-top:.6mm;white-space:normal}
