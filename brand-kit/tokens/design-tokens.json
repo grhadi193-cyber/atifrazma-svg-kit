@@ -1,0 +1,174 @@
+{
+  "version": "3.0",
+  "brand": {
+    "name_fa": "آتی فرزام",
+    "name_en": "Ati Farzam",
+    "domain_fa": "توسعهٔ نرم‌افزار و سخت‌افزار ردیاب هوشمند",
+    "direction": "rtl",
+    "language": "fa-IR",
+    "target": "A4 portrait HTML-to-PDF client report",
+    "english_typography": "svg/typography english.svg"
+  },
+  "form_language": {
+    "source": "svg/pattern ati farzam.svg",
+    "rule_zero": "تصویر کامل پترن در هیچ خروجی‌ای استفاده نمی‌شود؛ فقط سه موتیف زیر با کد بازسازی می‌شوند.",
+    "motifs": {
+      "quarter": {
+        "fa": "ربع",
+        "origin": "مربع‌های پترن که فقط یک گوشه‌شان ربعِ دایره است",
+        "css": "border-radius: 24px 8px 8px 8px",
+        "usage": "حداکثر یک سطح در هر صفحه: نوار پایانی جلد، سطح شاخص"
+      },
+      "signal_dot": {
+        "fa": "نقطهٔ سیگنال",
+        "origin": "ماتریس نقاط هم‌فاصلهٔ پترن با جاهای خالی، مثل نقاط تله‌متری",
+        "css_class": ".af-dots / .af-dots-light",
+        "usage": "فقط گوشهٔ یک سطح و کوچک، با لبهٔ محو؛ هرگز بافت تمام‌صفحه"
+      },
+      "route": {
+        "fa": "مسیر",
+        "origin": "قوس یک‌ربعِ پترن که به نقطه ختم می‌شود، مثل مسیر ردیاب",
+        "css_class": ".af-route",
+        "usage": "جداکنندهٔ امضادار، حداکثر یک‌بار در هر صفحه"
+      }
+    },
+    "radius": {
+      "rule": "هیچ گوشهٔ تیزی نیست؛ کوچک‌ترین شعاع سطح 10px است",
+      "sm": "10px",
+      "md": "16px",
+      "lg": "22px",
+      "quarter_signature": "28px 14px 14px 14px",
+      "pill": "999px",
+      "exception": "فقط خود کاغذ A4 در خروجی چاپ"
+    }
+  },
+  "colors": {
+    "darkest_allowed": {
+      "value": "#102333",
+      "note": "تیره‌ترین رنگ سیستم؛ مشکی (#000) و نزدیکانش در هیچ خروجی‌ای مجاز نیستند"
+    },
+    "ink": {
+      "value": "#102333",
+      "token": "--af-ink",
+      "role": "برند: تیتر، عدد، گره اصلی، هدر جدول پترنی"
+    },
+    "ink_80": {
+      "value": "#25455F",
+      "role": "متن فرعی تیره"
+    },
+    "ink_60": {
+      "value": "#54748E",
+      "role": "متن کم‌رنگ، محور نمودار"
+    },
+    "ink_40": {
+      "value": "#8DACC4",
+      "role": "خط داده فرعی"
+    },
+    "ink_20": {
+      "value": "#C3D9E8",
+      "role": "قاب و خط"
+    },
+    "ink_10": {
+      "value": "#E0EEF7",
+      "role": "سطح روشن، تراک نمودار"
+    },
+    "ink_05": {
+      "value": "#EFF7FC",
+      "role": "سطح سلول جدول پترنی"
+    },
+    "signal": {
+      "value": "#0E9BE8",
+      "token": "--af-signal",
+      "role": "زندهٔ اصلی: سری اول داده، مسیر، نقطه مقصد"
+    },
+    "signal_deep": {
+      "value": "#0B74C9",
+      "role": "متن و برچسب روی سفید"
+    },
+    "aqua": {
+      "value": "#0BBFA5",
+      "token": "--af-aqua",
+      "role": "سری دوم داده و رشد"
+    },
+    "sun": {
+      "value": "#F5A300",
+      "token": "--af-sun",
+      "role": "فقط خط هدف نمودار و نقطه هشدار"
+    },
+    "coral": {
+      "value": "#FF6659",
+      "token": "--af-coral",
+      "role": "فقط نقطه خطای بحرانی"
+    },
+    "ok": {
+      "value": "#0DA678",
+      "role": "نقطه قبول/آنلاین"
+    },
+    "warn_text": {
+      "value": "#D98E00",
+      "role": "متن هشدار روی سفید"
+    },
+    "forbidden": "مشکی، گرادیان تزئینی، سطح رنگی بزرگ برای وضعیت‌ها"
+  },
+  "typography": {
+    "family": "Peyda",
+    "weights_used": {
+      "900": "تیتر جلد و عدد شاخص",
+      "800": "تیتر بخش و سرستون",
+      "700": "برچسب",
+      "500": "زیرنویس",
+      "400": "متن بدنه"
+    },
+    "scale_pt": {
+      "cover_title": 25,
+      "section_h2": 13,
+      "figure_title": 9.5,
+      "body": 8.8,
+      "table": 7.7,
+      "caption": 6.8,
+      "kpi_value": 19
+    }
+  },
+  "charts": {
+    "route_bar": "نوار مسیر (مدل الف): مقدار در برابر هدف؛ میله گرد با نقطه مقصد در انتها + خط هدف کهربایی — کلاس .af-routebar",
+    "route_line": "خط مسیر (مدل ب): روند زمانی تک‌سری آبی با نقطه‌های ایستگاه و مقصد پررنگ؛ SVG با stroke-linecap گرد",
+    "quarter_arc": "قوس سهم (مدل ج): حلقه آبی با نقطه پایان سرمه‌ای + نوار کاشی (.af-stack) با قطعه‌های جدای گرد",
+    "dot_matrix": "ماتریس نقطه‌ای (مدل د): برای تعدادهای شمردنی؛ هر نقطه یک واحد واقعی — کلاس .af-dotmatrix",
+    "forbidden": "دونات چندرنگ، سری دوم بدون دلیل، محور بدون اعلام مبدأ، هر خط یا میله با سر تیز"
+  },
+  "a4": {
+    "width": "210mm",
+    "height": "297mm",
+    "padding": "15mm 17mm",
+    "safe_content_height": "~235mm",
+    "radius_base": "8px",
+    "shadow": "none",
+    "assets": {
+      "logo": "svg/logo ati farzam.svg",
+      "typography": "svg/typography ati farzam.svg",
+      "pattern_source_only": "svg/pattern ati farzam.svg",
+      "css": "brand-kit/css/ati-farzam-a4.css",
+      "template": "brand-kit/templates/report-template.html",
+      "demo": "demo-report.html",
+      "studio": "index.html"
+    }
+  },
+  "pattern_table": {
+    "class": ".af-ptable",
+    "purpose": "جدول رسمی اقدامات آتی (کارهایی که باید انجام شود)",
+    "anatomy": {
+      "header": "کاشی توپر سرمه‌ای با گوشه‌های گرد و ربع بزرگ در دو سر",
+      "first_cell": "کاشی سفید قاب‌دار؛ گوشه ربع 26px آن در هر ردیف ساعت‌گرد می‌چرخد (nth-child)",
+      "body_cells": "کاشی‌های جدا روی سطح 05 با فاصله 5px و شعاع 12px",
+      "progress": "ماتریس 5 نقطه‌ای (.af-pdots): هر نقطه یک‌پنجم مسیر؛ آبی=انجام‌شده، کهربایی=در معرض تأخیر",
+      "status": "نقطه رنگی + عبارت کوتاه (.af-status)"
+    },
+    "columns": [
+      "اقدام",
+      "خروجی مورد انتظار",
+      "مسئول",
+      "مهلت",
+      "پیشرفت و وضعیت"
+    ]
+  }
+}

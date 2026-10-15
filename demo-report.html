@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>نمونه گزارش کارفرما A4 — آتی فرزام</title>
+<link rel="stylesheet" href="brand-kit/css/ati-farzam-a4.css" />
+<style>
+  .demo-toolbar{position:sticky;top:0;z-index:200;background:#fff;color:#102333;padding:11px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;border-bottom:1px solid #E0EEF7}
+  .demo-toolbar .t{display:flex;align-items:center;gap:11px}
+  .demo-toolbar .t b{font-size:9.5pt;font-weight:800}
+  .demo-toolbar .t span{display:block;font-size:7.4pt;color:#54748E;font-weight:500}
+  .dt-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .dt-btn{background:#102333;color:#fff;border:1px solid #102333;padding:8px 16px;border-radius:999px;font-family:'Peyda',sans-serif;font-weight:700;font-size:8.6pt;cursor:pointer;text-decoration:none}
+  .dt-btn.ghost{background:#fff;color:#102333;border-color:#C3D9E8}
+  .dt-btn:hover{opacity:.85}
+  .dt-zoom{background:#fff;color:#102333;border:1px solid #C3D9E8;border-radius:999px;padding:7px 10px;font-family:'Peyda',sans-serif;font-weight:600;font-size:8.2pt}
+  .demo-note{max-width:210mm;margin:16px auto 0;background:#fff;border:1px solid #E0EEF7;border-right:3px solid #0E9BE8;border-radius:16px;padding:9px 15px;font-size:8pt;color:#54748E;line-height:1.8}
+  .demo-note b{color:#102333}
+  @media print{.demo-toolbar,.demo-note{display:none!important}}
+  .finding{border-top:1px solid var(--af-ink-20);padding-top:2.5mm}
+  .finding .fn{font-size:7pt;font-weight:800;color:var(--af-signal-deep);margin-bottom:1mm}
+  .finding h4{font-size:8.6pt;font-weight:800;color:var(--af-ink);margin-bottom:1mm;line-height:1.6}
+  .finding p{font-size:7.8pt;line-height:1.75;color:var(--af-text)}
+</style>
+</head>
+<body>
+
+<div class="demo-toolbar no-print">
+  <div class="t">
+    <img src="svg/logo%20ati%20farzam.svg" alt="آتی فرزام" style="height:30px;width:auto" />
+    <div><b>نمونهٔ گزارش کارفرما — آتی فرزام</b><span>نسخهٔ ۳٫۰ · پنج صفحهٔ A4 با چیدمان دقیق · داده‌ها نمونهٔ نمایشی است</span></div>
+  </div>
+  <div class="dt-actions">
+    <select class="dt-zoom" onchange="document.querySelector('.af-workspace').style.zoom=this.value" aria-label="بزرگ‌نمایی">
+      <option value="0.65">۶۵٪</option><option value="0.8">۸۰٪</option><option value="0.92" selected>۹۲٪</option><option value="1">۱۰۰٪</option>
+    </select>
+    <a class="dt-btn ghost" href="index.html">برندکیت</a>
+    <a class="dt-btn ghost" href="brand-kit/templates/report-template.html">قالب خام</a>
+    <button class="dt-btn" onclick="window.print()">چاپ / PDF</button>
+  </div>
+</div>
+
+<div class="demo-note no-print"><b>خروجی PDF:</b> چاپ ← مقصد «Save as PDF» · کاغذ A4 · حاشیه‌ها None · مقیاس ۱۰۰٪ · گزینهٔ Background graphics فعال. هر پنج صفحه دقیقاً پر شده‌اند: نه سرریز، نه فضای خالیِ بی‌دلیل.</div>
+
+<main class="af-workspace">
+
+<!-- ══════════ صفحهٔ ۱ — جلد ══════════ -->
+<section class="a4-page a4-cover">
+  <div class="cover-head">
+    <div class="cover-lockup">
+      <img class="mark" src="svg/logo%20ati%20farzam.svg" alt="نشان آتی فرزام" />
+      <div>
+        <img class="typo" src="svg/typography%20ati%20farzam.svg" alt="آتی فرزام" />
+        <div class="sub">توسعهٔ نرم‌افزار و سخت‌افزار ردیاب هوشمند</div>
+      </div>
+    </div>
+    <div class="cover-doc">
+      گزارش فنی ـ عملیاتی<br /><b>محرمانه ـ ویژهٔ کارفرما</b><br />
+      <img src="svg/typography%20english.svg" alt="Ati Farzam" style="height:3.8mm;width:auto;margin-top:3px;opacity:.75" />
+    </div>
+  </div>
+
+  <div class="cover-main">
+    <div class="cover-eyebrow">سامانهٔ ردیابی هوشمند ناوگان ـ فاز آزمایشی</div>
+    <h1 class="cover-title">گزارش ارزیابی فنی و<br />تحویل سامانهٔ ردیابی ناوگان</h1>
+    <p class="cover-sub">ارزیابی ردیاب سخت‌افزاری <span class="af-ltr">AF-GT900</span> و پلتفرم مدیریت ناوگان آتی فرزام؛ بر پایهٔ سی روز بهره‌برداری آزمایشی، آزمون‌های پذیرش آزمایشگاهی و دادهٔ تله‌متری ۱۲۰ دستگاه.</p>
+    <div class="af-route" style="margin-top:9mm"></div>
+
+    <div class="cover-scope">
+      <div class="cs-title">در این گزارش</div>
+      <div class="cs-item"><i></i><b>خلاصهٔ مدیریتی</b><span>چهار شاخص قراردادی، عملکرد در برابر هدف و سه یافتهٔ کلیدی دوره</span><span class="pg">صفحهٔ ۲</span></div>
+      <div class="cs-item aqua"><i></i><b>معماری سامانه</b><span>بلوک‌دیاگرام سخت‌افزار AF-GT900 و جریان داده از خودرو تا پنل کارفرما</span><span class="pg">صفحهٔ ۳</span></div>
+      <div class="cs-item sun"><i></i><b>شواهد اندازه‌گیری</b><span>پایداری سی‌روزه، ترکیب وضعیت ناوگان و آزمون‌های پذیرش نقطه‌به‌نقطه</span><span class="pg">صفحهٔ ۴</span></div>
+      <div class="cs-item coral"><i></i><b>اقدامات و تحویل</b><span>مشخصات نهایی، جدول پنج اقدام آتی و تأییدیهٔ امضای طرفین</span><span class="pg">صفحهٔ ۵</span></div>
+    </div>
+
+    <div class="af-stats" style="margin-top:9mm">
+      <div class="af-stat"><div class="af-stat-label">دستگاه در فاز آزمایشی</div><div class="af-stat-value">۱۲۰<span class="af-stat-unit">دستگاه</span></div><div class="af-stat-delta"><span class="dot sig"></span>روی چهار کلاس خودرو</div></div>
+      <div class="af-stat"><div class="af-stat-label">دورهٔ بهره‌برداری</div><div class="af-stat-value">۳۰<span class="af-stat-unit">روز</span></div><div class="af-stat-delta"><span class="dot sig"></span>۱ تا ۳۰ مهر ۱۴۰۴</div></div>
+      <div class="af-stat"><div class="af-stat-label">رکورد تله‌متری</div><div class="af-stat-value">۴٫۲<span class="af-stat-unit">میلیون</span></div><div class="af-stat-delta"><span class="dot sig"></span>بدون اتلاف رکورد</div></div>
+      <div class="af-stat"><div class="af-stat-label">آزمون پذیرش</div><div class="af-stat-value">۲۸<span class="af-stat-unit">آزمون</span></div><div class="af-stat-delta"><span class="dot ok"></span>۲۶ قبول ـ ۲ مشروط ـ صفر مردود</div></div>
+    </div>
+  </div>
+
+  <div class="cover-meta">
+    <div class="cover-meta-grid">
+      <div class="cover-meta-cell"><div class="cover-meta-label">کارفرما</div><div class="cover-meta-value">شرکت نمونهٔ حمل‌ونقل<br /><span style="font-size:7pt;color:var(--af-ink-60);font-weight:600">دادهٔ نمایشی</span></div></div>
+      <div class="cover-meta-cell"><div class="cover-meta-label">سند</div><div class="cover-meta-value"><span class="af-ltr">AF-RPT-1404-08</span><br /><span style="font-size:7pt;color:var(--af-ink-60);font-weight:600">نسخهٔ ۲٫۴ ـ نهایی</span></div></div>
+      <div class="cover-meta-cell"><div class="cover-meta-label">دورهٔ ارزیابی</div><div class="cover-meta-value">۱ تا ۳۰ مهر ۱۴۰۴<br /><span style="font-size:7pt;color:var(--af-ink-60);font-weight:600">۳۰ روز · ۱۲۰ دستگاه</span></div></div>
+      <div class="cover-meta-cell"><div class="cover-meta-label">محصول</div><div class="cover-meta-value">ردیاب <span class="af-ltr">AF-GT900</span><br /><span style="font-size:7pt;color:var(--af-ink-60);font-weight:600">پلتفرم مدیریت ناوگان</span></div></div>
+    </div>
+    <div class="cover-band">
+      <div>
+        <div class="t1">نتیجهٔ فاز آزمایشی: هر چهار شاخص قراردادی محقق شد.</div>
+        <div class="t2">جزئیات اندازه‌گیری، نمودارها و آزمون‌ها در صفحات ۲ تا ۵؛ جدول اقدامات و تأییدیهٔ تحویل در صفحهٔ پایانی.</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:6mm;flex-shrink:0">
+        <span class="dotsbox af-dots-light"></span>
+        <img class="en" src="svg/typography%20english.svg" alt="Ati Farzam" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ صفحهٔ ۲ — خلاصهٔ مدیریتی ══════════ -->
+<section class="a4-page">
+  <header class="a4-header">
+    <div class="a4-header-brand">
+      <img src="svg/logo%20ati%20farzam.svg" alt="" class="a4-header-logo" />
+      <img src="svg/typography%20ati%20farzam.svg" alt="آتی فرزام" class="a4-header-typo" />
+      <span class="a4-header-divider"></span>
+      <div><div class="a4-header-title">گزارش ارزیابی فنی و تحویل سامانهٔ ردیابی ناوگان</div><div class="a4-header-subtitle">آتی فرزام ـ واحد تحقیق و توسعهٔ ردیاب</div></div>
+    </div>
+    <div class="a4-header-meta"><span>سند <b class="af-ltr">AF-RPT-1404-08</b></span><i>|</i><span>نسخهٔ <b>۲٫۴</b></span><i>|</i><span><b>مهر ۱۴۰۴</b></span></div>
+  </header>
+
+  <div class="a4-content" style="gap:4.4mm">
+    <div>
+      <div class="af-eyebrow"><span class="n">۰۱</span> خلاصهٔ مدیریتی</div>
+      <h2 class="af-h2">سامانه در دورهٔ آزمایشی، پایدار و مطابق قرارداد عمل کرد</h2>
+    </div>
+
+    <p class="af-lead">در سی روز نخست، ۱۲۰ ردیاب <span class="af-ltr">AF-GT900</span> روی ناوگان کارفرما نصب شد و بیش از ۴٫۲ میلیون رکورد تله‌متری به پلتفرم رسید. چهار شاخص زیر تمام تعهدات این فاز را پوشش می‌دهد؛ مقدار، واحد و فاصله تا هدف قرارداد کنار هم آمده تا نتیجه بدون تفسیر خوانده شود.</p>
+
+    <div class="af-stats">
+      <div class="af-stat"><div class="af-stat-label">دقت موقعیت‌یابی GNSS</div><div class="af-stat-value">۱٫۸<span class="af-stat-unit">متر</span></div><div class="af-stat-delta"><span class="dot ok"></span>هدف: حداکثر ۲٫۵ متر</div></div>
+      <div class="af-stat"><div class="af-stat-label">دسترس‌پذیری پلتفرم</div><div class="af-stat-value">۹۹٫۹۵<span class="af-stat-unit">درصد</span></div><div class="af-stat-delta"><span class="dot ok"></span>هدف: ۹۹٫۹ درصد</div></div>
+      <div class="af-stat"><div class="af-stat-label">تحویل موفق بستهٔ داده</div><div class="af-stat-value">۹۹٫۸۸<span class="af-stat-unit">درصد</span></div><div class="af-stat-delta"><span class="dot ok"></span>اتلاف: ۰٫۱۲ درصد</div></div>
+      <div class="af-stat"><div class="af-stat-label">جریان حالت خواب ردیاب</div><div class="af-stat-value">۱٫۴<span class="af-stat-unit">mA</span></div><div class="af-stat-delta"><span class="dot aqua"></span>۲۲٪ کمتر از نسل قبل</div></div>
+    </div>
+
+    <figure class="af-figure">
+      <div class="af-figure-head">
+        <div><div class="af-figure-title">عملکرد واقعی در برابر هدف قرارداد</div><div class="af-figure-sub">میله مثل مسیر پیش می‌رود و به نقطهٔ مقصد می‌رسد؛ خط کهربایی، هدف همان شاخص در قرارداد (SLA) است.</div></div>
+        <span class="af-figure-fig">شکل ۱ ـ نوار مسیر</span>
+      </div>
+      <div class="af-routebar">
+        <div class="af-routebar-row"><span class="af-routebar-label">دسترس‌پذیری پلتفرم</span><div class="af-routebar-track"><div class="af-routebar-fill" style="width:99.95%"></div><span class="af-routebar-end" style="right:99.95%"></span><span class="af-routebar-target" style="right:99.9%"></span></div><span class="af-routebar-val">۹۹٫۹۵٪<small>هدف ۹۹٫۹٪</small></span></div>
+        <div class="af-routebar-row"><span class="af-routebar-label">تحویل بسته‌های تله‌متری</span><div class="af-routebar-track"><div class="af-routebar-fill" style="width:99.88%"></div><span class="af-routebar-end" style="right:99.88%"></span><span class="af-routebar-target" style="right:99.5%"></span></div><span class="af-routebar-val">۹۹٫۸۸٪<small>هدف ۹۹٫۵٪</small></span></div>
+        <div class="af-routebar-row"><span class="af-routebar-label">پوشش موقعیت معتبر ماهواره‌ای</span><div class="af-routebar-track"><div class="af-routebar-fill ink" style="width:98.6%"></div><span class="af-routebar-end" style="right:98.6%"></span><span class="af-routebar-target" style="right:98%"></span></div><span class="af-routebar-val">۹۸٫۶٪<small>هدف ۹۸٪</small></span></div>
+        <div class="af-routebar-row"><span class="af-routebar-label">بازیابی داده پس از نقطهٔ کور</span><div class="af-routebar-track"><div class="af-routebar-fill ink" style="width:100%"></div><span class="af-routebar-end" style="right:100%"></span><span class="af-routebar-target" style="right:99.6%"></span></div><span class="af-routebar-val">۱۰۰٪<small>بدون اتلاف رکورد</small></span></div>
+        <div class="af-routebar-row"><span class="af-routebar-label">رضایت تیم عملیات ناوگان</span><div class="af-routebar-track"><div class="af-routebar-fill aqua" style="width:94%"></div><span class="af-routebar-end" style="right:94%;background:var(--af-aqua)"></span><span class="af-routebar-target" style="right:90%"></span></div><span class="af-routebar-val">۹۴٪<small>هدف ۹۰٪ ـ نظرسنجی</small></span></div>
+      </div>
+      <div class="af-scale"><span>۰٪</span><span>۲۵٪</span><span>۵۰٪</span><span>۷۵٪</span><span>۱۰۰٪</span></div>
+      <figcaption class="af-figure-foot"><span>منبع: موتور گزارش‌گیری پلتفرم آتی فرزام ـ ۱ تا ۳۰ مهر ۱۴۰۴</span><span class="af-ltr">4,200,000 telemetry records</span></figcaption>
+    </figure>
+
+    <div>
+      <div class="af-eyebrow"><span class="n">۰۱ ـ الف</span> سه یافتهٔ کلیدی دوره</div>
+      <div class="af-grid-3" style="margin-top:2mm">
+        <div class="finding"><div class="fn">یافتهٔ ۱</div><h4>داده در نقطهٔ کور از دست نمی‌رود</h4><p>حافظهٔ داخلی ردیاب رکوردهای مسیرهای بدون پوشش را نگه داشت و پس از بازگشت شبکه فرستاد؛ بازیابی ۱۰۰٪ ثبت شد.</p></div>
+        <div class="finding"><div class="fn">یافتهٔ ۲</div><h4>مصرف خواب، باتری خودرو را حفظ می‌کند</h4><p>جریان ۱٫۴ میلی‌آمپر در توقف طولانی؛ افت ولتاژ باتری در آزمون ۷۲ ساعته فقط ۰٫۱۱ ولت بود.</p></div>
+        <div class="finding"><div class="fn">یافتهٔ ۳</div><h4>دو مورد مشروط، مسیر رفع مشخص دارد</h4><p>کالیبراسیون حسگر سوخت دو خودرو و بررسی دو دستگاهِ در تعمیرگاه؛ در جدول اقدامات صفحهٔ ۵ آمده است.</p></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="af-eyebrow"><span class="n">۰۱ ـ ب</span> روش و دامنهٔ اندازه‌گیری</div>
+      <div class="af-facts" style="margin-top:2mm">
+        <div class="f sig"><b>جامعهٔ آزمون</b><span>۱۲۰ ردیاب روی چهار کلاس خودروی سبک و سنگین ناوگان کارفرما</span></div>
+        <div class="f"><b>بازه و نمونه‌برداری</b><span>۱ تا ۳۰ مهر ۱۴۰۴؛ نمونه‌برداری ماهواره‌ای هر یک ثانیه، ارسال هر ۳۰ ثانیه</span></div>
+        <div class="f"><b>منبع داده</b><span>موتور گزارش‌گیری پلتفرم آتی فرزام و لاگ مستقل آزمایشگاه سخت‌افزار</span></div>
+        <div class="f"><b>تعریف «آنلاین»</b><span>دستگاهی که در پنج دقیقهٔ اخیر دست‌کم یک بستهٔ موفق به پلتفرم رسانده باشد</span></div>
+      </div>
+    </div>
+
+    <div class="af-conclusion af-push">
+      <div class="af-note-title"><span class="dot sig"></span>جمع‌بندی برای تصمیم کارفرما</div>
+      <p class="af-small" style="font-size:8.2pt;color:var(--af-text)">پیشنهاد آتی فرزام، پایان فاز آزمایشی و آغاز استقرار کامل ناوگان است. این گزارش به‌ترتیب، معماری سامانه (صفحهٔ ۳)، شواهد اندازه‌گیری (صفحهٔ ۴) و مشخصات، جدول اقدامات و تأییدیهٔ تحویل (صفحهٔ ۵) را مستند می‌کند.</p>
+    </div>
+  </div>
+
+  <footer class="a4-footer">
+    <span>آتی فرزام ـ توسعهٔ نرم‌افزار و سخت‌افزار ردیاب</span>
+    <span class="dots3"><i></i><i></i><i></i></span>
+    <span>محرمانه ـ ویژهٔ کارفرما</span>
+    <span class="a4-footer-left"><img class="a4-footer-en" src="svg/typography%20english.svg" alt="Ati Farzam" /><span class="a4-footer-page">۰۲ / ۰۵</span></span>
+  </footer>
+</section>
+
+<!-- ══════════ صفحهٔ ۳ — معماری و بلوک‌دیاگرام ══════════ -->
+<section class="a4-page">
+  <header class="a4-header">
+    <div class="a4-header-brand">
+      <img src="svg/logo%20ati%20farzam.svg" alt="" class="a4-header-logo" />
+      <img src="svg/typography%20ati%20farzam.svg" alt="آتی فرزام" class="a4-header-typo" />
+      <span class="a4-header-divider"></span>
+      <div><div class="a4-header-title">گزارش ارزیابی فنی و تحویل سامانهٔ ردیابی ناوگان</div><div class="a4-header-subtitle">آتی فرزام ـ واحد تحقیق و توسعهٔ ردیاب</div></div>
+    </div>
+    <div class="a4-header-meta"><span>سند <b class="af-ltr">AF-RPT-1404-08</b></span><i>|</i><span>نسخهٔ <b>۲٫۴</b></span><i>|</i><span><b>مهر ۱۴۰۴</b></span></div>
+  </header>
+
+  <div class="a4-content">
+    <div>
+      <div class="af-eyebrow"><span class="n">۰۲</span> معماری سامانه</div>
+      <h2 class="af-h2">یک هستهٔ پردازش، دو سمتِ روشن: حسگرها و خودرو</h2>
+    </div>
+
+    <figure class="af-diagram">
+      <div class="af-figure-head">
+        <div><div class="af-figure-title">بلوک‌دیاگرام سخت‌افزار ردیاب <span class="af-ltr">AF-GT900</span></div><div class="af-figure-sub">جریان از راست (ورودی‌ها) به چپ (واسط‌های خودرو)؛ تنها بلوک توپر، هستهٔ پردازش است.</div></div>
+        <span class="af-figure-fig">شکل ۲</span>
+      </div>
+      <svg class="af-chart-svg" viewBox="0 0 680 248" role="img" aria-label="بلوک‌دیاگرام سخت‌افزار ردیاب" style="font-family:'Peyda',Tahoma,sans-serif">
+        <defs><marker id="arw" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#54748E"/></marker></defs>
+        <rect x="468" y="26" width="198" height="152" rx="16" fill="none" stroke="#C3D9E8" stroke-dasharray="4 4"/>
+        <text x="567" y="18" text-anchor="middle" font-size="8.5" font-weight="700" fill="#54748E">ورودی‌ها</text>
+        <rect x="14" y="26" width="198" height="152" rx="16" fill="none" stroke="#C3D9E8" stroke-dasharray="4 4"/>
+        <text x="113" y="18" text-anchor="middle" font-size="8.5" font-weight="700" fill="#54748E">واسط‌های خودرو</text>
+        <g font-size="10.5" font-weight="700" fill="#102333">
+          <rect x="482" y="38" width="170" height="40" rx="12" fill="#EFF7FC" stroke="#0E9BE8" stroke-width="1.4"/>
+          <text x="567" y="55" text-anchor="middle">گیرندهٔ ماهواره‌ای GNSS</text>
+          <text x="567" y="70" text-anchor="middle" font-size="7.5" font-weight="500" fill="#54748E">GPS · GLONASS · Galileo ـ L1/L5</text>
+          <rect x="482" y="90" width="170" height="40" rx="12" fill="#fff" stroke="#C3D9E8"/>
+          <text x="567" y="107" text-anchor="middle">مودم مخابراتی LTE Cat-1</text>
+          <text x="567" y="122" text-anchor="middle" font-size="7.5" font-weight="500" fill="#54748E">4G با بازگشت 2G ـ سیم‌کارت صنعتی</text>
+          <rect x="482" y="142" width="170" height="28" rx="12" fill="#fff" stroke="#C3D9E8"/>
+          <text x="567" y="160" text-anchor="middle">حسگرها: شتاب‌سنج، دما، ورودی دیجیتال</text>
+        </g>
+        <g>
+          <rect x="278" y="66" width="150" height="76" rx="20" fill="#102333"/>
+          <circle cx="298" cy="86" r="3.5" fill="#0E9BE8"/>
+          <text x="353" y="102" text-anchor="middle" font-size="12" font-weight="900" fill="#fff">هستهٔ پردازش</text>
+          <text x="353" y="120" text-anchor="middle" font-size="7.5" fill="#C3D9E8">فریم‌ور آتی فرزام ـ رویداد در لبه</text>
+          <text x="353" y="134" text-anchor="middle" font-size="7.5" fill="#8DACC4">TLS 1.3 · به‌روزرسانی OTA</text>
+        </g>
+        <g font-size="10.5" font-weight="700" fill="#102333">
+          <rect x="28" y="38" width="170" height="40" rx="12" fill="#fff" stroke="#C3D9E8"/>
+          <text x="113" y="55" text-anchor="middle">گذرگاه CAN خودرو</text>
+          <text x="113" y="70" text-anchor="middle" font-size="7.5" font-weight="500" fill="#54748E">J1939 · سوخت و دور موتور</text>
+          <rect x="28" y="90" width="170" height="40" rx="12" fill="#fff" stroke="#C3D9E8"/>
+          <text x="113" y="107" text-anchor="middle">واسط‌های صنعتی</text>
+          <text x="113" y="122" text-anchor="middle" font-size="7.5" font-weight="500" fill="#54748E">RS-485 · رله · شناسهٔ راننده RFID</text>
+          <rect x="28" y="142" width="170" height="28" rx="12" fill="#fff" stroke="#C3D9E8"/>
+          <text x="113" y="160" text-anchor="middle">خروجی هشدار و قطع‌کن موتور</text>
+        </g>
+        <rect x="278" y="196" width="150" height="34" rx="12" fill="#EFF7FC" stroke="#C3D9E8"/>
+        <text x="353" y="211" text-anchor="middle" font-size="9.5" font-weight="700" fill="#102333">مدیریت توان و حافظه</text>
+        <text x="353" y="224" text-anchor="middle" font-size="7.2" fill="#54748E">9 تا 36 ولت · باتری پشتیبان · ۵۰٬۰۰۰ رکورد</text>
+        <g stroke="#8DACC4" stroke-width="1.2" fill="none">
+          <path d="M482,58 L430,88" marker-end="url(#arw)"/><path d="M482,110 L430,106" marker-end="url(#arw)"/><path d="M482,156 L430,124" marker-end="url(#arw)"/>
+          <path d="M278,88 L200,60" marker-end="url(#arw)"/><path d="M278,106 L200,108" marker-end="url(#arw)"/><path d="M278,124 L200,154" marker-end="url(#arw)"/>
+          <path d="M353,142 L353,194" marker-end="url(#arw)"/>
+        </g>
+        <g font-size="7" fill="#54748E" font-family="Consolas,monospace" text-anchor="middle"><text x="455" y="72">UART</text><text x="455" y="100">UART</text><text x="455" y="140">I2C</text><text x="238" y="66">CAN</text><text x="238" y="100">RS-485</text><text x="353" y="172">PWR · SPI</text></g>
+      </svg>
+      <figcaption class="af-figure-foot"><span>بدنه <span class="af-ltr">IP67</span> · دمای کاری <span class="af-ltr">−40 تا +85 °C</span></span><span>بازبینی سخت‌افزار <span class="af-ltr">Rev C</span> · فریم‌ور <span class="af-ltr">4.7.2</span></span></figcaption>
+    </figure>
+
+    <figure class="af-diagram">
+      <div class="af-figure-head">
+        <div><div class="af-figure-title">جریان داده از خودرو تا پنل کارفرما</div><div class="af-figure-sub">چهار گام، یک مسیر؛ پروتکل هر گام زیر پیکان آن نوشته شده است.</div></div>
+        <span class="af-figure-fig">شکل ۳</span>
+      </div>
+      <div class="af-flow">
+        <div class="af-flow-step sig"><div class="af-flow-num">گام ۰۱</div><div class="af-flow-title">ردیاب و خودرو</div><ul class="af-flow-list"><li>نمونه‌برداری ماهواره‌ای هر ثانیه</li><li>تشخیص رویداد روی خود دستگاه</li><li>ذخیرهٔ آفلاین در نقطهٔ کور</li></ul></div>
+        <div class="af-flow-arrow"><span class="a" style="color:var(--af-signal)">⟵</span><span class="p af-ltr">MQTT · TLS</span></div>
+        <div class="af-flow-step dim"><div class="af-flow-num">گام ۰۲</div><div class="af-flow-title">درگاه ابری</div><ul class="af-flow-list"><li>احراز هویت اختصاصی هر دستگاه</li><li>صف پیام و ارسال مجدد خودکار</li><li>ظرفیت تا ۵۰٬۰۰۰ دستگاه هم‌زمان</li></ul></div>
+        <div class="af-flow-arrow"><span class="a">⟵</span><span class="p af-ltr">Stream</span></div>
+        <div class="af-flow-step dim"><div class="af-flow-num">گام ۰۳</div><div class="af-flow-title">پردازش و داده</div><ul class="af-flow-list"><li>ذخیرهٔ سری‌زمانی و مکانی مسیر</li><li>موتور قانون و هشدار لحظه‌ای</li><li>امتیاز رفتار راننده</li></ul></div>
+        <div class="af-flow-arrow"><span class="a">⟵</span><span class="p af-ltr">REST API</span></div>
+        <div class="af-flow-step dim"><div class="af-flow-num">گام ۰۴</div><div class="af-flow-title">پنل و یکپارچه‌سازی</div><ul class="af-flow-list"><li>نقشهٔ زنده و گزارش فارسی</li><li>اپلیکیشن مدیر و راننده</li><li>وب‌سرویس اتصال به ERP کارفرما</li></ul></div>
+      </div>
+      <figcaption class="af-figure-foot"><span>تأخیر سرتاسری داده تا نمایش در پنل: میانگین ۱٫۹ ثانیه</span><span class="af-ltr">P95 latency 1.9s</span></figcaption>
+    </figure>
+
+    <div>
+      <div class="af-eyebrow"><span class="n">۰۲ ـ الف</span> شرایط آزمون و پیاده‌سازی</div>
+      <div class="af-facts" style="margin-top:2mm">
+        <div class="f sig"><b>محیط آزمون</b><span>آزمایشگاه سخت‌افزار آتی فرزام و میدان عملیاتی در سه استان</span></div>
+        <div class="f"><b>شرایط شبکه</b><span>پوشش 4G و بازگشت 2G اپراتورهای داخلی؛ مسیرهای کوهستانی و برون‌شهری</span></div>
+        <div class="f"><b>تغذیه</b><span>برق خودرو ۹ تا ۳۶ ولت؛ باتری پشتیبان داخلی برای خاموشی کامل خودرو</span></div>
+        <div class="f"><b>نسخهٔ مبنا</b><span>سخت‌افزار Rev C و فریم‌ور 4.7.2 ـ همان نسخهٔ نصب‌شده روی ناوگان</span></div>
+      </div>
+    </div>
+
+    <div class="af-grid-2 af-push">
+      <div class="af-note"><div class="af-note-title"><span class="dot sig"></span>چرا حافظه روی خود دستگاه است؟</div><p>چون پوشش شبکه در همهٔ محورهای کارفرما کامل نیست. ردیاب در نبود آنتن، رکورد را با مهر زمانی ماهواره‌ای نگه می‌دارد و بعداً به‌ترتیب می‌فرستد؛ نتیجه‌اش همان بازیابی ۱۰۰٪ صفحهٔ قبل است.</p></div>
+      <div class="af-note"><div class="af-note-title"><span class="dot sig"></span>چرا پردازش رویداد روی دستگاه است؟</div><p>تشخیص شتاب و ضربه روی خود ردیاب انجام می‌شود، نه در ابر؛ پس هشدار بحرانی حتی با تأخیر شبکه هم به‌موقع ساخته می‌شود و فقط نتیجه ـ نه دادهٔ خام پرحجم ـ منتقل می‌شود.</p></div>
+    </div>
+  </div>
+
+  <footer class="a4-footer">
+    <span>آتی فرزام ـ توسعهٔ نرم‌افزار و سخت‌افزار ردیاب</span>
+    <span class="dots3"><i></i><i></i><i></i></span>
+    <span>محرمانه ـ ویژهٔ کارفرما</span>
+    <span class="a4-footer-left"><img class="a4-footer-en" src="svg/typography%20english.svg" alt="Ati Farzam" /><span class="a4-footer-page">۰۳ / ۰۵</span></span>
+  </footer>
+</section>
+
+<!-- ══════════ صفحهٔ ۴ — شواهد اندازه‌گیری ══════════ -->
+<section class="a4-page">
+  <header class="a4-header">
+    <div class="a4-header-brand">
+      <img src="svg/logo%20ati%20farzam.svg" alt="" class="a4-header-logo" />
+      <img src="svg/typography%20ati%20farzam.svg" alt="آتی فرزام" class="a4-header-typo" />
+      <span class="a4-header-divider"></span>
+      <div><div class="a4-header-title">گزارش ارزیابی فنی و تحویل سامانهٔ ردیابی ناوگان</div><div class="a4-header-subtitle">آتی فرزام ـ واحد تحقیق و توسعهٔ ردیاب</div></div>
+    </div>
+    <div class="a4-header-meta"><span>سند <b class="af-ltr">AF-RPT-1404-08</b></span><i>|</i><span>نسخهٔ <b>۲٫۴</b></span><i>|</i><span><b>مهر ۱۴۰۴</b></span></div>
+  </header>
+
+  <div class="a4-content" style="gap:3.6mm">
+    <div>
+      <div class="af-eyebrow"><span class="n">۰۳</span> شواهد اندازه‌گیری</div>
+      <h2 class="af-h2">پایداری ارتباط در سی روز، بدون افت معنادار</h2>
+    </div>
+
+    <figure class="af-figure">
+      <div class="af-figure-head">
+        <div><div class="af-figure-title">درصد دستگاه‌های آنلاین ـ میانگین روزانه</div><div class="af-figure-sub">خط، مسیر حرکت سامانه است: از هر روز یک نقطه می‌گذرد و در مقصد (روز ۳۰) به نقطهٔ پررنگ می‌رسد. خط چین، هدف قرارداد است.</div></div>
+        <span class="af-figure-fig">شکل ۴ ـ خط مسیر</span>
+      </div>
+      <svg class="af-chart-svg" viewBox="0 0 680 232" dir="ltr" role="img" aria-label="نمودار خط مسیر دستگاه‌های آنلاین" style="font-family:'Peyda',Tahoma,sans-serif;width:87%;margin:0 auto">
+        <g fill="#C3D9E8">
+          <circle cx="586" cy="36" r="2.2"/><circle cx="606" cy="36" r="2.2"/><circle cx="626" cy="36" r="2.2"/>
+          <circle cx="586" cy="52" r="2.2"/><circle cx="606" cy="52" r="2.2"/>
+          <circle cx="586" cy="68" r="2.2"/>
+        </g>
+        <g stroke="#E0EEF7"><line x1="56" y1="28" x2="648" y2="28"/><line x1="56" y1="81" x2="648" y2="81"/><line x1="56" y1="133" x2="648" y2="133"/><line x1="56" y1="186" x2="648" y2="186"/></g>
+        <g font-size="8" fill="#54748E" text-anchor="middle"><text x="28" y="31">۱۰۰٪</text><text x="28" y="84">۹۸٪</text><text x="28" y="136">۹۶٪</text><text x="28" y="189">۹۴٪</text></g>
+        <line x1="56" y1="54" x2="648" y2="54" stroke="#F5A300" stroke-width="1.4" stroke-dasharray="6 4" stroke-linecap="round"/>
+        <text x="352" y="46" font-size="7.5" font-weight="700" fill="#D98E00" text-anchor="middle">هدف قرارداد ۹۹٪</text>
+        <path d="M56,102 C90,84 105,74 138,70 C170,66 188,82 220,86 C252,90 270,55 302,49 C334,44 352,60 384,62 C416,65 434,55 466,54 C498,53 516,65 548,68 C584,71 614,50 648,44 L648,186 L56,186 Z" fill="#0E9BE8" opacity="0.08"/>
+        <path d="M56,102 C90,84 105,74 138,70 C170,66 188,82 220,86 C252,90 270,55 302,49 C334,44 352,60 384,62 C416,65 434,55 466,54 C498,53 516,65 548,68 C584,71 614,50 648,44" fill="none" stroke="#0E9BE8" stroke-width="2.4" stroke-linecap="round"/>
+        <g fill="#fff" stroke="#0E9BE8" stroke-width="1.8"><circle cx="138" cy="70" r="3"/><circle cx="302" cy="49" r="3"/><circle cx="466" cy="54" r="3"/><circle cx="548" cy="68" r="3"/></g>
+        <circle cx="220" cy="86" r="3.6" fill="#fff" stroke="#102333" stroke-width="2"/>
+        <text x="220" y="72" font-size="7.5" font-weight="600" fill="#54748E" text-anchor="middle">کمینهٔ دوره ۹۷٫۸٪ ـ روز ۹</text>
+        <circle cx="648" cy="44" r="5" fill="#102333" stroke="#fff" stroke-width="2"/>
+        <text x="636" y="30" font-size="9.5" font-weight="800" fill="#102333" text-anchor="end">۹۹٫۴٪</text>
+        <g font-size="8" fill="#8DACC4" text-anchor="middle"><text x="56" y="206">روز ۱</text><text x="240" y="206">روز ۱۰</text><text x="444" y="206">روز ۲۰</text><text x="644" y="206">روز ۳۰</text></g>
+        <text x="56" y="224" font-size="7" fill="#8DACC4">محور عمودی از ۹۴٪ آغاز می‌شود تا نوسان‌های کوچک خوانا بماند.</text>
+      </svg>
+      <figcaption class="af-figure-foot"><span>افت روز نهم، قطعی چندساعتهٔ اپراتور در یک استان بود؛ داده‌ها پس از بازگشت شبکه کامل بازیابی شدند.</span><span class="af-ltr">Daily online ratio · n=120</span></figcaption>
+    </figure>
+
+    <div class="af-grid-2">
+      <figure class="af-figure">
+        <div class="af-figure-head"><div><div class="af-figure-title">سهم دستگاه‌های آنلاین</div><div class="af-figure-sub">قوس به نقطهٔ مقصد ختم می‌شود.</div></div><span class="af-figure-fig">شکل ۵ ـ قوس ربع</span></div>
+        <div style="display:flex;justify-content:center;padding:1mm 0">
+          <svg viewBox="0 0 120 120" style="width:31mm;height:31mm;font-family:'Peyda',Tahoma,sans-serif" role="img" aria-label="سهم دستگاه‌های آنلاین">
+            <circle cx="60" cy="60" r="50" fill="none" stroke="#E0EEF7" stroke-width="10"/>
+            <circle cx="60" cy="60" r="50" fill="none" stroke="#0E9BE8" stroke-width="10" stroke-linecap="round" stroke-dasharray="270.2 314.2" transform="rotate(-90 60 60)"/>
+            <circle cx="21.5" cy="28.1" r="5.5" fill="#102333" stroke="#fff" stroke-width="2"/>
+            <text x="60" y="60" text-anchor="middle" font-size="17" font-weight="900" fill="#102333">۸۶٪</text>
+            <text x="60" y="75" text-anchor="middle" font-size="7.5" font-weight="600" fill="#54748E">آنلاین و در حال ارسال</text>
+          </svg>
+        </div>
+        <figcaption class="af-figure-foot"><span>مبنای لحظهٔ گزارش: ۱۲۰ دستگاه</span><span class="af-ltr">Live snapshot</span></figcaption>
+      </figure>
+
+      <figure class="af-figure">
+        <div class="af-figure-head"><div><div class="af-figure-title">ترکیب چهار وضعیت ناوگان</div><div class="af-figure-sub">قطعه‌های جدا از هم، مثل کاشی‌های پترن.</div></div><span class="af-figure-fig">شکل ۶ ـ نوار کاشی</span></div>
+        <div class="af-status-list">
+          <div class="af-status-row"><span class="l"><span class="dot sig"></span>آنلاین و در حال ارسال</span><span class="v">۱۰۳ دستگاه ـ ۸۶٪</span></div>
+          <div class="af-status-row"><span class="l"><span class="dot s3"></span>خاموشِ برنامه‌ریزی‌شده</span><span class="v">۱۱ دستگاه ـ ۹٪</span></div>
+          <div class="af-status-row"><span class="l"><span class="dot warn"></span>هشدار باتری یا آنتن</span><span class="v">۴ دستگاه ـ ۳٪</span></div>
+          <div class="af-status-row"><span class="l"><span class="dot bad"></span>آفلاین بیش از ۲۴ ساعت</span><span class="v">۲ دستگاه ـ ۲٪</span></div>
+        </div>
+        <div style="margin-top:3mm">
+          <div class="af-stack"><i style="width:86%;background:var(--af-signal)"></i><i style="width:9%;background:var(--af-ink-20)"></i><i style="width:3%;background:var(--af-sun)"></i><i style="width:2%;background:var(--af-coral)"></i></div>
+          <div class="af-caption" style="margin-top:1.5mm">فقط ۵٪ پایانی نوار نیازمند پیگیری است؛ دو وضعیت غیرعادی با رنگ دیده می‌شوند.</div>
+        </div>
+      </figure>
+    </div>
+
+    <figure class="af-figure">
+      <div class="af-figure-head">
+        <div><div class="af-figure-title">آزمون‌های پذیرش، نقطه به نقطه</div><div class="af-figure-sub">هر نقطه یک آزمون واقعی است: ۲۶ قبول، ۲ قبول مشروط، صفر مردود ـ از ۲۸ آزمون آزمایشگاهی و میدانی.</div></div>
+        <span class="af-figure-fig">شکل ۷ ـ ماتریس نقطه‌ای</span>
+      </div>
+      <div class="af-dotmatrix" role="img" aria-label="۲۶ آزمون قبول و ۲ آزمون مشروط از ۲۸ آزمون">
+        <i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i>
+        <i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="warn"></i><i class="warn"></i>
+      </div>
+      <figcaption class="af-figure-foot"><span><span class="af-status"><span class="dot"></span>قبول ـ ۲۶</span> &nbsp; <span class="af-status"><span class="dot warn"></span>مشروط ـ ۲ (کالیبراسیون سوخت و دستگاه‌های تعمیرگاهی)</span></span><span>جزئیات شش آزمون کلیدی: صفحهٔ ۵</span></figcaption>
+    </figure>
+
+    <div>
+      <div class="af-eyebrow"><span class="n">۰۳ ـ الف</span> روش محاسبهٔ این صفحه</div>
+      <div class="af-facts" style="margin-top:2mm">
+        <div class="f sig"><b>مبنای درصد آنلاین</b><span>میانگین روزانهٔ دستگاه‌های آنلاین از کل ۱۲۰ دستگاه فعال</span></div>
+        <div class="f"><b>بازخوانی داده</b><span>رکوردها پس از بازگشت شبکه با مهر زمانی ماهواره‌ای درج می‌شوند</span></div>
+        <div class="f"><b>نقطهٔ لحظه‌ای</b><span>عکس لحظهٔ صدور گزارش، پایان روز سی‌ام دوره</span></div>
+        <div class="f"><b>آزمون‌ها</b><span>۲۸ آزمون آزمایشگاهی و میدانی؛ صورت‌جلسه در پیوست خام</span></div>
+      </div>
+    </div>
+
+    <div class="af-note af-push">
+      <div class="af-note-title"><span class="dot sig"></span>خوانش یک‌جمله‌ای این صفحه</div>
+      <p>سامانه در کل دوره بالای هدف قرارداد ماند، ۸۶٪ ناوگان همین حالا آنلاین است و هیچ آزمون پذیرشی مردود نشده؛ دو مورد مشروط هم در جدول اقدامات صفحهٔ بعد، مسئول و مهلت مشخص دارد.</p>
+    </div>
+  </div>
+
+  <footer class="a4-footer">
+    <span>آتی فرزام ـ توسعهٔ نرم‌افزار و سخت‌افزار ردیاب</span>
+    <span class="dots3"><i></i><i></i><i></i></span>
+    <span>محرمانه ـ ویژهٔ کارفرما</span>
+    <span class="a4-footer-left"><img class="a4-footer-en" src="svg/typography%20english.svg" alt="Ati Farzam" /><span class="a4-footer-page">۰۴ / ۰۵</span></span>
+  </footer>
+</section>
+
+<!-- ══════════ صفحهٔ ۵ — مشخصات، جدول اقدامات پترنی، تأییدیه ══════════ -->
+<section class="a4-page">
+  <header class="a4-header">
+    <div class="a4-header-brand">
+      <img src="svg/logo%20ati%20farzam.svg" alt="" class="a4-header-logo" />
+      <img src="svg/typography%20ati%20farzam.svg" alt="آتی فرزام" class="a4-header-typo" />
+      <span class="a4-header-divider"></span>
+      <div><div class="a4-header-title">گزارش ارزیابی فنی و تحویل سامانهٔ ردیابی ناوگان</div><div class="a4-header-subtitle">آتی فرزام ـ واحد تحقیق و توسعهٔ ردیاب</div></div>
+    </div>
+    <div class="a4-header-meta"><span>سند <b class="af-ltr">AF-RPT-1404-08</b></span><i>|</i><span>نسخهٔ <b>۲٫۴</b></span><i>|</i><span><b>مهر ۱۴۰۴</b></span></div>
+  </header>
+
+  <div class="a4-content">
+    <div>
+      <div class="af-eyebrow"><span class="n">۰۴</span> مشخصات، اقدامات و تأییدیهٔ تحویل</div>
+      <h2 class="af-h2">آنچه تحویل شد و آنچه از فردا انجام می‌شود</h2>
+    </div>
+
+    <div class="af-grid-2">
+      <div class="af-table-wrap">
+        <div class="af-h3" style="padding:3mm 3.5mm 0">مشخصات فنی ردیاب <span class="af-ltr">AF-GT900</span></div>
+        <table class="af-table">
+          <thead><tr><th>پارامتر</th><th>مقدار نهایی</th></tr></thead>
+          <tbody>
+            <tr><td class="td-bold">موقعیت‌یابی</td><td><span class="af-ltr">GNSS L1/L5 · 1.8 m · 26 s</span></td></tr>
+            <tr><td class="td-bold">ارتباط</td><td><span class="af-ltr">LTE Cat-1 + 2G · MQTT/TLS 1.3</span></td></tr>
+            <tr><td class="td-bold">تغذیه</td><td><span class="af-ltr">9–36 V DC · Sleep 1.4 mA</span></td></tr>
+            <tr><td class="td-bold">واسط خودرو</td><td><span class="af-ltr">CAN J1939 · RS-485 · RFID</span></td></tr>
+            <tr><td class="td-bold">بدنه و حافظه</td><td><span class="af-ltr">IP67 · −40…+85 °C · 50k records</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="af-table-wrap">
+        <div class="af-h3" style="padding:3mm 3.5mm 0">شش آزمون کلیدی از ۲۸ آزمون</div>
+        <table class="af-table">
+          <thead><tr><th>آزمون</th><th>نتیجه</th><th>وضعیت</th></tr></thead>
+          <tbody>
+            <tr><td class="td-bold">دقت استاتیک ماهواره</td><td class="td-num">۱٫۸ متر</td><td><span class="af-status"><span class="dot ok"></span>قبول</span></td></tr>
+            <tr><td class="td-bold">بازیابی پس از نقطهٔ کور</td><td class="td-num">۱۰۰٪ رکوردها</td><td><span class="af-status"><span class="dot ok"></span>قبول</span></td></tr>
+            <tr><td class="td-bold">خواب ۷۲ ساعته روی باتری خودرو</td><td class="td-num">افت ۰٫۱۱ ولت</td><td><span class="af-status"><span class="dot ok"></span>قبول</span></td></tr>
+            <tr><td class="td-bold">آب‌بندی بدنه</td><td class="td-num"><span class="af-ltr">IP67</span></td><td><span class="af-status"><span class="dot ok"></span>قبول</span></td></tr>
+            <tr><td class="td-bold">کالیبراسیون حسگر سوخت</td><td class="td-num">خطای ۳٫۸٪</td><td><span class="af-status"><span class="dot warn"></span>مشروط</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div>
+      <div class="af-eyebrow"><span class="n">۰۴ ـ الف</span> جدول اقدامات آتی ـ ساختار کاشی و نقطه از پترن می‌آید</div>
+      <div class="af-h3">پنج کاری که از فردا انجام می‌شود؛ هر نقطه، یک‌پنجم مسیر آن کار است</div>
+      <table class="af-ptable">
+        <thead><tr><th style="width:30%">اقدام</th><th style="width:24%">خروجی مورد انتظار</th><th style="width:15%">مسئول</th><th style="width:13%">مهلت</th><th style="width:18%">پیشرفت و وضعیت</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>استقرار کامل ناوگان</td><td>نصب ۳۸۰ دستگاه و تحویل سایت‌ها</td><td>واحد عملیات</td><td>پایان آذر ۱۴۰۴</td>
+            <td><span class="af-pdots"><i class="on"></i><i></i><i></i><i></i><i></i></span><br /><span class="af-status"><span class="dot sig"></span>برنامه‌ریزی و شروع</span></td>
+          </tr>
+          <tr>
+            <td>کالیبراسیون حسگر سوخت</td><td>رسیدن خطای دو خودرو به زیر ۳٪</td><td>تیم سخت‌افزار</td><td>۱۰ آبان ۱۴۰۴</td>
+            <td><span class="af-pdots"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span><br /><span class="af-status"><span class="dot ok"></span>در جریان</span></td>
+          </tr>
+          <tr>
+            <td>بازگشت دو دستگاه آفلاین</td><td>تعیین تکلیف خودروهای تعمیرگاهی</td><td>پشتیبانی فنی</td><td>۵ آبان ۱۴۰۴</td>
+            <td><span class="af-pdots"><i class="warn"></i><i class="warn"></i><i></i><i></i><i></i></span><br /><span class="af-status"><span class="dot warn"></span>نیازمند پیگیری کارفرما</span></td>
+          </tr>
+          <tr>
+            <td>اتصال به ERP کارفرما</td><td>وب‌سرویس زندهٔ رویدادهای ناوگان</td><td>تیم نرم‌افزار</td><td>پایان آبان ۱۴۰۴</td>
+            <td><span class="af-pdots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><br /><span class="af-status"><span class="dot ok"></span>در جریان ـ محیط آزمون آماده</span></td>
+          </tr>
+          <tr>
+            <td>آموزش و داشبورد راننده</td><td>دو جلسهٔ آموزش + امتیاز ایمنی راننده</td><td>مدیر پروژه</td><td>آذر ۱۴۰۴</td>
+            <td><span class="af-pdots"><i></i><i></i><i></i><i></i><i></i></span><br /><span class="af-status"><span class="dot s2"></span>برنامه‌ریزی‌شده</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="af-caption">پیشرفت هر هفته در گزارش هفتگی با همین جدول به‌روزرسانی می‌شود؛ پر شدن هر پنج نقطه یعنی تحویل کامل آن اقدام.</p>
+    </div>
+
+    <div class="af-push">
+      <div class="af-eyebrow"><span class="n">۰۴ ـ ب</span> تأییدیه و امضای طرفین</div>
+      <div class="af-signoff-grid" style="margin-top:2mm">
+        <div class="af-signoff-box"><div><div class="af-signoff-role">مدیر فنی ـ آتی فرزام</div><div class="af-signoff-name">تهیه‌کنندهٔ گزارش</div></div><div class="af-signoff-line"><span>امضا و مهر</span><span>مهر ۱۴۰۴</span></div></div>
+        <div class="af-signoff-box"><div><div class="af-signoff-role">مدیر پروژه ـ آتی فرزام</div><div class="af-signoff-name">تأییدکنندهٔ تحویل فاز آزمایشی</div></div><div class="af-signoff-line"><span>امضا</span><span>مهر ۱۴۰۴</span></div></div>
+        <div class="af-signoff-box"><div><div class="af-signoff-role">نمایندهٔ کارفرما</div><div class="af-signoff-name">تأیید دریافت و قبول نتایج دوره</div></div><div class="af-signoff-line"><span>امضا و مهر</span><span>تاریخ: ــــــــــــ</span></div></div>
+      </div>
+      <p class="af-caption" style="margin-top:3mm">امضای این صفحه یعنی تأیید نتایج فاز آزمایشی و آغاز استقرار کامل طبق جدول اقدامات بالا. پیوست دادهٔ خام آزمون‌ها با کد <span class="af-ltr">AF-RPT-1404-08-A</span> در پورتال کارفرما در دسترس است. پایان گزارش.</p>
+    </div>
+  </div>
+
+  <footer class="a4-footer">
+    <span>آتی فرزام ـ توسعهٔ نرم‌افزار و سخت‌افزار ردیاب</span>
+    <span class="dots3"><i></i><i></i><i></i></span>
+    <span>محرمانه ـ ویژهٔ کارفرما</span>
+    <span class="a4-footer-left"><img class="a4-footer-en" src="svg/typography%20english.svg" alt="Ati Farzam" /><span class="a4-footer-page">۰۵ / ۰۵</span></span>
+  </footer>
+</section>
+
+</main>
+</body>
+</html>
