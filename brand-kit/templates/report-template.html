@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>قالب گزارش کارفرما A4 ـ آتی فرزام</title>
+<link rel="stylesheet" href="../css/ati-farzam-a4.css" />
+<style>
+  .tpl-toolbar{position:sticky;top:0;z-index:200;background:#fff;padding:11px 22px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #E0EEF7}
+  .tpl-toolbar b{font-size:9.5pt;color:#102333}
+  .tpl-toolbar span{font-size:7.4pt;color:#54748E;display:block}
+  .tpl-btn{background:#102333;color:#fff;border:none;padding:8px 16px;border-radius:999px;font-family:'Peyda',sans-serif;font-weight:700;font-size:8.6pt;cursor:pointer}
+  @media print{.tpl-toolbar{display:none!important}}
+</style>
+</head>
+<body>
+
+<div class="tpl-toolbar no-print">
+  <div><b>قالب خام گزارش کارفرما ـ آتی فرزام (v3)</b><span>جای [کروشه‌ها] را پر کنید؛ هر صفحه یک a4-page جدا و هیچ سطحی گوشهٔ تیز ندارد.</span></div>
+  <button class="tpl-btn" onclick="window.print()">چاپ / PDF</button>
+</div>
+
+<main class="af-workspace">
+
+<!-- صفحهٔ ۱ ـ جلد -->
+<section class="a4-page a4-cover">
+  <div class="cover-head">
+    <div class="cover-lockup">
+      <img class="mark" src="../../svg/logo%20ati%20farzam.svg" alt="نشان آتی فرزام" />
+      <div>
+        <img class="typo" src="../../svg/typography%20ati%20farzam.svg" alt="آتی فرزام" />
+        <div class="sub">توسعهٔ نرم‌افزار و سخت‌افزار ردیاب هوشمند</div>
+      </div>
+    </div>
+    <div class="cover-doc">[نوع سند]<br /><b>[محرمانه ـ ویژهٔ کارفرما]</b><br /><img src="../../svg/typography%20english.svg" alt="Ati Farzam" style="height:3.8mm;width:auto;margin-top:3px;opacity:.75" /></div>
+  </div>
+
+  <div class="cover-main">
+    <div class="cover-eyebrow">[محصول یا پروژه ـ فاز گزارش]</div>
+    <h1 class="cover-title">[عنوان اصلی گزارش در دو خط]</h1>
+    <p class="cover-sub">[زیرعنوان: چه چیزی، برای چه سامانه‌ای و بر پایهٔ چه داده‌ای ارزیابی شده است.]</p>
+    <div class="af-route" style="margin-top:9mm"></div>
+
+    <div class="cover-scope">
+      <div class="cs-title">در این گزارش</div>
+      <div class="cs-item"><i></i><b>[بخش اول]</b><span>[یک خط: این بخش چه پاسخی به کارفرما می‌دهد]</span><span class="pg">صفحهٔ ۲</span></div>
+      <div class="cs-item aqua"><i></i><b>[بخش دوم]</b><span>[یک خط: محتوای فنی یا معماری این بخش]</span><span class="pg">صفحهٔ ۳</span></div>
+      <div class="cs-item sun"><i></i><b>[بخش سوم]</b><span>[یک خط: شواهد و اندازه‌گیری این بخش]</span><span class="pg">صفحهٔ ۴</span></div>
+      <div class="cs-item coral"><i></i><b>[بخش چهارم]</b><span>[یک خط: اقدامات، جدول و تأییدیهٔ این بخش]</span><span class="pg">صفحهٔ ۵</span></div>
+    </div>
+
+    <div class="af-stats" style="margin-top:9mm">
+      <div class="af-stat"><div class="af-stat-label">[شاخص اول جلد]</div><div class="af-stat-value">[..]<span class="af-stat-unit">[واحد]</span></div><div class="af-stat-delta"><span class="dot sig"></span>[توضیح کوتاه]</div></div>
+      <div class="af-stat"><div class="af-stat-label">[شاخص دوم جلد]</div><div class="af-stat-value">[..]<span class="af-stat-unit">[واحد]</span></div><div class="af-stat-delta"><span class="dot sig"></span>[توضیح کوتاه]</div></div>
+      <div class="af-stat"><div class="af-stat-label">[شاخص سوم جلد]</div><div class="af-stat-value">[..]<span class="af-stat-unit">[واحد]</span></div><div class="af-stat-delta"><span class="dot sig"></span>[توضیح کوتاه]</div></div>
+      <div class="af-stat"><div class="af-stat-label">[شاخص چهارم جلد]</div><div class="af-stat-value">[..]<span class="af-stat-unit">[واحد]</span></div><div class="af-stat-delta"><span class="dot ok"></span>[توضیح کوتاه]</div></div>
+    </div>
+  </div>
+
+  <div class="cover-meta">
+    <div class="cover-meta-grid">
+      <div class="cover-meta-cell"><div class="cover-meta-label">کارفرما</div><div class="cover-meta-value">[نام سازمان]</div></div>
+      <div class="cover-meta-cell"><div class="cover-meta-label">سند</div><div class="cover-meta-value"><span class="af-ltr">AF-RPT-1404-..</span></div></div>
+      <div class="cover-meta-cell"><div class="cover-meta-label">دورهٔ ارزیابی</div><div class="cover-meta-value">[از ـ تا]</div></div>
+      <div class="cover-meta-cell"><div class="cover-meta-label">نسخه</div><div class="cover-meta-value">[نسخه ـ وضعیت]</div></div>
+    </div>
+    <div class="cover-band">
+      <div>
+        <div class="t1">[یک جمله: مهم‌ترین نتیجه برای تصمیم کارفرما]</div>
+        <div class="t2">[راهنمای خواندن صفحات بعد در یک جمله.]</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:6mm;flex-shrink:0">
+        <span class="dotsbox af-dots-light"></span>
+        <img class="en" src="../../svg/typography%20english.svg" alt="Ati Farzam" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- صفحهٔ ۲ ـ شاخص، نوار مسیر، جدول پترنی، امضا -->
+<section class="a4-page">
+  <header class="a4-header">
+    <div class="a4-header-brand">
+      <img src="../../svg/logo%20ati%20farzam.svg" alt="" class="a4-header-logo" />
+      <img src="../../svg/typography%20ati%20farzam.svg" alt="آتی فرزام" class="a4-header-typo" />
+      <span class="a4-header-divider"></span>
+      <div><div class="a4-header-title">[عنوان گزارش]</div><div class="a4-header-subtitle">آتی فرزام ـ [واحد صادرکننده]</div></div>
+    </div>
+    <div class="a4-header-meta"><span>سند <b class="af-ltr">AF-RPT-1404-..</b></span><i>|</i><span>نسخهٔ <b>[..]</b></span><i>|</i><span><b>[ماه ۱۴۰۴]</b></span></div>
+  </header>
+
+  <div class="a4-content">
+    <div>
+      <div class="af-eyebrow"><span class="n">۰۱</span> [نام بخش]</div>
+      <h2 class="af-h2">[تیتر نتیجه‌محور بخش]</h2>
+    </div>
+
+    <p class="af-lead">[مقدمهٔ سه‌خطی: دامنهٔ بخش و مهم‌ترین عدد آن. اعداد فارسی؛ لاتین فنی داخل span.af-ltr.]</p>
+
+    <div class="af-stats">
+      <div class="af-stat"><div class="af-stat-label">[شاخص اول]</div><div class="af-stat-value">[..]<span class="af-stat-unit">[واحد]</span></div><div class="af-stat-delta"><span class="dot ok"></span>[هدف]</div></div>
+      <div class="af-stat"><div class="af-stat-label">[شاخص دوم]</div><div class="af-stat-value">[..]<span class="af-stat-unit">[واحد]</span></div><div class="af-stat-delta"><span class="dot ok"></span>[هدف]</div></div>
+      <div class="af-stat"><div class="af-stat-label">[شاخص سوم]</div><div class="af-stat-value">[..]<span class="af-stat-unit">[واحد]</span></div><div class="af-stat-delta"><span class="dot sig"></span>[هدف]</div></div>
+      <div class="af-stat"><div class="af-stat-label">[شاخص چهارم]</div><div class="af-stat-value">[..]<span class="af-stat-unit">[واحد]</span></div><div class="af-stat-delta"><span class="dot warn"></span>[هدف]</div></div>
+    </div>
+
+    <figure class="af-figure">
+      <div class="af-figure-head">
+        <div><div class="af-figure-title">[عنوان پیام‌دار نمودار]</div><div class="af-figure-sub">[روش خواندن در یک جمله؛ خط کهربایی = هدف.]</div></div>
+        <span class="af-figure-fig">شکل ۱ ـ نوار مسیر</span>
+      </div>
+      <div class="af-routebar">
+        <div class="af-routebar-row"><span class="af-routebar-label">[شاخص نمونهٔ یک]</span><div class="af-routebar-track"><div class="af-routebar-fill" style="width:92%"></div><span class="af-routebar-end" style="right:92%"></span><span class="af-routebar-target" style="right:90%"></span></div><span class="af-routebar-val">۹۲٪<small>هدف ۹۰٪</small></span></div>
+        <div class="af-routebar-row"><span class="af-routebar-label">[شاخص نمونهٔ دو]</span><div class="af-routebar-track"><div class="af-routebar-fill ink" style="width:78%"></div><span class="af-routebar-end" style="right:78%"></span><span class="af-routebar-target" style="right:85%"></span></div><span class="af-routebar-val">۷۸٪<small>هدف ۸۵٪</small></span></div>
+      </div>
+      <div class="af-scale"><span>۰٪</span><span>۲۵٪</span><span>۵۰٪</span><span>۷۵٪</span><span>۱۰۰٪</span></div>
+      <figcaption class="af-figure-foot"><span>[منبع داده و بازه]</span><span class="af-ltr">[Source]</span></figcaption>
+    </figure>
+
+    <div>
+      <div class="af-eyebrow"><span class="n">۰۱ ـ الف</span> جدول اقدامات ـ هر نقطه یک‌پنجم مسیر</div>
+      <table class="af-ptable">
+        <thead><tr><th style="width:30%">اقدام</th><th style="width:24%">خروجی مورد انتظار</th><th style="width:15%">مسئول</th><th style="width:13%">مهلت</th><th style="width:18%">پیشرفت و وضعیت</th></tr></thead>
+        <tbody>
+          <tr><td>[اقدام اول]</td><td>[خروجی]</td><td>[مسئول]</td><td>[مهلت]</td><td><span class="af-pdots"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span><br /><span class="af-status"><span class="dot ok"></span>در جریان</span></td></tr>
+          <tr><td>[اقدام دوم]</td><td>[خروجی]</td><td>[مسئول]</td><td>[مهلت]</td><td><span class="af-pdots"><i class="warn"></i><i></i><i></i><i></i><i></i></span><br /><span class="af-status"><span class="dot warn"></span>نیازمند پیگیری</span></td></tr>
+          <tr><td>[اقدام سوم]</td><td>[خروجی]</td><td>[مسئول]</td><td>[مهلت]</td><td><span class="af-pdots"><i></i><i></i><i></i><i></i><i></i></span><br /><span class="af-status"><span class="dot s2"></span>برنامه‌ریزی‌شده</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="af-push">
+      <div class="af-eyebrow"><span class="n">۰۱ ـ ب</span> تأییدیه</div>
+      <div class="af-signoff-grid" style="margin-top:2mm">
+        <div class="af-signoff-box"><div><div class="af-signoff-role">[نقش ـ آتی فرزام]</div><div class="af-signoff-name">[نام / سمت]</div></div><div class="af-signoff-line"><span>امضا و مهر</span><span>[تاریخ]</span></div></div>
+        <div class="af-signoff-box"><div><div class="af-signoff-role">[نقش ـ آتی فرزام]</div><div class="af-signoff-name">[نام / سمت]</div></div><div class="af-signoff-line"><span>امضا</span><span>[تاریخ]</span></div></div>
+        <div class="af-signoff-box"><div><div class="af-signoff-role">نمایندهٔ کارفرما</div><div class="af-signoff-name">[نام / سمت / سازمان]</div></div><div class="af-signoff-line"><span>امضا و مهر</span><span>[تاریخ]</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="a4-footer">
+    <span>آتی فرزام ـ توسعهٔ نرم‌افزار و سخت‌افزار ردیاب</span>
+    <span class="dots3"><i></i><i></i><i></i></span>
+    <span>[طبقه‌بندی سند]</span>
+    <span class="a4-footer-left"><img class="a4-footer-en" src="../../svg/typography%20english.svg" alt="Ati Farzam" /><span class="a4-footer-page">۰۲ / ۰۲</span></span>
+  </footer>
+</section>
+
+</main>
+</body>
+</html>

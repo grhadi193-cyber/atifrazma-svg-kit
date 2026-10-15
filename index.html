@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>برندکیت آتی فرزام ـ سیستم گزارش A4</title>
+<link rel="stylesheet" href="brand-kit/css/ati-farzam-a4.css" />
+<style>
+  body{background:#F4FAFE}
+  a{text-decoration:none;color:inherit}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 22px}
+  .nav{position:sticky;top:0;z-index:100;background:rgba(244,250,254,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--af-ink-10)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:13px 0;flex-wrap:wrap}
+  .lockup{display:flex;align-items:center;gap:10px}
+  .lockup img.mark{height:30px;width:auto}
+  .lockup img.typo{height:19px;width:auto}
+  .lockup small{display:block;font-size:7pt;color:var(--af-ink-60);font-weight:600}
+  .links{display:flex;gap:2px;flex-wrap:wrap}
+  .links a{font-size:8.6pt;font-weight:600;color:var(--af-ink-80);padding:7px 11px;border-radius:10px}
+  .links a:hover{background:var(--af-ink-10);color:var(--af-ink)}
+  .btn{display:inline-flex;align-items:center;gap:7px;background:var(--af-ink);color:#fff;font-weight:700;font-size:9pt;padding:10px 20px;border-radius:999px;border:1px solid var(--af-ink);cursor:pointer;font-family:'Peyda',sans-serif}
+  .btn:hover{opacity:.86}
+  .btn.sig{background:var(--af-signal);border-color:var(--af-signal)}
+  .btn.ghost{background:#fff;color:var(--af-ink);border-color:var(--af-ink-20)}
+  .btn.sm{padding:7px 15px;font-size:8.4pt}
+  .hero{padding:60px 0 50px;border-bottom:1px solid var(--af-ink-10);background:#fff}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:54px;align-items:center}
+  .eyebrow{display:flex;align-items:center;gap:8px;font-size:8pt;font-weight:700;color:var(--af-signal-deep);margin-bottom:18px}
+  .eyebrow::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--af-signal)}
+  .hero h1{font-size:30pt;font-weight:900;line-height:1.42;color:var(--af-ink)}
+  .hero h1 span{color:var(--af-signal)}
+  .hero p{font-size:10.5pt;line-height:1.95;color:var(--af-ink-80);margin:18px 0 26px;text-align:justify}
+  .cta{display:flex;gap:10px;flex-wrap:wrap}
+  .hero-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:32px;padding-top:18px;border-top:1px solid var(--af-ink-10)}
+  .hero-meta div b{display:block;font-size:13pt;font-weight:900;color:var(--af-ink)}
+  .hero-meta div span{font-size:7.6pt;color:var(--af-ink-60);font-weight:600}
+  .board{position:relative;background:var(--af-ink-05);border:1px solid var(--af-ink-10);border-radius:34px 18px 18px 18px;aspect-ratio:4/3.4;overflow:hidden}
+  .board .quarter{position:absolute;top:0;right:0;width:64%;height:66%;background:var(--af-ink);border-radius:0 0 0 100%}
+  .board .quarter .lg{position:absolute;top:24px;right:28px;display:flex;flex-direction:column;gap:7px}
+  .board .quarter .lg img.f{height:21px;filter:brightness(0) invert(1)}
+  .board .quarter .lg img.e{height:13px;filter:brightness(0) invert(1);opacity:.85}
+  .board .dotsfield{position:absolute;top:46%;right:9%;width:32%;height:24%}
+  .board .arc{position:absolute;left:0;bottom:0;width:56%;height:52%}
+  .board .tile{position:absolute;background:#fff;border:1px solid var(--af-ink-10);display:flex;align-items:center;justify-content:center}
+  .board .tile.a{left:7%;top:9%;width:88px;height:88px;border-radius:20px 20px 44px 20px}
+  .board .tile.b{left:7%;bottom:8%;padding:10px 14px;border-radius:999px;font-size:7.4pt;font-weight:700;color:var(--af-ink-80)}
+  .board .tile.c{right:9%;bottom:9%;padding:12px 16px;border-radius:18px 18px 34px 18px}
+  .board .tile.c b{font-size:10pt;color:var(--af-ink)}
+  .board .tile.c span{display:block;font-size:7pt;color:var(--af-ink-60);font-weight:600}
+  section.blk{padding:54px 0;border-bottom:1px solid var(--af-ink-10)}
+  .sec-head{margin-bottom:26px;max-width:740px}
+  .sec-eyebrow{display:flex;align-items:center;gap:8px;font-size:7.6pt;font-weight:800;color:var(--af-signal-deep);margin-bottom:8px}
+  .sec-eyebrow::after{content:'';height:2px;width:44px;background:var(--af-ink-20);border-radius:999px}
+  .sec-head h2{font-size:19pt;font-weight:900;color:var(--af-ink);line-height:1.5}
+  .sec-head p{font-size:9.6pt;line-height:1.9;color:var(--af-ink-80);margin-top:8px;text-align:justify}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .card{background:#fff;border:1px solid var(--af-ink-10);border-radius:20px;padding:22px}
+  .card.flat{border-radius:30px 16px 16px 16px}
+  .card h3{font-size:11pt;font-weight:800;color:var(--af-ink);margin-bottom:6px}
+  .card p,.card li{font-size:8.8pt;line-height:1.85;color:var(--af-ink-80)}
+  .motif-stage{height:150px;border-radius:18px;background:var(--af-ink-05);border:1px solid var(--af-ink-10);display:flex;align-items:center;justify-content:center;margin-bottom:14px;overflow:hidden;position:relative}
+  .rule{display:flex;gap:9px;padding:11px 0;border-bottom:1px solid var(--af-ink-10);font-size:8.8pt;line-height:1.8;color:var(--af-ink-80)}
+  .rule:last-child{border-bottom:none}
+  .rule b{color:var(--af-ink);white-space:nowrap}
+  .path{direction:ltr;display:inline-block;background:var(--af-ink-05);border:1px solid var(--af-ink-10);color:var(--af-ink);font-size:7.4pt;font-weight:700;padding:2px 8px;border-radius:10px;font-family:Consolas,monospace}
+  .prin{background:#fff;border:1px solid var(--af-ink-10);padding:18px;border-radius:26px 14px 14px 14px}
+  .prin .ic{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:10px;color:#fff;font-weight:900;font-size:11pt}
+  .prin h3{font-size:10pt;font-weight:800;color:var(--af-ink);margin-bottom:4px}
+  .prin p{font-size:8.4pt;line-height:1.8;color:var(--af-ink-80)}
+  .tints{display:flex;height:86px;border-radius:18px;overflow:hidden;border:1px solid var(--af-ink-10);gap:3px;background:#fff;padding:3px}
+  .tints div{flex:1;display:flex;align-items:flex-end;padding:9px 11px;font-size:7.2pt;font-weight:700;cursor:pointer;border-radius:12px}
+  .swrow{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:14px}
+  .sw{border:1px solid var(--af-ink-10);border-radius:18px;overflow:hidden;background:#fff;cursor:pointer}
+  .sw .chip{height:60px;margin:4px;border-radius:14px}
+  .sw .m{padding:6px 14px 12px}
+  .sw .m b{font-size:9pt;color:var(--af-ink);display:block}
+  .sw .m .hex{direction:ltr;text-align:right;display:block;font-size:8.2pt;font-weight:800;color:var(--af-ink-60);font-family:Consolas,monospace;margin:1px 0 3px}
+  .sw .m span{font-size:7.6pt;color:var(--af-ink-60);line-height:1.6;display:block}
+  .wrow{display:flex;align-items:baseline;justify-content:space-between;gap:14px;padding:9px 2px;border-bottom:1px solid var(--af-ink-10)}
+  .wrow:last-child{border-bottom:none}
+  .wrow .s{color:var(--af-ink);font-size:14.5pt;line-height:1.35}
+  .wrow .w{direction:ltr;font-size:7.6pt;color:var(--af-ink-60);font-weight:700;font-family:Consolas,monospace;white-space:nowrap}
+  table.mini{width:100%;border-collapse:collapse;font-size:8.7pt}
+  table.mini th{color:var(--af-ink);text-align:right;font-size:8.3pt;padding:10px;border-bottom:1.5px solid var(--af-ink);background:var(--af-ink-05)}
+  table.mini td{padding:9px 10px;border-bottom:1px solid var(--af-ink-10);color:var(--af-ink-80);line-height:1.7;vertical-align:top}
+  .lockcard{border-radius:22px;padding:22px;display:flex;align-items:center;justify-content:center;min-height:130px;margin-bottom:12px}
+  .mini-a4{background:#fff;border:1px solid var(--af-ink-20);border-radius:18px;box-shadow:0 16px 40px rgba(16,35,51,.10);padding:22px 24px;height:470px;display:flex;flex-direction:column;overflow:hidden}
+  .mini-a4 .mh{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--af-ink-10);padding-bottom:10px;font-size:7pt;color:var(--af-ink-60)}
+  .mini-a4 .mf{margin-top:auto;border-top:1px solid var(--af-ink-10);padding-top:9px;display:flex;justify-content:space-between;align-items:center;font-size:7pt;color:var(--af-ink-60)}
+  .skl{border-top:2px solid var(--af-ink);margin-top:14px;padding-top:8px}
+  .skl i{display:block;height:7px;border-radius:999px;background:var(--af-ink-10);margin-bottom:6px}
+  .prompt{background:var(--af-ink);color:#D7E9F6;border-radius:30px 16px 16px 16px;padding:26px 28px;font-size:9pt;line-height:2;white-space:pre-wrap}
+  .prompt b{color:#fff}
+  .toast{position:fixed;bottom:22px;right:22px;background:var(--af-ink);color:#fff;font-size:8.8pt;font-weight:700;padding:11px 20px;border-radius:999px;opacity:0;pointer-events:none;transition:opacity .25s;z-index:300}
+  .toast.show{opacity:1}
+  footer.site{background:var(--af-ink);color:#A9C6DC}
+  footer.site .in{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;padding:30px 0;font-size:8.6pt;line-height:1.9}
+  footer.site b{color:#fff}
+  @media(max-width:920px){.hero-grid,.grid2{grid-template-columns:1fr}.grid3,.grid4,.swrow{grid-template-columns:1fr 1fr}.hero h1{font-size:24pt}.hero-meta{grid-template-columns:1fr 1fr}}
+  @media(max-width:600px){.grid3,.grid4,.swrow{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav class="nav no-print">
+  <div class="wrap nav-in">
+    <div class="lockup">
+      <img class="mark" src="svg/logo%20ati%20farzam.svg" alt="نشان آتی فرزام" />
+      <div><img class="typo" src="svg/typography%20ati%20farzam.svg" alt="آتی فرزام" /><small>برندکیت سیستم گزارش کارفرما ـ A4</small></div>
+    </div>
+    <div class="links">
+      <a href="#form">زبان فرمی</a><a href="#color">رنگ</a><a href="#type">تایپوگرافی</a><a href="#table">جدول پترنی</a><a href="#data">نمودار پترنی</a><a href="#page">صفحهٔ A4</a><a href="#files">فایل و مهارت</a>
+    </div>
+    <a class="btn sm sig" href="demo-report.html">نمونهٔ گزارش ←</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">برندکیت رسمی ـ نسخهٔ ۳٫۰</div>
+      <h1>بدون گوشهٔ تیز،<br />با رنگِ <span>زنده</span> و امضای پترن.</h1>
+      <p>این کیت از دارایی‌های خود شرکت ساخته شده: نشان، تایپوگرافی فارسی و انگلیسی، فونت پیدا و ساختار پترن. تیره‌ترین رنگ سیستم همان سرمه‌ای برند <span dir="ltr" style="font-weight:800;color:var(--af-ink)">#102333</span> است و مشکی در آن وجود ندارد؛ در عوض، آبی سیگنال و سبزآبیِ زنده کنارش می‌نشینند تا گزارش هم رسمی باشد، هم سرحال.</p>
+      <div class="cta">
+        <a class="btn sig" href="demo-report.html">مشاهده و چاپ نمونهٔ گزارش</a>
+        <a class="btn ghost" href="brand-kit/templates/report-template.html">قالب خام</a>
+        <a class="btn ghost" href="#table">جدول پترنی ↓</a>
+      </div>
+      <div class="hero-meta">
+        <div><b>۰</b><span>گوشهٔ تیز در کل سیستم</span></div>
+        <div><b dir="ltr">#102333</b><span>تیره‌ترین رنگ ـ مشکی نداریم</span></div>
+        <div><b>۲ زبان</b><span>تایپوگرافی فارسی و انگلیسی رسمی</span></div>
+        <div><b>۲۱۰×۲۹۷</b><span>میلی‌متر ـ A4، چیدمان دقیق صفحه</span></div>
+      </div>
+    </div>
+
+    <div class="board" role="img" aria-label="تابلوی هویت آتی فرزام: ربع سرمه‌ای، نقطه، مسیر و قفل دوزبانه">
+      <div class="quarter">
+        <div class="lg">
+          <img class="f" src="svg/typography%20ati%20farzam.svg" alt="" />
+          <img class="e" src="svg/typography%20english.svg" alt="" />
+        </div>
+        <div class="dotsfield af-dots-light"></div>
+      </div>
+      <svg class="arc" viewBox="0 0 200 160" fill="none" aria-hidden="true">
+        <path d="M14 152 A142 142 0 0 1 150 8" stroke="#0E9BE8" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="150" cy="8" r="5.5" fill="#102333"/>
+        <path d="M14 152 A98 98 0 0 1 106 52" stroke="#C3D9E8" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="106" cy="52" r="4.5" fill="#0BBFA5"/>
+      </svg>
+      <div class="tile a"><img src="svg/logo%20ati%20farzam.svg" alt="نشان آتی فرزام" style="height:52px;width:auto" /></div>
+      <div class="tile b">ربع ـ نقطه ـ مسیر</div>
+      <div class="tile c"><b>گزارش کارفرما</b><span>A4 · فارسی · دوزبانه</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- اصول -->
+  <section class="blk" style="padding-top:40px">
+    <div class="grid4">
+      <div class="prin"><span class="ic" style="background:var(--af-ink)">◜</span><h3>هیچ گوشهٔ تیزی نیست</h3><p>کوچک‌ترین شعاع سطح ۱۰ پیکسل است؛ دکمه، کاشی، جدول، نمودار و حتی خط‌های جداکننده سرِ گرد دارند. تنها استثنا خودِ کاغذ A4 در چاپ است.</p></div>
+      <div class="prin"><span class="ic" style="background:var(--af-signal)">●</span><h3>مشکی نداریم</h3><p>تیره‌ترین رنگ، سرمه‌ای برند <span dir="ltr" style="font-weight:800">#102333</span> است. متن، سایه و عمیق‌ترین نقطهٔ نمودار هم از همین خانواده ساخته می‌شود.</p></div>
+      <div class="prin"><span class="ic" style="background:var(--af-aqua)">●</span><h3>رنگ زنده، اما سربار نیست</h3><p>آبی سیگنال و سبزآبی برای داده و لحظهٔ کلیدی؛ کهربایی فقط هدف و هشدار، مرجانی فقط خطا. بقیهٔ صفحه سرمه‌ای و سفید می‌ماند.</p></div>
+      <div class="prin"><span class="ic" style="background:var(--af-sun);color:var(--af-ink)">▦</span><h3>پترن یعنی ساختار</h3><p>تصویر پترن جایی چسبانده نمی‌شود؛ کاشیِ ربع‌دارش جدول می‌شود، ماتریس نقطه‌اش نمودار می‌شود و قوسش مسیر داده.</p></div>
+    </div>
+  </section>
+
+  <!-- ۰۱ زبان فرمی و قفل دوزبانه -->
+  <section class="blk" id="form">
+    <div class="sec-head">
+      <div class="sec-eyebrow">۰۱ ـ زبان فرمی و قفل برند</div>
+      <h2>سه موتیف از پترن، دو تایپوگرافی از شرکت</h2>
+      <p>در فایل پترن، مربع‌هایی هست که فقط یک گوشه‌شان ربعِ دایره است و با چرخش مسیر می‌سازند، و ماتریس‌هایی از نقاط هم‌فاصله. همین سه مشاهده، کل زبان فرمی کیت است. از آخرین کامیت مخزن، تایپوگرافی انگلیسی رسمی هم کنار نسخهٔ فارسی نشسته و قفل برند از این به بعد دوزبانه تعریف می‌شود.</p>
+    </div>
+    <div class="grid3">
+      <div class="card flat">
+        <div class="motif-stage">
+          <svg width="132" height="96" viewBox="0 0 132 96" aria-hidden="true">
+            <path d="M6 6 h40 v40 H6 Z" fill="#102333"/>
+            <path d="M86 6 h40 a40 40 0 0 1 -40 40 Z" fill="#0E9BE8"/>
+            <path d="M6 52 h40 a40 40 0 0 1 -40 40 Z" fill="#0BBFA5"/>
+            <rect x="86" y="52" width="40" height="40" rx="10" fill="none" stroke="#102333" stroke-width="2"/>
+          </svg>
+        </div>
+        <h3>ربع (Quarter)</h3>
+        <p>کاشی‌ای که یک گوشه‌اش ربعِ کامل است و در هر ردیف می‌چرخد. امضای سطوح شاخص: گوشهٔ ۲۸ و بقیه ۱۴ پیکسل ـ در هدر جدول اقدامات و کاشی‌های امضا.</p>
+      </div>
+      <div class="card flat">
+        <div class="motif-stage"><div class="af-dots" style="width:72%;height:64%"></div></div>
+        <h3>نقطهٔ سیگنال (Signal Dot)</h3>
+        <p>ماتریس نقطه‌ای محوشونده؛ در جدول «پیشرفت» و نمودار «آزمون‌ها» از تزئین به داده تبدیل می‌شود: هر نقطه یک واحد واقعی.</p>
+      </div>
+      <div class="card flat">
+        <div class="motif-stage">
+          <svg width="170" height="70" viewBox="0 0 170 70" aria-hidden="true">
+            <path d="M160 58 H60 A48 48 0 0 1 12 10" stroke="#0E9BE8" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <circle cx="12" cy="10" r="5.5" fill="#102333"/><circle cx="160" cy="58" r="4.5" fill="#0BBFA5"/>
+          </svg>
+        </div>
+        <h3>مسیر (Route)</h3>
+        <p>خطی که با قوس ربع می‌پیچد و به نقطهٔ مقصد می‌رسد؛ در نمودار خطی و «نوار مسیر» شاخص‌ها، خودِ داده این مسیر را طی می‌کند.</p>
+      </div>
+    </div>
+
+    <div class="grid2" style="margin-top:18px">
+      <div class="card flat">
+        <div class="lockcard" style="background:#fff;border:1.5px solid var(--af-ink-10)">
+          <div style="display:flex;align-items:center;gap:12px">
+            <img src="svg/logo%20ati%20farzam.svg" alt="نشان" style="height:46px" />
+            <span style="width:2px;height:40px;background:var(--af-ink-20);border-radius:99px"></span>
+            <div><img src="svg/typography%20ati%20farzam.svg" alt="آتی فرزام" style="height:25px" /><div style="font-size:7.2pt;color:var(--af-ink-60);font-weight:600;margin-top:3px">قفل اصلی ـ گزارش‌های فارسی</div></div>
+          </div>
+        </div>
+        <h3>تایپوگرافی فارسی ـ صدای اصلی</h3>
+        <p>از <span class="path">typography ati farzam.svg</span>؛ در جلد و هدر همهٔ گزارش‌های فارسی. هرگز با فونت پیدا بازنویسی نمی‌شود.</p>
+      </div>
+      <div class="card flat">
+        <div class="lockcard" style="background:var(--af-ink)">
+          <div style="display:flex;align-items:center;gap:12px">
+            <img src="svg/logo%20ati%20farzam.svg" alt="نشان" style="height:46px;filter:brightness(0) invert(1)" />
+            <span style="width:2px;height:40px;background:#54748E;border-radius:99px"></span>
+            <div><img src="svg/typography%20english.svg" alt="Ati Farzam" style="height:19px;filter:brightness(0) invert(1)" /><div style="font-size:7.2pt;color:#A9C6DC;font-weight:600;margin-top:4px">English lockup ـ اسناد بین‌المللی و امضای دوم</div></div>
+          </div>
+        </div>
+        <h3>تایپوگرافی انگلیسی ـ امضای دوم</h3>
+        <p>از <span class="path">typography english.svg</span> (کامیت english typography)؛ جای ثابتش نوار پایانی جلد و گوشهٔ فوتر صفحات است ـ کوچک، سفید روی سرمه‌ای ـ و در نسخهٔ انگلیسی گزارش، قفل اصلی می‌شود. تناسب دو قفل در یک قاب کنار هم در بالای همین صفحه دیده می‌شود.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ۰۲ رنگ -->
+  <section class="blk" id="color">
+    <div class="sec-head">
+      <div class="sec-eyebrow">۰۲ ـ رنگ</div>
+      <h2>سرمه‌ایِ عمیق، رنگ‌های زندهٔ سرِ جای خودشان</h2>
+      <p>نیمهٔ تیرهٔ پالت از <span dir="ltr" style="font-weight:800">#102333</span> پایین‌تر نمی‌رود ـ مشکی در سیستم نیست. نیمهٔ زنده برای داده است: آبی سیگنال سری اصلی، سبزآبی سری دوم، کهربایی هدف و هشدار، مرجانی فقط خطا. برای کپی روی هر رنگ کلیک کنید.</p>
+    </div>
+    <div class="tints" role="img" aria-label="طیف سرمه‌ای برند">
+      <div style="background:#102333;color:#fff" onclick="copyHex('#102333')">#102333<br />برند ـ تیره‌ترین</div>
+      <div style="background:#25455F;color:#fff" onclick="copyHex('#25455F')">۸۰</div>
+      <div style="background:#54748E;color:#fff" onclick="copyHex('#54748E')">۶۰</div>
+      <div style="background:#8DACC4;color:#102333" onclick="copyHex('#8DACC4')">۴۰</div>
+      <div style="background:#C3D9E8;color:#102333" onclick="copyHex('#C3D9E8')">۲۰</div>
+      <div style="background:#E0EEF7;color:#102333" onclick="copyHex('#E0EEF7')">۱۰</div>
+      <div style="background:#EFF7FC;color:#102333" onclick="copyHex('#EFF7FC')">۰۵</div>
+    </div>
+    <div class="swrow">
+      <div class="sw" onclick="copyHex('#0E9BE8')"><div class="chip" style="background:#0E9BE8"></div><div class="m"><b>آبی سیگنال</b><span class="hex">#0E9BE8 · --af-signal</span><span>سری اصلی هر نمودار، مسیر داده، نقطهٔ مقصد و لینک</span></div></div>
+      <div class="sw" onclick="copyHex('#0BBFA5')"><div class="chip" style="background:#0BBFA5"></div><div class="m"><b>سبزآبی تله‌متری</b><span class="hex">#0BBFA5 · --af-aqua</span><span>سری دوم و مقایسهٔ مثبت؛ جایگزین سبزِ خام نسخهٔ قبل</span></div></div>
+      <div class="sw" onclick="copyHex('#F5A300')"><div class="chip" style="background:#F5A300"></div><div class="m"><b>کهربایی هدف</b><span class="hex">#F5A300 · --af-sun</span><span>فقط خط هدف در نمودار و نقطهٔ هشدار؛ هرگز سطح بزرگ</span></div></div>
+      <div class="sw" onclick="copyHex('#FF6659')"><div class="chip" style="background:#FF6659"></div><div class="m"><b>مرجانی خطا</b><span class="hex">#FF6659 · --af-coral</span><span>فقط نقطهٔ خطای بحرانی و انتهای نوار وضعیت</span></div></div>
+    </div>
+  </section>
+
+  <!-- ۰۳ تایپوگرافی -->
+  <section class="blk" id="type">
+    <div class="sec-head">
+      <div class="sec-eyebrow">۰۳ ـ تایپوگرافی</div>
+      <h2>پیدا برای متن، دو لوگوتایپ برای نام</h2>
+      <p>متن‌ها فقط با پیدا (۹ وزن در <span class="path">peyda/</span>)؛ نام شرکت فقط با دو فایل لوگوتایپ رسمی ـ فارسی صدای اصلی است و انگلیسی امضای دوم. لوگوتایپ‌ها تصویرند، نه فونت؛ با هیچ فونتی بازنویسی نمی‌شوند.</p>
+    </div>
+    <div style="font-size:25pt;font-weight:900;color:var(--af-ink);line-height:1.5;border-top:2px solid var(--af-ink);padding-top:16px">ردیابی دقیق، گزارش خوانا، <span style="color:var(--af-signal)">بدون گوشهٔ تیز.</span></div>
+    <div class="grid2" style="margin-top:18px">
+      <div class="card">
+        <div class="wrow"><span class="s" style="font-weight:300">آتی فرزام</span><span class="w">Light 300</span></div>
+        <div class="wrow"><span class="s" style="font-weight:400">آتی فرزام</span><span class="w">Regular 400</span></div>
+        <div class="wrow"><span class="s" style="font-weight:500">آتی فرزام</span><span class="w">Medium 500</span></div>
+        <div class="wrow"><span class="s" style="font-weight:700">آتی فرزام</span><span class="w">Bold 700</span></div>
+        <div class="wrow"><span class="s" style="font-weight:800">آتی فرزام</span><span class="w">ExtraBold 800</span></div>
+        <div class="wrow"><span class="s" style="font-weight:900">آتی فرزام</span><span class="w">Black 900</span></div>
+      </div>
+      <div class="card" style="padding:0;overflow:hidden">
+        <table class="mini">
+          <tr><th>کاربرد</th><th>مشخصه</th></tr>
+          <tr><td>تیتر جلد</td><td><b>۲۵pt ـ Black</b>، فاصلهٔ خط ۱٫۴۵</td></tr>
+          <tr><td>تیتر بخش</td><td><b>۱۳pt ـ ExtraBold</b>، نتیجه‌محور</td></tr>
+          <tr><td>عدد شاخص</td><td><b>۱۹pt ـ Black</b> + واحد آبی</td></tr>
+          <tr><td>متن بدنه</td><td>۸٫۸pt ـ Regular، فاصلهٔ خط ۱٫۸۵</td></tr>
+          <tr><td>جدول</td><td>۷٫۷pt ـ هدر روی سطح ۰۵ با خط زیرین برند</td></tr>
+          <tr><td>لوگوتایپ انگلیسی</td><td>در جلد ۵٫۲mm سفید روی سرمه‌ای؛ در فوتر ۳٫۴mm</td></tr>
+        </table>
+        <p style="padding:12px 16px">اعداد فارسی (۰ تا ۹) و هر عبارت فنی لاتین داخل <span class="path">span.af-ltr</span>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ۰۴ جدول پترنی -->
+  <section class="blk" id="table">
+    <div class="sec-head">
+      <div class="sec-eyebrow">۰۴ ـ جدول اقدامات (پترنی)</div>
+      <h2>جدول کارها، با اسکلت خودِ پترن</h2>
+      <p>جدول رسمی «کارهایی که می‌خواهیم انجام دهیم» از روی پترن ساخته شده: هدرها کاشیِ توپرِ سرمه‌ای‌اند، هر ردیف از کاشی‌های جدا تشکیل شده، گوشهٔ ربع در ستون اولِ هر ردیف یک پله می‌چرخد (دقیقاً مثل کاشی‌های پترن) و پیشرفت هر کار با ماتریس پنج‌نقطه‌ای خوانده می‌شود؛ هر نقطه یعنی یک‌پنجم مسیر.</p>
+    </div>
+    <div class="grid2" style="align-items:start">
+      <div class="card flat">
+        <h3 style="margin-bottom:8px">آناتومی جدول ـ از پترن تا سلول</h3>
+        <div class="rule"><b>کاشی توپر ←</b><p>هدر جدول: سرمه‌ایِ پر، با گوشه‌های گرد و ربعِ بزرگ در دو سرِ ردیف هدر.</p></div>
+        <div class="rule"><b>کاشی خطی ←</b><p>سلول اول هر ردیف: سفید با قاب نرم؛ بدنهٔ ردیف روی سطح ۰۵ می‌نشیند و ردیف‌ها با فاصله از هم جدا می‌شوند.</p></div>
+        <div class="rule"><b>چرخش ربع ←</b><p>گوشهٔ ۲۶ پیکسلی ستون اول، ردیف‌به‌ردیف ساعت‌گرد می‌چرخد؛ ریتم پترن بدون چسباندن تصویرش.</p></div>
+        <div class="rule"><b>ماتریس نقطه ←</b><p>پیشرفت کار با ۵ نقطه: آبی یعنی انجام‌شده، کهربایی یعنی در معرض تأخیر، خالی یعنی نرسیده.</p></div>
+        <div class="rule"><b>وضعیت ←</b><p>یک نقطهٔ رنگی و یک عبارت کوتاه؛ بج و نوار رنگی در جدول وجود ندارد.</p></div>
+      </div>
+      <div class="card flat">
+        <h3 style="margin-bottom:4px">نمونهٔ زنده ـ سه اقدام</h3>
+        <p style="margin-bottom:6px">همین کامپوننت با کلاس <span class="path">.af-ptable</span> در گزارش نمونه (صفحهٔ ۵) با پنج اقدام کامل استفاده شده است.</p>
+        <table class="af-ptable">
+          <thead><tr><th style="width:34%">اقدام</th><th style="width:22%">مسئول</th><th style="width:16%">مهلت</th><th style="width:28%">پیشرفت و وضعیت</th></tr></thead>
+          <tbody>
+            <tr><td>استقرار کامل ناوگان</td><td>واحد عملیات</td><td>پایان آذر</td><td><span class="af-pdots"><i class="on"></i><i></i><i></i><i></i><i></i></span><br /><span class="af-status"><span class="dot sig"></span>شروع‌شده</span></td></tr>
+            <tr><td>کالیبراسیون حسگر سوخت</td><td>تیم سخت‌افزار</td><td>۱۰ آبان</td><td><span class="af-pdots"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span><br /><span class="af-status"><span class="dot ok"></span>در جریان</span></td></tr>
+            <tr><td>بازگشت دو دستگاه آفلاین</td><td>پشتیبانی فنی</td><td>۵ آبان</td><td><span class="af-pdots"><i class="warn"></i><i class="warn"></i><i></i><i></i><i></i></span><br /><span class="af-status"><span class="dot warn"></span>نیازمند پیگیری</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ۰۵ نمودارهای پترنی -->
+  <section class="blk" id="data">
+    <div class="sec-head">
+      <div class="sec-eyebrow">۰۵ ـ نمودارها (پترنی)</div>
+      <h2>چهار مدل؛ هر چهارتا از یک خانواده</h2>
+      <p>نمودارهای کیت از سه موتیف پترن ساخته می‌شوند و رنگشان از پالت زنده می‌آید. هر نمودار یک پیام و یک سری اصلی دارد و همهٔ خط‌ها و میله‌ها سرِ گرد دارند.</p>
+    </div>
+    <div class="grid2">
+      <div class="card flat">
+        <div class="af-eyebrow"><span class="n">مدل الف</span> مسیر ← نوار مسیر شاخص</div>
+        <h3>مقدار در برابر هدف قرارداد</h3>
+        <div class="af-routebar" style="margin:14px 0 8px">
+          <div class="af-routebar-row" style="grid-template-columns:26mm 1fr 15mm"><span class="af-routebar-label">دسترس‌پذیری</span><div class="af-routebar-track"><div class="af-routebar-fill" style="width:99%"></div><span class="af-routebar-end" style="right:99%"></span><span class="af-routebar-target" style="right:95%"></span></div><span class="af-routebar-val">۹۹٫۹۵٪</span></div>
+          <div class="af-routebar-row" style="grid-template-columns:26mm 1fr 15mm"><span class="af-routebar-label">پوشش ماهواره</span><div class="af-routebar-track"><div class="af-routebar-fill ink" style="width:96%"></div><span class="af-routebar-end" style="right:96%"></span><span class="af-routebar-target" style="right:92%"></span></div><span class="af-routebar-val">۹۸٫۶٪</span></div>
+          <div class="af-routebar-row" style="grid-template-columns:26mm 1fr 15mm"><span class="af-routebar-label">رضایت عملیات</span><div class="af-routebar-track"><div class="af-routebar-fill aqua" style="width:88%"></div><span class="af-routebar-end" style="right:88%;background:var(--af-aqua)"></span><span class="af-routebar-target" style="right:84%"></span></div><span class="af-routebar-val">۹۴٪</span></div>
+        </div>
+        <p>میله تا نقطهٔ مقصد می‌رود؛ نقطه، پایان مسیر است و خط کهربایی نشان می‌دهد هدف کجا بوده.</p>
+      </div>
+      <div class="card flat">
+        <div class="af-eyebrow"><span class="n">مدل ب</span> مسیر ← خط مسیر روند</div>
+        <h3>روند زمانی با نقطه‌های ایستگاه</h3>
+        <svg viewBox="0 0 340 118" dir="ltr" style="width:100%;height:auto;margin:10px 0 4px;font-family:'Peyda',Tahoma,sans-serif" aria-hidden="true">
+          <g stroke="#E0EEF7"><line x1="30" y1="18" x2="330" y2="18"/><line x1="30" y1="58" x2="330" y2="58"/><line x1="30" y1="98" x2="330" y2="98"/></g>
+          <line x1="30" y1="32" x2="330" y2="32" stroke="#F5A300" stroke-width="1.3" stroke-dasharray="6 4" stroke-linecap="round"/>
+          <path d="M30,55 C70,44 92,40 128,46 C164,52 186,30 224,26 C262,22 292,30 330,24" fill="none" stroke="#0E9BE8" stroke-width="2.4" stroke-linecap="round"/>
+          <g fill="#fff" stroke="#0E9BE8" stroke-width="1.8"><circle cx="128" cy="46" r="3"/><circle cx="224" cy="26" r="3"/></g>
+          <circle cx="330" cy="24" r="4.6" fill="#102333" stroke="#fff" stroke-width="2"/>
+          <text x="320" y="13" font-size="8.5" font-weight="800" fill="#102333" text-anchor="end">۹۹٫۴٪</text>
+          <g font-size="7" fill="#8DACC4" text-anchor="middle"><text x="30" y="112">روز ۱</text><text x="180" y="112">روز ۱۵</text><text x="326" y="112">روز ۳۰</text></g>
+        </svg>
+        <p>خط آبیِ گرد با نقطه‌های ایستگاه روی خم‌ها و مقصدِ پررنگ در انتها؛ کمینه و پایان، برچسب مستقیم می‌گیرند.</p>
+      </div>
+      <div class="card flat">
+        <div class="af-eyebrow"><span class="n">مدل ج</span> ربع ← قوس سهم</div>
+        <h3>یک عدد، یک قوس، یک نقطهٔ پایان</h3>
+        <div style="display:flex;align-items:center;gap:16px;margin:12px 0 6px">
+          <svg viewBox="0 0 120 120" style="width:96px;height:96px;flex-shrink:0;font-family:'Peyda',Tahoma,sans-serif" aria-hidden="true">
+            <circle cx="60" cy="60" r="50" fill="none" stroke="#E0EEF7" stroke-width="10"/>
+            <circle cx="60" cy="60" r="50" fill="none" stroke="#0E9BE8" stroke-width="10" stroke-linecap="round" stroke-dasharray="270.2 314.2" transform="rotate(-90 60 60)"/>
+            <circle cx="21.5" cy="28.1" r="5" fill="#102333" stroke="#fff" stroke-width="2"/>
+            <text x="60" y="61" text-anchor="middle" font-size="16" font-weight="900" fill="#102333">۸۶٪</text>
+            <text x="60" y="75" text-anchor="middle" font-size="7" font-weight="600" fill="#54748E">آنلاین</text>
+          </svg>
+          <div style="flex:1">
+            <div class="af-stack" style="margin-bottom:8px"><i style="width:86%;background:var(--af-signal)"></i><i style="width:9%;background:var(--af-ink-20)"></i><i style="width:3%;background:var(--af-sun)"></i><i style="width:2%;background:var(--af-coral)"></i></div>
+            <p>کنارش «نوار کاشی» می‌نشیند: قطعه‌های جدا با فاصله، مثل کاشی‌های پترن؛ رنگ فقط برای دو وضعیت غیرعادی.</p>
+          </div>
+        </div>
+      </div>
+      <div class="card flat">
+        <div class="af-eyebrow"><span class="n">مدل د</span> نقطه ← ماتریس واحدها</div>
+        <h3>وقتی هر واحد باید دیده شود</h3>
+        <div class="af-dotmatrix" style="margin:14px 0 10px" aria-hidden="true">
+          <i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i>
+          <i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="warn"></i><i class="warn"></i>
+        </div>
+        <p>۲۸ نقطه یعنی ۲۸ آزمون واقعی: سرمه‌ای قبول، کهربایی مشروط. برای تعدادهای شمردنی (دستگاه، آزمون، سایت) از درصد دقیق‌تر و صادقانه‌تر است.</p>
+      </div>
+    </div>
+    <div class="card" style="margin-top:18px">
+      <div class="rule"><b>اصل ۱</b><p>عنوان نمودار پیام است، نه اسم متغیر؛ زیرعنوان روش خواندن و زیرنویس منبع و بازه را می‌گوید و هر شکل شماره دارد.</p></div>
+      <div class="rule"><b>اصل ۲</b><p>یک سری اصلیِ آبی؛ سری دوم فقط با دلیل و با سبزآبی یا طیف سرمه‌ای. چندرنگ‌کردن برای زیبایی ممنوع.</p></div>
+      <div class="rule"><b>اصل ۳</b><p>اگر محور از صفر شروع نمی‌شود، زیر شکل نوشته می‌شود. نقطه و خط در نمودار همیشه گرد است؛ گوشهٔ تیز در داده هم نداریم.</p></div>
+    </div>
+  </section>
+
+  <!-- ۰۶ صفحهٔ دقیق -->
+  <section class="blk" id="page">
+    <div class="sec-head">
+      <div class="sec-eyebrow">۰۶ ـ صفحهٔ A4 دقیق</div>
+      <h2>هر صفحه از بالا تا پایین حساب شده است</h2>
+      <p>ارتفاع امن محتوا حدود ۲۳۵ میلی‌متر است و قالب، بلوک‌ها را با فاصلهٔ ثابت ۵٫۵ میلی‌متری می‌چیند؛ بلوک پایانی هر صفحه با <span class="path">.af-push</span> به کف صفحه می‌چسبد تا نه سرریز داشته باشیم، نه خلأ. نمونهٔ گزارش دقیقاً با همین حساب پر شده است.</p>
+    </div>
+    <div class="grid2">
+      <div class="mini-a4" role="img" aria-label="اسکلت دقیق صفحهٔ داخلی A4">
+        <div class="mh"><span style="display:flex;align-items:center;gap:7px"><img src="svg/logo%20ati%20farzam.svg" alt="" style="height:18px" /><img src="svg/typography%20ati%20farzam.svg" alt="" style="height:12px" /></span><span>سند ـ نسخه ـ تاریخ</span></div>
+        <div style="margin-top:16px"><div style="font-size:7pt;font-weight:800;color:var(--af-signal-deep)">۰۱ ـ نام بخش</div><div style="font-size:13pt;font-weight:800;color:var(--af-ink)">تیتر نتیجه‌محور بخش</div></div>
+        <div class="af-stats" style="margin-top:14px">
+          <div class="af-stat"><div class="af-stat-label">شاخص</div><div class="af-stat-value" style="font-size:15pt">۱٫۸<span class="af-stat-unit">متر</span></div></div>
+          <div class="af-stat"><div class="af-stat-label">شاخص</div><div class="af-stat-value" style="font-size:15pt">۹۹٫۹<span class="af-stat-unit">٪</span></div></div>
+          <div class="af-stat"><div class="af-stat-label">شاخص</div><div class="af-stat-value" style="font-size:15pt">۱٫۴<span class="af-stat-unit">mA</span></div></div>
+          <div class="af-stat"><div class="af-stat-label">شاخص</div><div class="af-stat-value" style="font-size:15pt">۱۲۰<span class="af-stat-unit">دستگاه</span></div></div>
+        </div>
+        <div class="skl"><i style="width:42%"></i><i style="width:88%"></i><i style="width:64%"></i><i style="width:78%"></i></div>
+        <div class="skl"><i style="width:34%"></i><i style="width:92%"></i><i style="width:57%"></i></div>
+        <div class="skl" style="margin-top:auto"><i style="width:48%"></i><i style="width:80%"></i></div>
+        <div class="mf"><span>آتی فرزام ـ محرمانه</span><span style="display:flex;align-items:center;gap:10px"><img src="svg/typography%20english.svg" alt="" style="height:9px" /><b style="color:var(--af-ink);direction:ltr;unicode-bidi:embed">۰۲ / ۰۵</b></span></div>
+      </div>
+      <div>
+        <div class="card" style="margin-bottom:18px">
+          <h3 style="margin-bottom:4px">بودجهٔ هر صفحه</h3>
+          <div class="rule"><b>ترکیب الف</b><p>نوار شاخص + یک شکل + نتیجه‌گیری چسبیده به کف صفحه.</p></div>
+          <div class="rule"><b>ترکیب ب</b><p>دو شکل (دیاگرام) + دو یادداشت در کف صفحه.</p></div>
+          <div class="rule"><b>ترکیب ج</b><p>نمودار بزرگ + دو شکل کوچک + یک خوانش یک‌جمله‌ای.</p></div>
+          <div class="rule"><b>ترکیب د</b><p>دو جدول مشخصات + جدول اقدامات پترنی + امضا در کف صفحه.</p></div>
+          <p style="margin-top:10px">بیشتر شد؟ صفحهٔ تازه؛ کوچک‌کردن فونت برای جا دادن محتوا ممنوع است.</p>
+        </div>
+        <div class="card">
+          <h3 style="margin-bottom:4px">PDF در چهار تنظیم</h3>
+          <p style="line-height:2">چاپ مرورگر ← <b>Save as PDF</b> · کاغذ <b>A4</b> · حاشیه <b>None</b> · مقیاس <b>۱۰۰٪</b> · <b>Background graphics</b> فعال. هر <span class="path">.a4-page</span> یک برگ است.</p>
+          <div style="display:flex;gap:9px;margin-top:14px;flex-wrap:wrap">
+            <a class="btn sm sig" href="demo-report.html">دیدن چیدمان دقیق در نمونه ←</a>
+            <a class="btn ghost sm" href="brand-kit/css/ati-farzam-a4.css">فایل CSS کیت</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ۰۷ فایل و مهارت -->
+  <section class="blk" id="files" style="border-bottom:none">
+    <div class="sec-head">
+      <div class="sec-eyebrow">۰۷ ـ فایل‌ها و مهارت AI</div>
+      <h2>همهٔ کیت همین‌جاست؛ ایجنت هم همین را می‌خواند</h2>
+      <p><span class="path">SKILL.md</span> این قواعد را برای AI Agentها نوشته: بدون گوشهٔ تیز، بدون مشکی، رنگ زندهٔ کنترل‌شده، جدول و نمودار پترنی، تایپوگرافی دوزبانه و بودجهٔ دقیق صفحه.</p>
+    </div>
+    <div class="grid2">
+      <div class="card" style="padding:0;overflow:hidden">
+        <table class="mini">
+          <tr><th>فایل</th><th>نقش</th></tr>
+          <tr><td><span class="path">index.html</span></td><td>همین صفحه ـ سند زندهٔ برندکیت v3</td></tr>
+          <tr><td><span class="path">demo-report.html</span></td><td><b>نمونهٔ گزارش کامل</b> ـ ۵ صفحهٔ A4 دقیق</td></tr>
+          <tr><td><span class="path">brand-kit/css/ati-farzam-a4.css</span></td><td>فریم‌ورک: فونت، توکن، موتیف، جدول/نمودار پترنی، چاپ</td></tr>
+          <tr><td><span class="path">brand-kit/templates/report-template.html</span></td><td>قالب خام گزارش بعدی</td></tr>
+          <tr><td><span class="path">brand-kit/tokens/design-tokens.json</span></td><td>توکن‌های رنگ، شعاع، فرم و نمودار</td></tr>
+          <tr><td><span class="path">SKILL.md · AGENTS.md</span></td><td>مهارت و دستور کار ایجنت‌ها</td></tr>
+          <tr><td><span class="path">svg/ · peyda/</span></td><td>نشان، تایپوگرافی فارسی و انگلیسی، پترنِ منبع، ۹ وزن پیدا</td></tr>
+        </table>
+      </div>
+      <div>
+        <div class="prompt" id="agentPrompt"><b>پرامپت آماده برای هر AI Agent:</b>
+
+«طبق SKILL.md همین مخزن، برای آتی فرزام گزارش کارفرمای A4 بساز.
+هیچ گوشهٔ تیزی نباشد؛ تیره‌ترین رنگ #102333 است و مشکی ممنوع.
+رنگ داده زنده باشد: آبی سیگنال سری اصلی، سبزآبی سری دوم، کهربایی فقط هدف/هشدار.
+از تصویر پترن استفاده نکن؛ ساختارش را بیاور: جدول اقدامات کاشی‌دار با ربعِ چرخان و نقطهٔ پیشرفت، و نمودارهای نوار مسیر، خط مسیر، قوس سهم و ماتریس نقطه‌ای.
+قفل برند دوزبانه است: فارسی اصلی، انگلیسی (typography english.svg) در نوار جلد و فوتر.
+هر صفحه را دقیق و کامل بچین؛ بلوک آخر با af-push به کف صفحه بچسبد و هیچ صفحه‌ای سرریز نشود.
+اعداد فارسی و لاتین فنی داخل span.af-ltr باشد.
+موضوع و دادهٔ گزارش: [اینجا بنویسید]»</div>
+        <div style="display:flex;gap:9px;margin-top:14px;flex-wrap:wrap">
+          <button class="btn" onclick="copyPrompt()">کپی پرامپت</button>
+          <a class="btn ghost" href="SKILL.md">خواندن SKILL.md</a>
+          <a class="btn sig" href="demo-report.html">نمونهٔ گزارش ←</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="site">
+  <div class="wrap in">
+    <div style="display:flex;align-items:center;gap:11px">
+      <span style="background:#fff;border-radius:20px 10px 10px 10px;padding:6px 8px;display:flex"><img src="svg/logo%20ati%20farzam.svg" alt="" style="height:26px" /></span>
+      <div><b>آتی فرزام ـ Ati Farzam</b><br />برندکیت سیستم گزارش کارفرما · نسخهٔ ۳٫۰</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:14px">
+      <img src="svg/typography%20english.svg" alt="Ati Farzam" style="height:16px;filter:brightness(0) invert(1)" />
+      <span>ربع ـ نقطه ـ مسیر<br /><span dir="ltr" style="font-family:Consolas,monospace">#102333</span> · Peyda · A4</span>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast">کپی شد</div>
+<script>
+  function showToast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(function(){t.classList.remove('show')},2100)}
+  function copyHex(h){if(navigator.clipboard){navigator.clipboard.writeText(h).then(function(){showToast(h+' کپی شد')})}}
+  function copyPrompt(){var txt=document.getElementById('agentPrompt').innerText.replace('پرامپت آماده برای هر AI Agent:','').trim();if(navigator.clipboard){navigator.clipboard.writeText(txt).then(function(){showToast('پرامپت کپی شد')})}}
+</script>
+</body>
+</html>
+ipt>
+</body>
+</html>
+pt>
+</body>
+</html>
+ipt>
+</body>
+</html>
