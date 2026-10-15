@@ -1,0 +1,53 @@
+  <div class="a4-content" style="gap:4.2mm">
+    <div>
+      <div class="af-eyebrow"><span class="n">۰۹</span> ابزارهای مشاهده و تشخیص (ادامه)</div>
+      <h2 class="af-h2">یک پیامک، پاسخِ کامل از آسمان: ماهواره‌های در دید، ماهواره‌های در کار، و مُد فیکس</h2>
+    </div>
+
+    <div class="chg">
+      <div class="chg-head">
+        <span class="idtag">MAIN-018</span>
+        <h4><span class="af-ltr">#GET:194</span> — ماهواره‌های در دید، سیستم‌به‌سیستم</h4>
+        <span class="af-status"><span class="dot s2"></span>قابلیت اختیاری</span>
+      </div>
+      <dl>
+        <dt>مسئله</dt><dd>وقتی GPS ضعیف بود، پرسش «چرا» جوابی از راه دور نداشت: «نمی‌دانیم چرا GPS خراب است» و تکنسین باید به خودرو می‌رفت. گیرنده همهٔ این اطلاعات را در جمله‌های <span class="af-ltr">GSV</span> می‌فرستد، اما فریم‌ورِ قدیمی آن‌ها را پارس می‌کرد و دور می‌ریخت.</dd>
+        <dt>تغییر</dt><dd><span class="af-ltr">parseGSV()</span> حالا در آخرین پیامِ هر دنباله (جایی که فیلد تعداد معنا دارد)، تعداد ماهواره‌های در دید را برای هر سیستم ثبت می‌کند: GPS (<span class="af-ltr">$GPGSV</span>)، GLONASS (<span class="af-ltr">$GLGSV</span>)، گالاکسی (<span class="af-ltr">$GAGSV</span>) و بیدو (<span class="af-ltr">$GBGSV</span>/<span class="af-ltr">$BDGSV</span>) به‌علاوهٔ مجموع. پرس‌وجوی پیامکیِ جدید <span class="af-ltr">SMS_ID_GET_GNSS_SATS</span> (<span class="af-ltr">#GET:194</span>) از طریق <span class="af-ltr">Sim_create_gnss_sats_sms_content()</span> پاسخ می‌دهد: ماهواره‌های در دیدِ هر سیستم، تعدادِ درکار، مُد فیکس (<span class="af-ltr">No fix / 2D / 3D</span>) و مُدِ سیستم‌هایِ پیکربندی‌شده. <span class="path">Core/sim868/gps/gps.c:203-210,1344-1375 و Core/sim868/gsm/sim868.c:4928-4932,6701-6768</span></dd>
+        <dt>مکانیزم</dt><dd>داده‌ای که پارسر <b>از قبل</b> پارس می‌کرد و دور می‌ریخت، در تنها نقطه‌ای که موجود است ثبت می‌شود؛ و از طریق مکانیزمِ پرس‌وجوی پیامکیِ موجود بیرون داده می‌شود — کانالِ تازه‌ای اختراع نمی‌شود. هزینه: ۵ متغیر <span class="af-ltr">uint8_t</span> در حافظه و هیچ تغییری در قالبِ سیم (هیچ چیزی به رکوردها اضافه نمی‌شود). ترکیب <span class="af-ltr">#GET:194</span> با جعبه‌سیاه (<span class="af-ltr">io210/io209</span>) این سؤال را حتی به‌طور <b>تأخیری</b> — از روی لاگ رکوردها — هم قابل‌پاسخ می‌کند.</dd>
+        <dt>استناد و ملاحظه</dt><dd><span class="path">old: gps.c:1084-1088 ← new: gps.c:203-210,1344-1375؛ sim868.h:235,793 و sim868.c:794</span> <span class="ev test">اعمال و تست شده</span> <span class="ev open">شناسهٔ پیامکیِ ۱۹۴ در این درخت آزاد بود و حالا مشغول است؛ یک اپلیکیشنِ بسیار قدیمی که ۱۹۴ را برای چیز دیگری استفاده کند، تداخل می‌یابد</span></dd>
+      </dl>
+    </div>
+
+    <div class="af-table-wrap">
+      <div class="af-h3" style="padding:3mm 3.5mm 0">پرس‌وجوهای پیامکیِ مربوط به وضعیت — پس از این نسخه</div>
+      <table class="af-table">
+        <thead><tr><th style="width:24%">فرمان</th><th style="width:44%">چه می‌گوید</th><th style="width:32%">کاربردِ میدانی</th></tr></thead>
+        <tbody>
+          <tr><td class="td-id"><span class="af-ltr">#GET:191</span></td><td>وضعیتِ کامل دستگاه + خط جدید <span class="af-ltr">GSM: D&lt;n&gt;/&lt;t&gt; R&lt;n&gt; A&lt;n&gt; O&lt;n&gt;</span> (شمارنده‌های نگهبان: توقف‌ها/بازسازی‌ها/ACK‌ها/برش‌ها)</td><td>اولین پرس‌وجو وقتی دستگاه «داده نمی‌دهد»</td></tr>
+          <tr><td class="td-id"><span class="af-ltr">#GET:194</span></td><td>ماهواره‌های در دیدِ هر سیستم، درکار، مُد فیکس و مُدِ پیکربندی‌شده</td><td>تشخیص «آسمان ضعیف» در برابر «آنتن/گیرنده خراب»</td></tr>
+          <tr><td class="td-id"><span class="af-ltr">#GET:231</span></td><td>وضعیت جعبه‌سیاه (۰/۱)</td><td>کنترل قبل و بعد از فعال‌سازی تشخیص‌ها</td></tr>
+          <tr><td class="td-id"><span class="af-ltr">#GETVER</span></td><td>نسخهٔ برنامه (<span class="af-ltr">B1.06.60</span>) و نسخهٔ FOTA (<span class="af-ltr">00.02.06</span>)</td><td>تأییدِ از راه دورِ نتیجهٔ هر به‌روزرسانی</td></tr>
+          <tr><td class="td-id"><span class="af-ltr">#SET:231,1</span></td><td>فعال‌کردن جعبه‌سیاه برای رکوردهای بعدی</td><td>فعال‌سازیِ دستگاه‌به‌دستگاه در مورد مشکوک</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="af-grid-2">
+      <div class="af-note"><div class="af-note-title"><span class="dot sig"></span>چک‌لیستِ سریعِ عیب‌یابیِ از راه دور</div>
+        <ul class="af-bul">
+          <li>«آنلاین ولی رکورد نمی‌رسد»؟ → <span class="af-ltr">#GET:191</span>: شمارندهٔ صف و خط نگهبان</li>
+          <li>«GPS برنمی‌گردد»؟ → <span class="af-ltr">#GET:194</span>: آیا اصلاً ماهواره می‌بیند؟</li>
+          <li>«بازیابی‌های مکرر دارد»؟ → جعبه‌سیاه: <span class="af-ltr">io211</span> و <span class="af-ltr">io213</span></li>
+          <li>«بعد از به‌روزرسانی چه نسخه‌ای دارد»؟ → <span class="af-ltr">#GETVER</span></li>
+        </ul>
+      </div>
+      <div class="af-note"><div class="af-note-title"><span class="dot warn"></span>مرزِ این ابزارها</div>
+        <p>این پرس‌وجوها <b>تشخیص</b> را ممکن می‌کنند؛ <b>رفع</b> مشکلِ سیگنالِ ضعیفِ واقعی را تضمین نمی‌کنند. اگر <span class="af-ltr">#GET:194</span> تعدادِ پایینِ ماهواره با آسمانِ خوب نشان داد، مشکل سخت‌افزاری (آنتن/سیم) است نه فریم‌ور — و برعکس، اگر ماهواره‌ها زیادند ولی فیکس نمی‌شود، جعبه‌سیاه مرحلهٔ گیرکرده را نشان می‌دهد. هر دو نتیجه، دقیقاً همان چیزی است که پیش از این فقط با اعزامِ حضوری به دست می‌آمد.</p>
+      </div>
+    </div>
+
+    <div class="af-conclusion af-push">
+      <div class="af-note-title"><span class="dot sig"></span>خلاصهٔ بخشِ مشاهده</div>
+      <p class="af-small" style="font-size:8.1pt;color:var(--af-text);text-align:justify">دو قابلیتِ اختیاری (<span class="idtag">MAIN-017</span> و <span class="idtag">MAIN-018</span>) هیچ رفتاری از دستگاه نمی‌گیرند — فقط «دید» اضافه می‌کنند: ۱۰ پارامتر سلامت در هر رکورد (وقتی فعال باشد) و یک پرس‌وجو برای آسمان. هر دو پیش‌فرضِ غیرفعال/خاموش دارند تا ناوگانِ موجود تحت تأثیر قرار نگیرد؛ فعال‌سازی تصمیمِ تکنسینِ موردِ موردنظر است.</p>
+    </div>
+  </div>

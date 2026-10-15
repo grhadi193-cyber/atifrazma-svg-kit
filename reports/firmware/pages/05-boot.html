@@ -1,0 +1,61 @@
+  <div class="a4-content" style="gap:4.2mm">
+    <div>
+      <div class="af-eyebrow"><span class="n">۰۴</span> نقص بحرانی ۱ از ۴ — تحویل اجرای برنامه</div>
+      <h2 class="af-h2">دستگاهی که بعد از یک به‌روزرسانیِ «موفق» دیگر هرگز روشن نمی‌شد</h2>
+    </div>
+
+    <p class="af-lead">هر برنامه برای کار به یک «پشته» نیاز دارد: ناحیه‌ای از حافظه که نشانیِ بازگشت و داده‌های موقت در آن نگهداری می‌شود. محل پشته را مقداری به نام نشانگر پشته (<span class="af-ltr">MSP</span>) مشخص می‌کند که باید از جدول بردارهای خودِ برنامه، در نشانی <span class="af-ltr">0x08002000</span> فلش خوانده شود. در نسخهٔ تحویلی، بوت‌لودر <span class="af-ltr">00.02.05</span> هنگام پرش به برنامه این مقدار را تنظیم نمی‌کرد (<span class="idtag">FOTA-001</span>) و خودِ برنامه هم در آغازِ کار آن را اصلاح نمی‌کرد (<span class="idtag">MAIN-001</span>). نتیجه: برنامه با پشتهٔ بوت‌لودر ـ در نشانی <span class="af-ltr">0x200030C0</span> ـ شروع می‌کرد.</p>
+
+    <figure class="af-diagram">
+      <div class="af-figure-head">
+        <div><div class="af-figure-title">تحویل اجرا از بوت‌لودر به برنامه و جای پشته در حافظه</div><div class="af-figure-sub">بالا: مسیر پرش. پایین: نقشهٔ RAM؛ جایی که پشتهٔ به‌ارث‌رسیده می‌نشست، امروز داخل داده‌های برنامه است.</div></div>
+        <span class="af-figure-fig">شکل ۳</span>
+      </div>
+      <svg class="af-chart-svg" viewBox="0 0 680 238" role="img" aria-label="تحویل بوت‌لودر به برنامه و نقشهٔ حافظه" style="font-family:'Peyda',Tahoma,sans-serif">
+        <g font-size="10.5" font-weight="700" fill="#102333">
+          <rect x="452" y="18" width="204" height="52" rx="14" fill="#EFF7FC" stroke="#0E9BE8" stroke-width="1.4"/>
+          <text x="554" y="40" text-anchor="middle">بوت‌لودر FOTA ـ 0x08000000</text>
+          <text x="554" y="57" text-anchor="middle" font-size="7.5" font-weight="500" fill="#54748E">پایان به‌روزرسانی: پرش به برنامه (jump)</text>
+          <rect x="24" y="18" width="230" height="52" rx="14" fill="#fff" stroke="#C3D9E8"/>
+          <text x="139" y="40" text-anchor="middle">برنامهٔ اصلی ـ 0x08002000</text>
+          <text x="139" y="57" text-anchor="middle" font-size="7.5" font-weight="500" fill="#54748E">جدول بردارها: [۰]=MSP و [۴]=Reset_Handler</text>
+        </g>
+        <path d="M452,44 L262,44" stroke="#8DACC4" stroke-width="1.4" fill="none" marker-end="url(#arwFw)"/>
+        <text x="357" y="34" text-anchor="middle" font-size="7.5" font-weight="700" fill="#D98E00">قبل: پرش بدون تنظیم MSP</text>
+        <text x="357" y="62" text-anchor="middle" font-size="7.5" font-weight="700" fill="#0B74C9">بعد: MSR MSP از 0x08002000، در هر دو طرف</text>
+        <defs><marker id="arwFw" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#54748E"/></marker></defs>
+        <g>
+          <rect x="24" y="104" width="632" height="34" rx="12" fill="#EFF7FC" stroke="#C3D9E8"/>
+          <rect x="24" y="104" width="330" height="34" rx="12" fill="#C3D9E8"/>
+          <rect x="476" y="104" width="180" height="34" rx="12" fill="#0E9BE8" opacity="0.28"/>
+          <text x="180" y="125" text-anchor="middle" font-size="8.5" font-weight="700" fill="#25455F">داده‌های برنامه (.bss/.data) ـ حدود ۱۵٫۴ KB</text>
+          <text x="566" y="125" text-anchor="middle" font-size="8.5" font-weight="700" fill="#0B74C9">پشتهٔ درست برنامه (CSTACK)</text>
+          <line x1="330" y1="96" x2="330" y2="146" stroke="#FF6659" stroke-width="2.4"/>
+          <circle cx="330" cy="96" r="4" fill="#FF6659"/>
+          <text x="330" y="88" text-anchor="middle" font-size="8" font-weight="800" fill="#E05248">0x200030C0 ـ پشتهٔ به‌ارث‌رسیده از بوت‌لودر قدیمی</text>
+          <text x="24" y="160" font-size="7.5" fill="#54748E">مبنای RAM برنامه: 0x200000C0 ـ یعنی فقط ۱۲٬۲۸۸ بایت پایین‌تر از پشتهٔ قدیمی؛ با داده‌های نسخهٔ جدید، هم‌پوشانی قطعی بود، نه اتفاقی.</text>
+          <text x="24" y="182" font-size="8.5" font-weight="700" fill="#102333">پیامد هم‌پوشانی:</text>
+          <text x="24" y="200" font-size="8" fill="#2C4459">۱) پاک‌سازی اولیهٔ حافظه (‎.bss‎) نشانیِ بازگشتِ روی پشته را صفر می‌کرد ← خطای سخت‌افزاری (HardFault) در همان ثانیه‌های اول.</text>
+          <text x="24" y="217" font-size="8" fill="#2C4459">۲) اگر آن کلمهٔ خاص جان سالم به در می‌برد، دستگاه با داده‌های خرابِ پنهان کار می‌کرد؛ خرابی‌ای که هر بار چهره‌اش عوض می‌شد.</text>
+        </g>
+      </svg>
+      <figcaption class="af-figure-foot"><span>نشانی‌ها و اندازه‌ها از کد مبدأ و جدول بردارهای دو نسخه در دفتر ثبت تغییرات</span><span class="af-ltr">MSP 0x200030C0 / RAM base 0x200000C0</span></figcaption>
+    </figure>
+
+    <div class="af-table-wrap">
+      <div class="af-h3" style="padding:3mm 3.5mm 0">رفتار ورود به برنامه ـ قبل و بعد</div>
+      <table class="af-table">
+        <thead><tr><th style="width:22%">گام</th><th style="width:39%">نسخهٔ تحویلی (<span class="af-ltr">B1.05.20</span> + <span class="af-ltr">00.02.05</span>)</th><th style="width:39%">نسخهٔ فعلی (<span class="af-ltr">B1.06.60</span> + <span class="af-ltr">00.02.06</span>)</th></tr></thead>
+        <tbody>
+          <tr><td class="td-bold">پرش بوت‌لودر</td><td>فقط نشانی شروع برنامه خوانده می‌شد؛ خطِ خواندن MSP حتی در کد بود اما کامنت شده بود</td><td>بوت‌لودر MSP را از <span class="af-ltr">0x08002000</span> می‌خواند و پیش از پرش تنظیم می‌کند (<span class="idtag">FOTA-001</span>)</td></tr>
+          <tr><td class="td-bold">آغاز برنامه</td><td><span class="af-ltr">Reset_Handler</span> مستقیم سراغ راه‌اندازی سیستم می‌رفت؛ با هر پشته‌ای که به ارث رسیده بود</td><td>برنامه در اولین دستورها MSP را از جدول بردارهای خودش بازخوانی می‌کند؛ مستقل از اینکه کدام بوت‌لودر آن را صدا زده است (<span class="idtag">MAIN-001</span>)</td></tr>
+          <tr><td class="td-bold">دستگاهِ میدانی با بوت‌لودر قدیمی</td><td>با هر به‌روزرسانیِ برنامه در معرض خاموشی کامل بود</td><td>حتی پیش از ارتقای بوت‌لودر، خودِ برنامه از خودش محافظت می‌کند؛ ارتقای بوت‌لودر لایهٔ دوم اطمینان است</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="af-note af-push">
+      <div class="af-note-title"><span class="dot bad"></span>چرا این نقص «بحرانی» است و چگونه راستی‌آزمایی می‌شود؟</div>
+      <p>چون مسیر فعال‌شدنش دقیقاً مسیر عادیِ نگهداری ناوگان بود: کافی بود روی دستگاهی با بوت‌لودر قدیمی یک به‌روزرسانی معمولی انجام شود. دستگاه پیام موفقیت می‌داد، ریست می‌شد و دیگر هرگز در شبکه دیده نمی‌شد ـ نه چراغ، نه پاسخ پیامک. تنها راه بازگرداندنش اتصال فیزیکی پروگرامر بود. اصلاح دوطرفه (هم در بوت‌لودر، هم در برنامه) باعث می‌شود هیچ ترکیبی از نسخه‌های قدیم و جدید، دستگاه را در این تله نیندازد. <b>راستی‌آزمایی میدانی:</b> دستگاهِ به‌روزشده باید پس از ارتقا به پرس‌وجوی نسخه (<span class="af-ltr">#GETVER</span>) پاسخ دهد و ارسال رکورد را از سر بگیرد. <span class="ev test">تغییر اعمال و تست شده؛ مکانیزم هم‌پوشانی، تحلیل ریشه‌ای مستند در دفتر ثبت است</span></p>
+    </div>
+  </div>

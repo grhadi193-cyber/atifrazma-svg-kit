@@ -1,0 +1,62 @@
+  <div class="a4-content" style="gap:4mm">
+    <div>
+      <div class="af-eyebrow"><span class="n">۱۳</span> پیوست، ثبت جامع تغییرات (۳ از ۶)</div>
+      <h2 class="af-h2">ردیف‌های ۱۱ تا ۱۵ — صبرِ شبکه، حلقهٔ دریافت، GPS و نشستِ پیش از ریست</h2>
+    </div>
+
+    <div class="af-table-wrap reg">
+      <table class="af-table">
+        <thead><tr>
+          <th style="width:9%">شناسه</th><th style="width:8%">زیرسامنه</th><th style="width:26%">فایل / نماد / خط</th>
+          <th style="width:19%">مسئله یا ریسک هدف</th><th style="width:28%">تغییر و رفتار مورد انتظار</th><th style="width:10%">تست و ملاحظه</th>
+        </tr></thead>
+        <tbody>
+
+          <tr>
+            <td class="td-id"><span class="idtag">MAIN-008</span><small>ردیف ۱</small></td>
+            <td class="td-bold">GSM</td>
+            <td class="refs"><span class="path">sim868.h:25-101؛ sim868.c:149-219,7295-7365,8446-8872,9341-9357,11301-11786 (new)</span></td>
+            <td>مهلت‌ها از «سریع‌ترین مشاهده» گرفته شده بودند: سیم‌کارتِ >۱.۵ ثانیهٔ busy = سه +CME ERROR:14 → AT+CFUN=1,1 → قفلِ دائمی؛ CIICR >۴ ثانیه = ریستِ وسطِ اتصال → ۲۰ تا ۹۰ دقیقه آفلاین؛ PDPِ باقی‌مانده = CIPSTART «ERROR» ساده → ریست</td>
+            <td>صبرِ +CME در ۷ مرحله (۸×۲ ثانیه، simCmeBePatient)؛ AT+CPIN? از ۳→۶ دور × ۳ ثانیه؛ +CREG:0 = ۶×۵ ثانیه؛ CIICR/CIPSTART/CIPSHUT = GSM_TIMEOUT_60 (۶۰ ثانیه — بزرگ‌ترین مقدارِ ایمنِ uint16)؛ «ERROR» ساده تا ۳ دور به AT+CIPSHUT ارجاع می‌شود. انتظار: چرخهٔ «ریست→ثبتِ ناقص» بشکند؛ بدترین حالتِ اتصال چند ده‌ثانیه طولانی‌تر (معاملهٔ آگاهانه)</td>
+            <td>تست‌شده؛ لاگ AT: CPIN تکرار می‌شود، نه CFUN</td>
+          </tr>
+          <tr>
+            <td class="td-id"><span class="idtag">MAIN-009</span><small>ردیف ۲</small></td>
+            <td class="td-bold">GSM</td>
+            <td class="refs"><span class="path">sim868Usart.c:5-11,93-216؛ sim868.c:170-422,458-485,6522-6558,13520-13535 (new)</span></td>
+            <td>حلقهٔ ۵۱۲ بایتی: پاسخِ ~۵۳۱ بایتیِ AT+CIPRXGET=2,500 اشباعش می‌کرد و MCU «برای همیشه کر» می‌شد (TX سالم، RX مرده)؛ دورزدنِ 1023→0 شرطِ write<=read را دروغ می‌کرد و فریمِ درحالِرسیدن را جابه‌جا می‌کرد؛ UARTِ گیرکرده هیچ مسیرِ بازیابی نداشت</td>
+            <td>simRxCounter اتمی (PRIMASK) به‌جای دو اندیس؛ حلقه ۵۱۲→۱۰۲ (حاشیه ~۴۹۳ بایت)؛ Sim_RX_Flush؛ Sim_USART_Recover() با RCC->APBRSTR2؛ نگهبان: ۹۰ ثانیه سکوت RX = بازسازی UART (با عقب‌نشینی تا 1800 ثانیه) و ۳۰ دقیقه (۶۰ با ACC) بدون ACK سرور با ثبت + صف = رهای‌سازی نشست + ریستِ کنترل‌شده. انتظار: «آنلاین ولی کر» خودبه‌خود برطرف شود؛ io211/io212 شواهد را نشان دهند</td>
+            <td>تست‌شده؛ خطِ GSM: D<n>/<t> R<n> A<n> O<n> در #GET:191</td>
+          </tr>
+          <tr>
+            <td class="td-id"><span class="idtag">MAIN-010</span><small>ردیف ۳</small></td>
+            <td class="td-bold">GPS</td>
+            <td class="refs"><span class="path">Core/sim868/gps/gps.c:29-45,81-136,244-316,2116-2509 (new)؛ GPS_service()، gpsCooperativePump()</span></td>
+            <td>پارسِ NMEA داخلِ وقفهٔ 1PPS بود که فقط با فیکس تپ می‌کرد: بدون فیکس (تونل/پارکینگ) حلقهٔ ۱۰۲۴ در <۷ ثانیه اشباع و جمله‌هایِ بازگشت (GGA بدون fix، RMC «V») پرت می‌شدند — آفلاینِ چندساعتهٔ GPS؛ همان ISR با خطِ RI ماژولِ GSM مشترک بود و لبهٔ تماس/SMS را دیر می‌کرد</td>
+            <td>پارس در حلقهٔ اصلی (تا ۲۴ جمله/دور) + پمپِ همکاری در Sim_check_msg() وقتی GPS_rx_counter≥512؛ GPS_get_line() بدون چرخش؛ تصحیحِ سرریزِ یک‌بایتیِ str[++i] و اتمی‌کردنِ counter؛ واچ‌داگ: ۱۲۰ ثانیه بدون fix = اجرای دوبارهٔ GPS_config_module()، ۶۰۰ ثانیه = قطع/وصلِ برقِ گیرنده (به‌تأخیر در مرحلهٔ EPO). انتظار: دادهٔ بازگشتِ فیکس همیشه مصرف شود؛ GPS خودبه‌خود برگردد</td>
+            <td>تست‌شده؛ ریسکِ ثبت‌شده: هم‌زمانیِ پارسِ GPS/GSM</td>
+          </tr>
+          <tr>
+            <td class="td-id"><span class="idtag">MAIN-011</span><small>ردیف ۴</small></td>
+            <td class="td-bold">FOTA</td>
+            <td class="refs"><span class="path">sim868.c:298,449-496,12548-12555 (new)؛ simReleaseDataSessionBeforeReset()</span></td>
+            <td>بوت‌لودر هیچ AT+CIPSHUT/AT+SAPBR=0,1 ندارد؛ هر دستگاهِ سالمی که یک جلسهٔ GPRS داشته باشد (حالت عادی)، #COM:913 را با «An error occurred!» شکست می‌داد — کل مسیرِ FOTAِ دستور‌داده غیرقابل‌اتکای بود</td>
+            <td>ارسالِ هم‌زمانِ AT+CIPSHUT و AT+SAPBR=0,1 (تا ۲۰ ثانیه برای هرکدام، با تغذیهٔ IWDG) بلافاصله پیش از __NVIC_SystemReset()؛ از سه مسیر: #COM:913/914/910 (gsmSmCheckInbox:12554)، checkAutoResetCondition و simGuardianService (404). انتظار: پاسخِ SMS = پیشرفتِ به‌روزرسانی؛ در لاگ AT، CIPSHUT/SAPBR پیش از ریست و SAPBR=1,1 موفق در بوت‌لودر</td>
+            <td>تست‌شده؛ مرز: مسیرِ autoRestart هنوز این تابع را صدا نمی‌زند (F.4-1)</td>
+          </tr>
+          <tr>
+            <td class="td-id"><span class="idtag">FOTA-003</span><small>ردیف ۵</small></td>
+            <td class="td-bold">FOTA</td>
+            <td class="refs"><span class="path">Fota 02.06: GSM.h:14-15؛ consts.h:29-30؛ consts.c:115-116؛ GSM.c:88-100 (new)</span></td>
+            <td>بافرهای FTP_FILE_* به ۳۱ بایت بودند درحالی‌که برنامه ۳۹ کاراکتر می‌پذیرفت: تا ۹-۱۶ بایت سرریز به FTP_FILE_FOTAFOTA/FTP_FILE_MANUFACT (خودِ ورودی‌های FTP) + نامِ بدون NUL → «دانلودِ فایلِ اشتباه» یا FTP 550</td>
+            <td>بافرهای ۴۰ بایتی (FTP_FILE_NAME_MAX=39)؛ clamp طول + NULِ بی‌قید در createFtpDirectories(). انتظار: نامِ ۳۹ کاراکتریِ #SET:213 دقیقاً همان مسیر در لاگِ FTP؛ نامِ بلندتر = خطای FTPِ قطعی به‌جای خرابیِ حافظه</td>
+            <td>تست‌شده؛ +۵۴ بایت به RG_FOTA.bin (مطابق)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="af-caption af-push" style="border-top:1px solid var(--af-ink-10);padding-top:2mm">
+      وضعیت تستِ همهٔ ردیف‌های این ثبت: <b>بررسی و تست‌شده توسط تیم فنی + تست میدانی نسخه‌به‌نسخه</b> (ثبت‌شده به‌صورت «تست: میدانی» در دفتر). ارجاع‌ها: «new» = نسخهٔ فعلی <span class="af-ltr">B1.06.60</span>، «old» = نسخهٔ تحویلی <span class="af-ltr">B1.05.20</span>.
+    </div>
+  </div>
+

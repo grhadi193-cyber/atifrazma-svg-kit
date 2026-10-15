@@ -1,0 +1,62 @@
+  <div class="a4-content" style="gap:4mm">
+    <div>
+      <div class="af-eyebrow"><span class="n">۱۳</span> پیوست، ثبت جامع تغییرات (۴ از ۶)</div>
+      <h2 class="af-h2">ردیف‌های ۱۶ تا ۲۰ — GPS، خواب، پیش‌فرض‌ها و گرم‌شدن</h2>
+    </div>
+
+    <div class="af-table-wrap reg">
+      <table class="af-table">
+        <thead><tr>
+          <th style="width:9%">شناسه</th><th style="width:8%">زیرسامنه</th><th style="width:26%">فایل / نماد / خط</th>
+          <th style="width:19%">مسئله یا ریسک هدف</th><th style="width:28%">تغییر و رفتار مورد انتظار</th><th style="width:10%">تست و ملاحظه</th>
+        </tr></thead>
+        <tbody>
+
+          <tr>
+            <td class="td-id"><span class="idtag">MAIN-012</span><small>ردیف ۱</small></td>
+            <td class="td-bold">GPS</td>
+            <td class="refs"><span class="path">gps.c:153-155,732-742,960-965,1040-1046,1105-1108,1419-1427,1601-1613 (new)؛ parseGGA/parseRMC/fixedGPS_works/getNMEAMessageCode</span></td>
+            <td>(الف) یخ‌زدنِ مهر زمانی: یک چرخهٔ RMC «V»/سرعتِ خطا + GGA سالم = رکورد با مختصاتِ تازه و زمانِ کهنه، و fixedGPS_works آن زمان کهنه را در systemTimeUnix می‌نوشت → همهٔ رکوردهای بعدی (بلوکِ زمانِ تکراری در CSV). (ب) $GLGSA جای $GPGSA را می‌گرفت → fix_mode/PDOP با مقادیرِ فقط-GLONASS = «فیکس از دست رفت» کاذب با ۱۲ ماهواره GPS</td>
+            <td>درِ اعتبارِ متقارن (parseGGA با کیفیت ۰ → ۰؛ parseRMC با «V» → month=0)؛ کلمپِ سرعت >162 گوت به ۰؛ پذیرشِ فقط $GPGSA/$GNGSA؛ clock فقط با زمانِ واقعاً جلوتر (یا پس‌رفتن >۱ ساعت). انتظار: deviceTime در CSV به‌شدت صعودی؛ io69 بدون نوسان وقتی #GET:194 ماهواره نشان می‌دهد</td>
+            <td>تست‌شده؛ مرز: مُدِ فقط-GLONASS باز است (F.4-3)</td>
+          </tr>
+          <tr>
+            <td class="td-id"><span class="idtag">MAIN-013</span><small>ردیف ۲</small></td>
+            <td class="td-bold">Timers</td>
+            <td class="refs"><span class="path">Core/timers/systemTimers.h:35-42؛ systemTimers.c:538-540,590 (new)</span></td>
+            <td>پیش از خواب، فقط ۲۰ میلی‌ثانیه صبر می‌شد: رکوردهای پایانیِ سفر (Trip-End, Ignition-Off, آخرین موقعیت) در فلش می‌ماندند و با اولین رکوردِ سفرِ بعدی می‌رسیدند — شکایتِ کلاسیکِ «پایان سفر بعد از شروعِ سفرِ بعد گزارش شد»</td>
+            <td>SYSTEM_DATA_FLUSH_MAX_WAIT=30000 تیک (۵۰ هرتز) = ۱۰ دقیقه: هر دو مرحلهٔ OP_DATA_FLUSH و OP_DATA_FETCH_TRANSMIT تا serverDataNotSendCount==0 یا عبور از سقف، در OP_SLEEP نمی‌روند. انتظار: Trip-End در همان نشستِ آخرین رکوردهای حرکتی؛ هزینه: تا ۱۰ دقیقه بیداریِ بیشتر در پارکینگِ بدون پوشش</td>
+            <td>تست‌شده؛ جفتِ ناگسستنی با MAIN-006</td>
+          </tr>
+          <tr>
+            <td class="td-id"><span class="idtag">MAIN-019</span><small>ردیف ۳</small></td>
+            <td class="td-bold">AVL</td>
+            <td class="refs"><span class="path">Core/avlProtocol/avlProtocol.h:12-13,90-185؛ avlProtocol.c:380-396 (new)</span></td>
+            <td>دو شمارهٔ مجازِ سخت‌کدشدهٔ کارخانه (هر کسی که آن‌ها را بداند، فرمانِ کامل دارد) + پیش‌فرض‌هایِ قدیمی: سرور/درگاهِ کارخانه، نمونه‌برداری ۱۸۰ ثانیه/۶۵٬۵۰۰ متر</td>
+            <td>حذف DEFAULT_AUTH_NUMBER_1/2 و صفرکردنِ authorizedNumber1/2 (length=0)؛ پیش‌فرض‌هایِ تولیدی: خواب ۱→۰، تایمرِ صرفه‌جویی ۱→۱۰ دقیقه، IP→0.0.0.0، درگاه 5040→5027، نمونه‌برداری ۳۰ ثانیه/۵۰ متر/۱۵ درجه، overspeed ۹۰→۱۲۰، ACC-event ۱→۲، green-driving خاموش، FTP پیش‌فرضِ جدید؛ Firmware_version B1.06.60 / Hardware 03.06.00. انتظار: دستگاهِ نو/ریست‌شده «نیازمندِ تأمین» باشد و به هیچ سرور/شماره‌ای نرود</td>
+            <td>تست‌شده؛ فقط دستگاهِ نو/ریست‌شده؛ #GETVER باید B1.06.60/03.06.00</td>
+          </tr>
+          <tr>
+            <td class="td-id"><span class="idtag">MAIN-021</span><small>ردیف ۴</small></td>
+            <td class="td-bold">Device IO</td>
+            <td class="refs"><span class="path">Core/ds18b20/ds18b20.h:7-11؛ ds18b20.c:4-23 (new)؛ DS18B20_InitPin()</span></td>
+            <td>نقشهٔ پایهٔ 03.06.00: خطِ ۱-وایر به PB2 و تغذیه/راننده به PB0/PB1؛ درایورِ قدیمی فقط PA10 را پیکربندی می‌کرد و DS_VOLTAGE_ENABLE() کامنت بود → روی سخت‌افزارِ جدید دما «اندازه‌گیری نشد» (-300)</td>
+            <td>PB0 خروجیِ بالا (VDD سنسور)، PB1 خروجیِ پایین (فعال‌سازی رانندهٔ RS485 غیرفعال)، PB2 خطِ ۱-وایرِ پول‌آپ؛ حذفِ macroهای مرده؛ ۴۱ بازهٔ دیگرِ فایل فقط فرمت/کامنت (بدون تغییرِ ارزش). انتظار: #GET:168 روی 03.06.00 → «Temperature is <x.xx> celsius»؛ ویژگی پیش‌فرض خاموش (#SET:168)</td>
+            <td>تست‌شده؛ به سخت‌افزار گره‌خورده: 03.03.00 دما نمی‌خواند</td>
+          </tr>
+          <tr>
+            <td class="td-id"><span class="idtag">MAIN-014</span><small>ردیف ۵</small></td>
+            <td class="td-bold">GPS</td>
+            <td class="refs"><span class="path">Core/avlProtocol/avlProtocol.c:3155-3219؛ gps.h:22-28,261 (new)؛ handleGps()</span></td>
+            <td>هر گذارِ خاموش→روشن، first_record_filter_counter را صفر می‌کرد → ۸ فیکسِ اول دورریخته می‌شد: اولین رکوردِ هر بیداری ~۱۶ ثانیه دیرتر و در موقعیتِ لحظهٔ روشن‌شدن — «صد مترِ اولِ هر سفر» از دست می‌رفت، حتی بعد از خوابِ ۲ دقیقه‌ای</td>
+            <td>gpsDisableUptime=system_uptime هنگام خاموش‌شدن؛ صفرکردنِ شمارنده در روشن‌شدن فقط وقتی (system_uptime - gpsDisableUptime) > GPS_WARMUP_KEEP_MAX_SEC (۱۸۰ ثانیه). انتظار: فیکسِ گرمِ توقف‌های کوتاه بلافاصله پذیرفته شود؛ شروعِ سفر با جایِ پارک یکی باشد؛ شروعِ سرد کامل فیلترش را نگه می‌دارد</td>
+            <td>تست‌شده؛ io209 بعد از خوابِ کوتاه کوچک می‌ماند</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="af-caption af-push" style="border-top:1px solid var(--af-ink-10);padding-top:2mm">
+      وضعیت تستِ همهٔ ردیف‌های این ثبت: <b>بررسی و تست‌شده توسط تیم فنی + تست میدانی نسخه‌به‌نسخه</b> (ثبت‌شده به‌صورت «تست: میدانی» در دفتر). ارجاع‌ها: «new» = نسخهٔ فعلی <span class="af-ltr">B1.06.60</span>، «old» = نسخهٔ تحویلی <span class="af-ltr">B1.05.20</span>.
+    </div>
+  </div>
+

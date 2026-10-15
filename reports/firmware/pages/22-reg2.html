@@ -1,0 +1,62 @@
+  <div class="a4-content" style="gap:4mm">
+    <div>
+      <div class="af-eyebrow"><span class="n">۱۳</span> پیوست، ثبت جامع تغییرات (۲ از ۶)</div>
+      <h2 class="af-h2">ردیف‌های ۶ تا ۱۰ — حافظهٔ خارجی، FOTA و روشن‌شدن ماژول</h2>
+    </div>
+
+    <div class="af-table-wrap reg">
+      <table class="af-table">
+        <thead><tr>
+          <th style="width:9%">شناسه</th><th style="width:8%">زیرسامنه</th><th style="width:26%">فایل / نماد / خط</th>
+          <th style="width:19%">مسئله یا ریسک هدف</th><th style="width:28%">تغییر و رفتار مورد انتظار</th><th style="width:10%">تست و ملاحظه</th>
+        </tr></thead>
+        <tbody>
+
+          <tr>
+            <td class="td-id"><span class="idtag">MAIN-004</span><small>ردیف ۱</small></td>
+            <td class="td-bold">Flash</td>
+            <td class="refs"><span class="path">avlProtocol.h:51-78؛ avlProtocol.c:431-490؛ w25Protocol.c:60-134 (new)</span></td>
+            <td>چهار محرکِ مستقل: (الف) فرمانِ TC_SETTINGS_AUTH_DEFAULT در فهرستِ مهاجرت = پاک‌شدنِ کل بلوکِ تنظیمات (سرور/IP/پورت/APN/گذرواژه/شماره‌های مجاز) در هر ارتقا؛ (ب) سکتورِ خوانا-نبود = تکرارِ همان پاک‌شدن؛ (ج) نشانگرِ «انجام شد» بعد از اجرا نوشته می‌شد → TC_ERASE_RECORDS بعد از هر ریستِ واچ‌داگ دوباره اجرا می‌شد؛ (د) metadata فاسد در RAM = ردّ سکتورِ سالم</td>
+            <td>خانهٔ مهاجرت به TC_NOP؛ نشانگرِ lastDoneCommandId پیش از اجرا ثبت می‌شود (حداکثرِ یک‌بار)؛ مهرِ metadata در لحظهٔ نوشتن در ۵ سکتور (تنظیمات، فرمان‌ها، جئوفنس، شماره‌های مجاز، FTP). انتظار: پیش و پس از هر ارتقا، #GET:110..113 و APN و شماره‌ها یکسان؛ «دستگاه بعد از ارتقا نو شده» از بین برود</td>
+            <td>تست‌شده؛ یک‌طرفه: دستگاهِ قبلاً ریست‌شده برنمی‌گردد (مرزِ شناخته‌شده)</td>
+          </tr>
+          <tr>
+            <td class="td-id"><span class="idtag">MAIN-005</span><small>ردیف ۲</small></td>
+            <td class="td-bold">Flash</td>
+            <td class="refs"><span class="path">Core/w25q32jv/w25Protocol.c:1280-1290 (new)؛ w25qWritePacket() شاخهٔ isUpdate==SET</span></td>
+            <td>پرچمِ «ارسال شد» با ثابتِ تعریف‌نشده W25Q_RECORD_FIRST_SECTOR_ADDR محاسبه می‌شد (خواننده از recordsArea.w25qRecordFirstSectorAddr استفاده می‌کند)؛ فقط با logging فعال دیده می‌شد: رکوردِ ارسالی هرگز «فرستاده» نشد و رکوردِ دیگری غلط «فرستاده» شد</td>
+            <td>استفاده از همان توصیف‌گرِ ناحیهٔ رکوردها که خواننده استفاده می‌کند. انتظار: هر رکورد دقیقاً یک‌بار روی سرور ظاهر شود؛ تکرار/شکافِ دائمیِ مسیر در logging-enabled devices برطرف شود</td>
+            <td>تست‌شده؛ بدون logging: رفتارِ قبل و بعد یکسان</td>
+          </tr>
+          <tr>
+            <td class="td-id"><span class="idtag">FOTA-002</span><small>ردیف ۳</small></td>
+            <td class="td-bold">FOTA</td>
+            <td class="refs"><span class="path">Fota 02.06/Core/Src/GSM.c:421-457 (new)؛ fotaNextState()</span></td>
+            <td>اعتبارنامهٔ FTPِ ذخیره‌شده (ftpData در W25Q) فقط در حالتِ FOTA_USER_COMMAND اعمال می‌شد؛ در حالت‌های بازیابی، حسابِ درج‌شدهٔ کارخانه استفاده می‌شد → در ناوگانی با حسابِ سفارشی، اولین شکست = گیرکردنِ دائمی در بوت‌لودر با اپلیکیشنِ نیمه‌نوشت‌شده</td>
+            <td>بارگذاری FTP_SERV/USER/PASS_VARYING از W25Q در بالای fotaNextState() برای همهٔ حالت‌ها (USER_COMMAND, WRITE_FAIL, WITH_DEFAULT, FIRST_TIME, TRY_DEFAULT_PATH, TRY_LAST_CHANCE) با تستِ چهارتاییِ اعتبار تا سکتورِ پاک‌شده Defaults را تسخیر نکند</td>
+            <td>تست‌شده؛ لاگِ FTP: کاربرِ ذخیره‌شده در همهٔ تلاش‌ها</td>
+          </tr>
+          <tr>
+            <td class="td-id"><span class="idtag">MAIN-006</span><small>ردیف ۴</small></td>
+            <td class="td-bold">GSM</td>
+            <td class="refs"><span class="path">Core/sim868/gsm/sim868.c:13018-13048 (new)؛ gsmSmSendServerRecords() در SIM_STAGE_MAKE_SERVER_PACKET</span></td>
+            <td>serverDataNotSendCount > 0 درحالی‌که در حلقهٔ ۶۷٬۲۰۰ رکوردی رکوردِ not_sent نبود → اسکنِ بی‌پایانِ «چیزی پیدا نمی‌شود»؛ ظاهر: آنلاین، جواب SMS، صفر رکورد — بدترین پروفایلِ مشاهده</td>
+            <td>هر رکوردِ رد‌شدهٔ already-sent، شمارنده را یک کم می‌کند (با نگهبانِ >0 تا دورزنشده نشود). انتظار: رکوردها بدونِ ریست از سر گرفته شوند و شمارنده در #GET:191 به صفر برسد؛ اثرِ مثبت: درِ خواب (MAIN-013) و تشخیصِ توقفِ نگهبان (MAIN-009) دیگر با شمارندهٔ دروغ کار نمی‌کنند</td>
+            <td>تست‌شده؛ مرز: رکوردهای پشتِ شکاف تا ساختِ رکوردِ جدید در صف می‌مانند</td>
+          </tr>
+          <tr>
+            <td class="td-id"><span class="idtag">MAIN-007</span><small>ردیف ۵</small></td>
+            <td class="td-bold">GSM</td>
+            <td class="refs"><span class="path">sim868.c:121-148,8223-8416,8535-8540 (new)؛ simPowerSeqStep_t در SIM_STAGE_POWER_ON_REGULATOR</span></td>
+            <td>سه شکست: needPowerOf هرگز پاک نمی‌شد (هر دور روشن/خاموش)؛ ماژولِ گیرکرده با STATUS=1 تا ابد AT می‌شد و ریلِ برق هیچ‌وقت قطع نمی‌شد؛ STATUSِ شناورِ بالا = «ماژول روشن» کاذب. همچنین Delay(1000) مسدودکننده تا مرزِ IWDG</td>
+            <td>ماشین‌حالتِ ۷ مرحله‌ایِ غیرمسدود: پالسِ PWRKEY=1800ms + استراحت=3500ms (SIM_PWRKEY_PULSE_MS/SIM_POWER_DOWN_MS)؛ پاک‌شدنِ needPowerOf در لحظهٔ مصرف؛ پس از ۳ دورِ ناموفق (SIM_POWER_MAX_LAPS) قطعِ ریل با Sim_Disable_PWR → Sim_USART_Recover() → Sim_Enable_PWR. انتظار: ~۱۵.۹ ثانیه شواهد پیش از قطعِ ریل — «کند» از «گیرکرده» جدا می‌شود</td>
+            <td>تست‌شده؛ io204 باید PWR_SEQ_* را در چند ثانیه بگذراند</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="af-caption af-push" style="border-top:1px solid var(--af-ink-10);padding-top:2mm">
+      وضعیت تستِ همهٔ ردیف‌های این ثبت: <b>بررسی و تست‌شده توسط تیم فنی + تست میدانی نسخه‌به‌نسخه</b> (ثبت‌شده به‌صورت «تست: میدانی» در دفتر). ارجاع‌ها: «new» = نسخهٔ فعلی <span class="af-ltr">B1.06.60</span>، «old» = نسخهٔ تحویلی <span class="af-ltr">B1.05.20</span>.
+    </div>
+  </div>
+

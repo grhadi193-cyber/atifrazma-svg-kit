@@ -1,0 +1,48 @@
+  <div class="a4-content" style="gap:4.2mm">
+    <div>
+      <div class="af-eyebrow"><span class="n">۱۰</span> سخت‌افزار، سنسور دما و ساخت</div>
+      <h2 class="af-h2">سنسور دما به نقشهٔ پایهٔ جدید رفت؛ و سه «تغییر» که در واقعیت هیچ تغییری نبودند</h2>
+    </div>
+
+    <div class="chg">
+      <div class="chg-head">
+        <span class="idtag">MAIN-021</span>
+        <h4>سنسور دمای <span class="af-ltr">DS18B20</span>: خط داده <span class="af-ltr">PA10 → PB2</span> و راه‌اندازیِ واقعیِ پین‌های تغذیه</h4>
+        <span class="af-status"><span class="dot sig"></span>ریسک متوسط</span>
+      </div>
+      <dl>
+        <dt>مسئله</dt><dd>نسخهٔ سخت‌افزار از <span class="af-ltr">03.03.00</span> به <span class="af-ltr">03.06.00</span> رسیده بود و روی پایهٔ جدید، خطِ ۱-وایرِ سنسور دما و پین‌های تغذیه/راننده در جای دیگری بودند. درایورِ قدیمی فقط یک پین (<span class="af-ltr">PA10</span>) را پیکربندی می‌کرد و کدِ تغذیهٔ سنسور کامنت شده بود (<span class="af-ltr">// DS_VOLTAGE_ENABLE()</span>)؛ یعنی روی سخت‌افزارِ جدید، دما اصلاً خوانده نمی‌شد (مقدار «اندازه‌گیری نشد» = <span class="af-ltr">-300</span>).</dd>
+        <dt>تغییر</dt><dd><span class="af-ltr">DS18B20_InitPin()</span> حالا سه پین پیکربندی می‌کند: <span class="af-ltr">PB0</span> خروجی بالا (ریل VDD سنسور)، <span class="af-ltr">PB1</span> خروجی پایین (فعال‌سازی رانندهٔ RS485 — در حالت غیرفعال نگه داشته می‌شود) و <span class="af-ltr">PB2</span> خطِ ۱-وایرِ ورودیِ با پول‌آپ. میکروهای تغذیهٔ کامنت‌شده حذف و در کاد پیاده‌سازی شدند. بقیهٔ ۴۱ بازهٔ همین فایل فقط فرمت‌بندی، کامنت و پاک‌سازی است (مثلاً حذف متغیرِ بیکار <span class="af-ltr">wheel</span>) و ارزشِ هیچ عبارتی را عوض نکرده است. زمان‌بندیِ تبدیل/خواندن و قفلِ <span class="af-ltr">#SET:168/#GET:168</span> دست‌نخورده است؛ ویژگی پیش‌فرض خاموش (<span class="af-ltr">DEFAULT_ENABLE_DS18B20 0</span>). <span class="path">Core/ds18b20/ds18b20.h:7-11 و ds18b20.c:4-23</span></dd>
+        <dt>مکانیزم و مرز</dt><dd>این تغییر <b>به نسخهٔ سخت‌افزار گره‌خورده</b> است: دستگاهی که برای پایهٔ قبلی سیم‌کشی شده باشد، با این فریم‌ور دما نمی‌خواند (پاسخ <span class="af-ltr">#GET:168</span> مقدار «اندازه‌گیری نشد» می‌دهد). درایورِ ۱-وایر خود، از نظر عملکردی دست‌نخورده مانده است.</dd>
+        <dt>استناد</dt><dd><span class="path">old: ds18b20.h:7-9,12-14,26-32 و ds18b20.c:6-20 ← new: ds18b20.h:7-11 و ds18b20.c:4-23</span> <span class="ev test">اعمال و تست شده؛ راستی‌آزمایی: روی سخت‌افزار <span class="af-ltr">03.06.00</span>، <span class="af-ltr">#GET:168</span> باید «Temperature is &lt;x.xx&gt; celsius» بدهد</span></dd>
+      </dl>
+    </div>
+
+    <div class="af-table-wrap">
+      <div class="af-h3" style="padding:3mm 3.5mm 0">سه شناسهٔ «اداری» — چیزی که ثبت شد، اما کدی عوض نشد</div>
+      <table class="af-table">
+        <thead><tr><th style="width:16%">شناسه</th><th style="width:44%">در دفتر ثبت چه آمده بود</th><th style="width:40%">نتیجهٔ راستی‌آزمایی روی دو درخت</th></tr></thead>
+        <tbody>
+          <tr><td class="td-id"><span class="idtag">MAIN-020</span></td><td>یک «سبدِ خفیفِ پاک‌سازی» که چهار ادعای نامرتبط زیر خودش می‌برد</td><td>سبد به سه شناسهٔ جدا (۲۱/۲۲/۲۳) شکسته شد؛ خودش دیگر محتوایی ندارد و فقط برای حفظِ ارجاعاتِ قدیمی مانده است</td></tr>
+          <tr><td class="td-id"><span class="idtag">MAIN-022</span></td><td>ادعای «جایگزینی <span class="af-ltr">LED_GSM_PIN|LED_GPS_PIN</span> با <span class="af-ltr">ALL_LED_PINS</span> در <span class="af-ltr">deviceIos.c:89</span>»</td><td><b>هیچ</b> تغییر LED وجود ندارد: آن شناسه‌ها در هیچ فایلی از هر دو درخت رخ نمی‌دهند و <span class="af-ltr">deviceIos.h</span> بایت‌به‌بایت یکسان است. این مدخل فقط ادعا را بازنشسته می‌کند</td></tr>
+          <tr><td class="td-id"><span class="idtag">MAIN-023</span></td><td>ویرایشِ «خط ۴۲ در <span class="af-ltr">main.c</span> و خط ۳۰۲ در <span class="af-ltr">w25qxx.c</span>»</td><td>واقعیت: حذفِ یک <b>خطِ خالیِ اولِ فایل</b> در هر دو (تفاوتِ هر جفت دقیقاً یک بازهٔ <span class="af-ltr">-1,1 +0,0</span> است). کدِ ماشین یکسان است؛ فقط شمارهٔ خطِ تشخیص‌های کامپایلر یک واحد جابه‌جا می‌شود</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="af-grid-2">
+      <div class="af-note">
+        <div class="af-note-title"><span class="dot sig"></span><span class="idtag">FLASH-002</span> — ساختِ فلشرِ کوچک</div>
+        <p>برای آنکه پروژهٔ فلشر از پروژهٔ برنامه کپی شده باشد، ۲۴ فایل <span class="af-ltr">.c/.h</span> از پریفرال‌های استفاده‌نشده <b>خالی</b> (۰ بایت) شدند و درایور SPI فلش تا حدِ لازم (<span class="af-ltr">w25qxx.c/h</span>) کوچک شد تا <span class="af-ltr">FLASHER.bin</span> به <b>۱۰٬۱۹۰ بایت</b> برسد — کوچکِ کافی برای اینکه دانلود FTP در بودجهٔ ۱۲۰ ثانیهٔ بوت‌لودر، روی شبکهٔ ۲G هم جا بشود. اثر روی زمانِ اجرا: صفر؛ اگر نمادِ موردنیاز حذف شده بود، خطا در <b>زمانِ ساخت</b> ظاهر می‌شد نه در میدان.</p>
+      </div>
+      <div class="af-note">
+        <div class="af-note-title"><span class="dot sig"></span>چرا این دو «تغییرِ صفر» در گزارش هستند؟</div>
+        <p>زیرا دفتر ثبت تغییرات باید <b>صادق</b> باشد: اگر ادعایی در فهرستِ اول بود که در کد وجود ندارد (LED) یا چیزی نیست به جز یک خطِ خالی، ثبتِ صریحِ «تغییری نیست» بهتر از سکوت است. برای خوانندهٔ فنی، این یعنی: هر چیزی که فکر می‌کنید در این دو نسخه عوض شده، یا در همین گزارش است یا ثبتِ «صفر» آن را می‌بینید — چیزِ پنهانی نیست.</p>
+      </div>
+    </div>
+
+    <div class="af-note af-push">
+      <div class="af-note-title"><span class="dot warn"></span>ملاحظهٔ بهره‌برداری برای سنسور دما</div>
+      <p>اگر ناوگانِ شما دستگاه‌هایی با سخت‌افزارِ <b>قدیمی</b> (<span class="af-ltr">03.03.00</span>) دارد و دما می‌خواند، قبل از ارتقا به <span class="af-ltr">B1.06.60</span> باید مطمئن شوید: (الف) آیا آن دستگاه واقعاً <span class="af-ltr">03.06.00</span> است؟ و (ب) آیا دما برایش ضروری است؟ در غیر این صورت، پس از ارتقا، المان دما (IO <span class="af-ltr">72</span>) مقدار «اندازه‌گیری نشد» می‌دهد. این یک خرابی نیست — یک <b>عدم تطابقِ نقشهٔ پایه</b> است و با ارتقای سخت‌افزار (یا نگه‌داشتنِ فریم‌ورِ قدیمیِ آن دستگاه) حل می‌شود.</p>
+    </div>
+  </div>

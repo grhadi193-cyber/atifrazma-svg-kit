@@ -1,0 +1,44 @@
+  <div class="a4-content" style="gap:4.2mm">
+    <div>
+      <div class="af-eyebrow"><span class="n">۰۹</span> ابزارهای مشاهده و تشخیص</div>
+      <h2 class="af-h2">جعبه‌سیاهِ تشخیصی: دستگاه حالا می‌تواند «چرا» را از راه دور بگوید</h2>
+    </div>
+
+    <div class="chg">
+      <div class="chg-head">
+        <span class="idtag">MAIN-017</span>
+        <h4>ده پارامتر سلامتِ GSM و GPS، مستقیم درون هر رکوردِ ذخیره‌شده</h4>
+        <span class="af-status"><span class="dot s2"></span>قابلیت اختیاری</span>
+      </div>
+      <dl>
+        <dt>مسئله</dt><dd>وقتی در میدان چیزی درست کار نمی‌کرد (آفلاین، دادهٔ دیرهنگام، فیکس ضعیف)، فقط «چه چیزی» را از روی خروجی سرور می‌شد دید — نه «چرا». تکنسین باید به خودرو می‌رفت. و چون رکوردها در W25Q ذخیره می‌شوند، داده‌ی تشخیصی که <b>در لحظه</b> ثبت شود، حتی برای دوره‌های گذشته هم باقی می‌ماند.</dd>
+        <dt>تغییر</dt><dd>این مدخل، ۷ بایتِ رزرویی (<span class="af-ltr">reserved2/3/4</span>) داخل رکورد ۶۴ بایتی و یک بایت رزروییِ تنظیمات را به کار گرفت: <b>۷ بایتِ زمانِ ساخت</b> (<span class="af-ltr">diagCsqRaw 202</span>، <span class="af-ltr">diagGsmFlags 203</span>، <span class="af-ltr">diagGsmStage 204</span>، <span class="af-ltr">diagRxBacklog 207</span>، <span class="af-ltr">diagLinkAge 208</span>، <span class="af-ltr">diagGpsFlags 210</span>، <span class="af-ltr">diagUsartRecovers 211</span>) و <b>۳ بایتِ زمانِ ارسال</b> (<span class="af-ltr">diagGpsNoFixAge 209</span>، <span class="af-ltr">diagGpsRxPeak 212</span>، <span class="af-ltr">diagGpsRecovers 213</span>) که به‌شکل ۱۰ المان ۱ بایتی Codec8 (<span class="af-ltr">io202..213</span>) در بلوک <span class="af-ltr">N1</span> خروجی داده می‌شوند — فقط وقتی <span class="af-ltr">#SET:231,1</span> فعال باشد. چرخهٔ چگالی رکورد از ۱۴ به ۱۲ می‌رود. <span class="path">Core/avlProtocol/avlProtocol.h:738-762 و avlProtocol.c:567-730,1980-2145</span></dd>
+        <dt>مکانیزم</dt><dd>مشاهده‌پذیری دقیقاً همان‌جا گذاشته شده که داده هست: رکورد در هر صورت ساخته می‌شود؛ استفاده از بایت‌های رزرو هزینه صفر دارد و هر رکوردِ ذخیره‌شده <b>خودش را توصیف می‌کند</b>. کل مجموعهٔ شمارنده‌ها همان مجموعه‌ای است که نقص‌های این ثبت برای تشخیص به آن نیاز داشت: بازسازی‌های UART (<span class="idtag">MAIN-009</span>)، شمارنده‌های واچ‌داگ GPS (<span class="idtag">MAIN-010</span>)، عبور از مراحل GSM (<span class="idtag">MAIN-008</span>)، پرچم‌های GPS (<span class="idtag">MAIN-012</span>). به‌علاوه، پاسخ <span class="af-ltr">#GET:191</span> یک خط جدید می‌گیرد: <span class="af-ltr">GSM: D&lt;n&gt;/&lt;t&gt; R&lt;n&gt; A&lt;n&gt; O&lt;n&gt;</span> (شمارنده‌های نگهبان).</dd>
+        <dt>ملاحظهٔ بهره‌برداری</dt><dd>پیش‌فرض خاموش (<span class="af-ltr">0</span>) است. فعال‌کردن، قالب سیم را عوض می‌کند (۱۰ شناسهٔ IO جدید) و اندازهٔ بسته را کم می‌کند؛ یک پلتفرمِ سازگار با Teltonika که شناسه‌های ناشناخته را رد کند، رکوردها را می‌اندازد — به همین دلیل اختیاری و دستگاه‌به‌دستگاه است. <span class="ev test">اعمال و تست شده؛ راستی‌آزمایی: <span class="af-ltr">#SET:231,1</span> سپس <span class="af-ltr">#GET:231</span>؛ رکوردهای بعدی باید <span class="af-ltr">io202..213</span> را حمل کنند</span></dd>
+      </dl>
+    </div>
+
+    <div class="af-table-wrap">
+      <div class="af-h3" style="padding:3mm 3.5mm 0">ده پارامتر جعبه‌سیاه — چه می‌گویند</div>
+      <table class="af-table">
+        <thead><tr><th style="width:14%">IO</th><th style="width:26%">نام کد</th><th style="width:30%">چه چیزی را می‌سنجد</th><th style="width:30%">کدام نقص را قابل‌مشاهده می‌کند</th></tr></thead>
+        <tbody>
+          <tr><td class="td-num">۲۰۲</td><td class="td-id"><span class="af-ltr">diagCsqRaw</span></td><td>شکستِ خامِ سیگنال GSM (<span class="af-ltr">CSQ</span>)</td><td>ضعف پوشش در برابر خرابی ماژول</td></tr>
+          <tr><td class="td-num">۲۰۳</td><td class="td-id"><span class="af-ltr">diagGsmFlags</span></td><td>پرچم‌های وضعیت ماژول/سیم‌کارت</td><td>وضعیت SIM و ثبت سلولی</td></tr>
+          <tr><td class="td-num">۲۰۴</td><td class="td-id"><span class="af-ltr">diagGsmStage</span></td><td>مرحلهٔ فعلی ماشین‌حالتِ GSM</td><td>دقیقاً کجا گیر کرده است (<span class="idtag">MAIN-007/008</span>)</td></tr>
+          <tr><td class="td-num">۲۰۷</td><td class="td-id"><span class="af-ltr">diagRxBacklog</span></td><td>صفِ ارسال‌نشده + برش‌های حلقهٔ دریافت</td><td>خاموشیِ داده و اشباع حلقه (<span class="idtag">MAIN-006/009</span>)</td></tr>
+          <tr><td class="td-num">۲۰۸</td><td class="td-id"><span class="af-ltr">diagLinkAge</span></td><td>فاصلهٔ زمانی از آخرین ACK سرور</td><td>قطع ارتباط منطقی (<span class="idtag">MAIN-009</span>)</td></tr>
+          <tr><td class="td-num">۲۰۹</td><td class="td-id"><span class="af-ltr">diagGpsNoFixAge</span></td><td>مدتِ بدون‌فیکس بودن (لحظهٔ ارسال)</td><td>قطع فیکس و سرعتِ بازیابی (<span class="idtag">MAIN-010</span>)</td></tr>
+          <tr><td class="td-num">۲۱۰</td><td class="td-id"><span class="af-ltr">diagGpsFlags</span></td><td>پرچم‌های اعتبار RMC/GGA و پیشرفتِ زمان</td><td>یخ‌زدن مهر زمانی (<span class="idtag">MAIN-012</span>)</td></tr>
+          <tr><td class="td-num">۲۱۱</td><td class="td-id"><span class="af-ltr">diagUsartRecovers</span></td><td>تعداد بازسازی‌های UART (شمارندهٔ دورزن)</td><td>گیرکردنِ پریفرال (<span class="idtag">MAIN-009</span>)</td></tr>
+          <tr><td class="td-num">۲۱۲</td><td class="td-id"><span class="af-ltr">diagGpsRxPeak</span></td><td>پیکِ پرشدن حلقهٔ GPS (به واحدهای ۱/۲۵۶)</td><td>نزدیک‌شدن به اشباع حلقه (<span class="idtag">MAIN-010</span>)</td></tr>
+          <tr><td class="td-num">۲۱۳</td><td class="td-id"><span class="af-ltr">diagGpsRecovers</span></td><td>تعداد پیکربندی‌های مجدد (نیمهٔ بالا) و قطع‌وصل‌های برق (نیمهٔ پایین)</td><td>واچ‌داگِ GPS (<span class="idtag">MAIN-010</span>)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="af-note af-push">
+      <div class="af-note-title"><span class="dot sig"></span>چرا این، مهم‌ترین ابزارِ نگهداریِ بعدی است؟</div>
+      <p>وقتی یک دستگاه در ناوگان «داده نمی‌دهد»، قبل از اعزام تکنسین می‌شود از روی همین پارامترها تشخیص داد: مرحلهٔ <span class="af-ltr">204</span> گیر کرده؟ (مسیر ماژول) — <span class="af-ltr">209</span> بزرگ است؟ (مسیر فیکس) — <span class="af-ltr">207</span> پر است؟ (مسیر صف). و چون روی <b>رکوردهای ذخیره‌شده</b> هست، حتی خرابی‌ای که در دورهٔ آفلاین افتاده باشد، با بازگشتِ اتصال، مستند می‌شود — به‌جای اینکه با اولین اتصالِ بعدی گم شود.</p>
+    </div>
+  </div>

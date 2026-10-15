@@ -1,0 +1,44 @@
+  <div class="a4-content" style="gap:4.2mm">
+    <div>
+      <div class="af-eyebrow"><span class="n">۰۴</span> نقص‌های بحرانی ۲ از ۴ — حافظه و تنظیمات</div>
+      <h2 class="af-h2">تخریب حافظه هنگام ارسال، و تنظیماتی که با یک ارتقا پاک می‌شد</h2>
+    </div>
+
+    <p class="af-lead">سه نقص بعدی یک خصلت مشترک دارند: در سکوت عمل می‌کنند. دستگاه یا داده‌ای را خراب می‌کند که قرار بود بفرستد (<span class="idtag">MAIN-002</span>)، یا پیکربندی‌ای را از بین می‌برد که مشتری روی آن حساب کرده (<span class="idtag">MAIN-004</span> و <span class="idtag">MAIN-003</span>)، یا وضعیت «ارسال شد» رکوردها را در جای اشتباه می‌نویسد (<span class="idtag">MAIN-005</span>). هیچ‌کدام چراغ خطا روشن نمی‌کنند؛ اثرشان را باید روی سرور و در رفتار ناوگان دید.</p>
+
+    <div class="af-table-wrap">
+      <div class="af-h3" style="padding:3mm 3.5mm 0">نقص اول ـ سرریز بافر در ساخت بستهٔ داده (<span class="idtag">MAIN-002</span>) <span class="af-caption">مکان: <span class="path">Core/avlProtocol/avlProtocol.c</span> — توابع <span class="af-ltr">AVL_Create_TCP_data_packet()</span></span></div>
+      <table class="af-table">
+        <thead><tr><th style="width:30%">پارامتر</th><th style="width:21%">قبل</th><th style="width:23%">بعد</th><th style="width:26%">معنای عملی</th></tr></thead>
+        <tbody>
+          <tr><td class="td-bold">حداکثر رکورد در هر بستهٔ ارسالی</td><td class="td-num">۱۵ رکورد</td><td class="td-num">۱۴ رکورد (با جعبه‌سیاه: ۱۲)</td><td>بسته دیگر از ظرفیت بافر بزرگ‌تر ساخته نمی‌شود</td></tr>
+          <tr><td class="td-bold">اندازهٔ بافر بسته (<span class="af-ltr">eventsContent[]</span>)</td><td class="td-num">۱٬۴۱۵ بایت</td><td class="td-num">۱٬۴۶۰ بایت</td><td>با بدترین ترکیب رویداد و دما هم جا کافی است</td></tr>
+          <tr><td class="td-bold">سقف طول روی سیم (<span class="af-ltr">AT+CIPSEND</span>)</td><td class="td-num">بدون سقف مؤثر</td><td class="td-num"><span class="af-ltr">SERVER_PACKET_WIRE_LIMIT=1460</span></td><td>طولی که ماژول قبول نمی‌کند، دیگر اصلاً ساخته نمی‌شود</td></tr>
+          <tr><td class="td-bold">پیامد نقص در میدان</td><td colspan="2">نوشتن ۵۵ تا ۳۵۵ بایت بیرون از بافر؛ گاهی روی شمارندهٔ حلقه می‌نشست و نوشتنِ چندکیلوبایتی و ریست می‌ساخت، گاهی فریم Codec8 را روی سرور ناقص می‌کرد. صف پر (بعد از هر دورهٔ آفلاین) محرک مستقیم نقص بود.</td><td>هفت حالت مشاهده‌شده: ریست دوره‌ای، «آنلاین ولی رکورد نمی‌رسد»، فریم ناقص</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="af-table-wrap reg">
+      <div class="af-h3" style="padding:3mm 3.5mm 0">نقص دوم و سوم ـ تنظیماتی که نباید پاک می‌شد (<span class="idtag">MAIN-004</span> و <span class="idtag">MAIN-003</span>) <span class="af-caption">مکان: <span class="path">Core/avlProtocol/avlProtocol.c</span> (فهرست فرمان‌های مهاجرت) و <span class="path">Core/w25q32jv/w25Protocol.c</span> (تأیید و ترمیم تنظیمات)</span></div>
+      <table class="af-table">
+        <thead><tr><th style="width:24%">سازوکار</th><th style="width:38%">در نسخهٔ تحویلی چه می‌شد؟</th><th style="width:38%">در نسخهٔ فعلی</th></tr></thead>
+        <tbody>
+          <tr><td class="td-bold">فرمان مهاجرت هنگام ارتقا</td><td>اولین فرمانِ فهرست مهاجرت «بازگردانی تنظیمات و شماره‌های مجاز به کارخانه» بود؛ هر ارتقا از نسخهٔ قبلی آن را یک بار اجرا می‌کرد و کل بلوک تنظیمات (آدرس سرور، <span class="af-ltr">APN</span>، گذرواژه، شماره‌های مجاز) را می‌پوشاند</td><td>آن خانه به «بدون عملیات» (<span class="af-ltr">TC_NOP</span>) تبدیل شد؛ ارتقا دیگر هیچ پیکربندی‌ای را پاک نمی‌کند</td></tr>
+          <tr><td class="td-bold">ترتیب ثبت انجام کار</td><td>نشانگر «انجام شد» <b>بعد</b> از اجرای فرمان‌ها نوشته می‌شد؛ ریستِ واچ‌داگ وسط کار (مثلاً پاک‌کردن رکوردها) یعنی اجرای دوباره در هر روشن‌شدن، تا ابد</td><td>نشانگر <b>پیش</b> از اجرا ثبت می‌شود؛ هر مهاجرت حداکثر یک بار، حتی اگر وسطش برق برود</td></tr>
+          <tr><td class="td-bold">اعتبار دادهٔ ذخیره‌شده</td><td>اگر سکتور تنظیمات در یک روشن‌شدن خوانا نبود، دستگاه با دادهٔ سالم هم مثل «دستگاه نو» رفتار و تنظیمات را بازنویسی می‌کرد</td><td>مهر اعتبار (<span class="af-ltr">metadata</span>) هنگام نوشتن توسط خودِ نویسنده زده می‌شود (پنج سکتور: تنظیمات، فرمان‌ها، جئوفنس، شماره‌های مجاز، FTP)؛ ردّ سکتور فقط برای دلیل واقعی اتفاق می‌افتد</td></tr>
+          <tr><td class="td-bold">حالت آدرس سرور (<span class="idtag">MAIN-003</span>)</td><td>کاراکتر اول آدرس که می‌گوید «آدرس، IP است یا نام دامنه» (<span class="af-ltr">'#'</span> یا <span class="af-ltr">0xFF</span>) در هر روشن‌شدن با آدرس پیش‌فرض بازنویسی و مُد دستگاه گم می‌شد؛ یک قطع و وصل برق کافی بود</td><td>اعتبارسنجی به آن کاراکتر دست نمی‌زند و مسیر ترمیم هم همان مُد را حفظ می‌کند؛ حتی دستگاه‌هایی که مُدشان قبلاً خراب شده بود با یک شاخهٔ «خودترمیم» بازیابی می‌شوند</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div>
+      <div class="af-eyebrow"><span class="n">۰۴ ـ الف</span> نقص چهارم ـ نشانی اشتباهِ وضعیت ارسال رکوردها (<span class="idtag">MAIN-005</span>)</div>
+      <p class="af-small" style="font-size:8.1pt;color:var(--af-text);line-height:1.85;text-align:justify">وقتی ثبت رویداد (<span class="af-ltr">logging</span>) فعال بود، علامت «این رکورد ارسال شد» در حافظهٔ خارجی W25Q با یک ثابتِ <b>تعریف‌نشده</b> محاسبه می‌شد (مقدار در زمان کامپایل نامشخص بود و سازوکار خواندن از <span class="af-ltr">recordsArea.w25qRecordFirstSectorAddr</span> استفاده می‌کرد). نتیجه: پرچم ارسال در جایی می‌نشست که خواننده دنبالش نمی‌گشت — روی سرور یا همان رکورد بارها تکرار می‌شد یا جاهای خالیِ دائمی در مسیر باقی می‌ماند. مبنا به نشانی واقعیِ ناحیهٔ رکوردها اصلاح شد. این نقص روی دستگاه‌هایی که <span class="af-ltr">logging</span> ندارند هرگز ظاهر نمی‌شد — نمونهٔ خطایی که فقط در یک پیکربندی خاص زنده است. <span class="ev test">اعمال و تست شده؛ فایل: <span class="af-ltr">w25Protocol.c</span>، تابع <span class="af-ltr">w25qWritePacket()</span></span></p>
+    </div>
+
+    <div class="af-note af-push">
+      <div class="af-note-title"><span class="dot bad"></span>وجه مشترک این سه نقص و راستی‌آزمایی آن‌ها</div>
+      <p>هر سه «خرابیِ خاموش» هستند: دستگاه از کار نمی‌ایستد که کسی متوجه شود؛ یا دادهٔ فاسد می‌فرستد، یا پیکربندی از دست می‌دهد، یا رکورد تکراری/گمشده تولید می‌کند. برای همین در بخش بهره‌برداری (صفحهٔ ۲۰) برای آن‌ها راستی‌آزمایی مشخص تعریف شده است: مقایسهٔ تنظیمات پیش و پس از یک ارتقا با پرس‌وجوهای <span class="af-ltr">#GET:110</span> تا <span class="af-ltr">#GET:113</span> و <span class="af-ltr">APN</span>، و کنترل نبودِ فریم ناقص یا رکورد تکراری در خروجی سرور.</p>
+    </div>
+  </div>

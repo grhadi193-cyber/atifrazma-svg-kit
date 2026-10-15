@@ -1,0 +1,54 @@
+  <div class="a4-content" style="gap:4mm">
+    <div>
+      <div class="af-eyebrow"><span class="n">۱۳</span> پیوست، ثبت جامع تغییرات (۶ از ۶)</div>
+      <h2 class="af-h2">ردیف‌های ۲۶ تا ۲۹ — ساخت و شناسه‌های اداری</h2>
+    </div>
+
+    <div class="af-table-wrap reg">
+      <table class="af-table">
+        <thead><tr>
+          <th style="width:9%">شناسه</th><th style="width:8%">زیرسامنه</th><th style="width:26%">فایل / نماد / خط</th>
+          <th style="width:19%">مسئله یا ریسک هدف</th><th style="width:28%">تغییر و رفتار مورد انتظار</th><th style="width:10%">تست و ملاحظه</th>
+        </tr></thead>
+        <tbody>
+
+          <tr>
+            <td class="td-id"><span class="idtag">FLASH-002</span><small>ردیف ۱</small></td>
+            <td class="td-bold">Build</td>
+            <td class="refs"><span class="path">FLASHER_913_02.06: ۲۴ فایلِ .c/.hِ ۰ بایتی + Core/w25q32jv/w25qxx.c/h (جدید)</span></td>
+            <td>پروژهٔ فلشر از پروژهٔ برنامه کپی شده بود؛ فایل‌هایِ پریفرالِ استفاده‌نشده آن را بزرگ می‌کردند</td>
+            <td>خالی‌کردنِ ۲۴ فایل + درایورِ SPIِ مینیمالِ جایگزین (با w25qPatchResetCause) بدون تغییر در #include list و گروه‌هایِ پروژهٔ IAR. انتظار: FLASHER.bin = ۱۰٬۱۹۰ بایت (۲٬۶۹۲ کد + ۷٬۴۹۸ rodata) — کوچکِ کافی برای دانلودِ FTP در بودجهٔ ۱۲۰ ثانیهٔ 2G</td>
+            <td>تست‌شده؛ بدون اثرِ اجرایی؛ خطا (اگر سنبلیِ موردنیاز حذف می‌شد) در زمانِ ساخت ظاهر می‌شد</td>
+          </tr>
+          <tr>
+            <td class="td-id"><span class="idtag">MAIN-022</span><small>ردیف ۲</small></td>
+            <td class="td-bold">Build</td>
+            <td class="refs"><span class="path">Core/deviceIos/deviceIos.h/.c — بدون بازهٔ اختصاصی</span></td>
+            <td>سبدِ MAIN-020 ادعا می‌کرد: «LED_GSM_PIN|LED_GPS_PIN با ALL_LED_PINS در deviceIos.c:89 جایگزین شد»</td>
+            <td>راستی‌آزمایی: ALL_LED_PINS/LED_GSM_PIN/LED_GPS_PIN در هیچ .c/.h از هر دو درخت نیستند؛ deviceIos.h بایت‌به‌بایت یکسان (md5: ba8f173...)؛ line 89 در هر دو درخت GPIOx->BSRR=GPIO_Pin است. نتیجه: هیچ تغییرِ LED وجود ندارد و این مدخل ادعا را بازنشسته می‌کند</td>
+            <td>مدخلِ «تغییری نیست» — ثبتِ صادقانه</td>
+          </tr>
+          <tr>
+            <td class="td-id"><span class="idtag">MAIN-023</span><small>ردیف ۳</small></td>
+            <td class="td-bold">Build</td>
+            <td class="refs"><span class="path">Core/main/main.c:1؛ Core/w25q32jv/w25qxx.c:1 (new)</span></td>
+            <td>ادعای اولیه: «ویرایشِ خط ۴۲ در main.c و خط ۳۰۲ در w25qxx.c»</td>
+            <td>واقعیت: تفاوتِ هر جفت دقیقاً یک بازهٔ -1,1 +0,0 است — حذفِ یک خطِ خالیِ اولِ فایل. کدِ ماشین یکسان؛ فقط شمارهٔ خطِ تشخیص‌های کامپایلر یک واحد جابه‌جا می‌شود (مهم فقط هنگامِ مقایسهٔ لاگ‌های دو نسخه)</td>
+            <td>مدخلِ «تغییری نیست»</td>
+          </tr>
+          <tr>
+            <td class="td-id"><span class="idtag">MAIN-020</span><small>ردیف ۴</small></td>
+            <td class="td-bold">Build</td>
+            <td class="refs"><span class="path">— (بدون بازه)</span></td>
+            <td>یک «سبدِ پاک‌سازیِ خفیف» که چهار ادعای نامرتبط زیر خودش می‌برد و دو ادعایش «تغییری» نبود</td>
+            <td>به MAIN-021 (DS18B20، ۴۹ بازه/۲ فایل)، MAIN-022 (ادعای LED → هیچ) و MAIN-023 (خط‌های خالی، ۲ بازه/۲ فایل) شکسته شد؛ شناسه برای حلِّ ارجاعاتِ قدیمی حفظ شده و رتبهٔ شدت ندارد</td>
+            <td>مدخلِ «سوپرسد» — بدون شدت</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="af-caption af-push" style="border-top:1px solid var(--af-ink-10);padding-top:2mm">
+      وضعیت تستِ همهٔ ردیف‌های این ثبت: <b>بررسی و تست‌شده توسط تیم فنی + تست میدانی نسخه‌به‌نسخه</b> (ثبت‌شده به‌صورت «تست: میدانی» در دفتر). ارجاع‌ها: «new» = نسخهٔ فعلی <span class="af-ltr">B1.06.60</span>، «old» = نسخهٔ تحویلی <span class="af-ltr">B1.05.20</span>.
+    </div>
+  </div>
+
