@@ -1,0 +1,62 @@
+  <div class="a4-content" style="gap:4mm">
+    <div>
+      <div class="af-eyebrow"><span class="n">۱۳</span> پیوست، ثبت جامع تغییرات (۵ از ۶)</div>
+      <h2 class="af-h2">ردیف‌های ۲۱ تا ۲۵ — زاویه، رویدادها، تشخیص و نسخهٔ FOTA</h2>
+    </div>
+
+    <div class="af-table-wrap reg">
+      <table class="af-table">
+        <thead><tr>
+          <th style="width:9%">شناسه</th><th style="width:8%">زیرسامنه</th><th style="width:26%">فایل / نماد / خط</th>
+          <th style="width:19%">مسئله یا ریسک هدف</th><th style="width:28%">تغییر و رفتار مورد انتظار</th><th style="width:10%">تست و ملاحظه</th>
+        </tr></thead>
+        <tbody>
+
+          <tr>
+            <td class="td-id"><span class="idtag">MAIN-015</span><small>ردیف ۱</small></td>
+            <td class="td-bold">GPS</td>
+            <td class="refs"><span class="path">Core/sim868/gps/gps.c:46-64,1689-1751؛ gps.h:37-72 (new)؛ fixedGPS_works()</span></td>
+            <td>تستِ زاویهٔ دو فیکسِ پشت‌سرهم با ضریب BEARING_ANGLE_FACTOR=0.7f: در ترافیکِ کند (فاصلهٔ ۲-۵ متر) نویز → دورِ کاذب ۱۵ درجه = اسپرِ نقشه + رگبارِ رکورد</td>
+            <td>زنجیرهٔ سه‌نقطه‌ایِ فاصله‌محور: anchor → mid → valid، هر پایّه بین BEARING_MIN_BASELINE_METER=20 و BEARING_MAX_BASELINE_METER=250 متر. انتظار: ساختِ «دور ۱۵ درجه» حالا به خطای عرضی ≈۵.۲ متر نیاز دارد (قبل ۱.۳)؛ دورِ واقعی با اولین پایّهٔ ۲۰ متری گزارش می‌شود</td>
+            <td>تست‌شده؛ مرز: دورِ خیلی تنگ کمی دیرتر</td>
+          </tr>
+          <tr>
+            <td class="td-id"><span class="idtag">MAIN-016</span><small>ردیف ۲</small></td>
+            <td class="td-bold">AVL</td>
+            <td class="refs"><span class="path">systemTimers.c:257-259,847-870؛ avlProtocol.c:210-214,1000-1017,2004-2031 (new)؛ Accel_Timer_handler()/AVL_Ignition_Changed()</span></td>
+            <td>(الف) بریدنِ برقِ اصلی فقط رویدادِ داخلیِ 66 → قوانینِ پلتفرمیِ 252 (Unplug) روشن نمی‌شد؛ (ب) ضربهٔ CRASH_THRESHOLD بدون برق = «تصادف 247» کاذب + لرزشِ تکراری بدون خنک‌شوندگی؛ (ج) ACCِ کوتاه در مهلتِ trip = Trip-End دوقلو</td>
+            <td>نگاشتِ event_code==IO_EXTERNAL_VOLTAGE با event_data==0 به IO_UNPLUG_DETECTION=252 (مقدار ۱)؛ ضربه بدون برق → deviceDisconnected (236) و با برق → crash (247) با CRASH_EVENT_COOLDOWN=250 تیک (۵ ثانیه)؛ ACC ON → tripStopTimer=0. انتظار: کندن = 252؛ بیرون‌کشیدن = 252 سپس 236؛ یک 247 برای هر موج ضربه؛ بدون Trip-End کاذب</td>
+            <td>تست‌شده؛ قوانینِ پلتفرمیِ IO 66 → 252</td>
+          </tr>
+          <tr>
+            <td class="td-id"><span class="idtag">MAIN-017</span><small>ردیف ۳</small></td>
+            <td class="td-bold">AVL</td>
+            <td class="refs"><span class="path">avlProtocol.h:176,309-363,574-579,726-768,924-930؛ avlProtocol.c:348,567-730,1823-1895,1980-1990,2085-2145 (new)</span></td>
+            <td>«چرا» از راه دور دیده نمی‌شد: آفلاین/دیرهنگامی/فیکسِ ضعیف فقط از روی دادهٔ خروجی قابل حدس بود؛ رکوردها ۷ بایتِ رزرو در ۶۴ بایتِ خود داشتند</td>
+            <td>7 بایتِ زمانِ ساخت (diagCsqRaw 202, diagGsmFlags 203, diagGsmStage 204, diagRxBacklog 207, diagLinkAge 208, diagGpsFlags 210, diagUsartRecovers 211) + 3 بایتِ زمانِ ارسال (diagGpsNoFixAge 209, diagGpsRxPeak 212, diagGpsRecovers 213) → ۱۰ المان ۱ بایتی io202..213 در N1، فقط با diagnosticsIsEnabled (جای RESERVED3؛ #SET:231/#GET:231)؛ خطِ نگهبان در #GET:191. انتظار: رکوردِ ذخیره‌شده خودِ سلامتِ لحظه‌اش را توصیف کند — حتی برای دورهٔ آفلاینِ گذشته</td>
+            <td>تست‌شده؛ پیش‌فرض خاموش؛ چگالی ۱۴→۱۲</td>
+          </tr>
+          <tr>
+            <td class="td-id"><span class="idtag">MAIN-018</span><small>ردیف ۴</small></td>
+            <td class="td-bold">SMS</td>
+            <td class="refs"><span class="path">Core/sim868/gps/gps.c:203-210,1344-1375؛ sim868.c:4928-4932,6701-6768 (new)؛ parseGSV()</span></td>
+            <td>تعدادِ ماهواره‌های در دید از جمله‌های GSV پارس می‌شد و دور ریخته می‌شد؛ «چرا GPS ضعیف است؟» پاسخِ از راه دور نداشت</td>
+            <td>ثبتِ totalSatellites در آخرین پیامِ هر دنبالهٔ $GPGSV/$GLGSV/$GAGSV/$GBGSV/$BDGSV به gnssInViewGps/Glo/Gal/Bds/Total؛ پرس‌وجوی SMS_ID_GET_GNSS_SATS (#GET:194) با Sim_create_gnss_sats_sms_content(): در دیدِ هر سیستم، درکار، مُد فیکس (No fix/2D/3D) و مُدِ پیکربندی. انتظار: یک SMS، پاسخِ کاملِ آسمان؛ +۵ بایت .bss، بدونِ تغییرِ قالبِ سیم</td>
+            <td>تست‌شده؛ شناسهٔ 194 در این درخت آزاد بود</td>
+          </tr>
+          <tr>
+            <td class="td-id"><span class="idtag">FOTA-004</span><small>ردیف ۵</small></td>
+            <td class="td-bold">FOTA</td>
+            <td class="refs"><span class="path">Fota 02.06/Core/Src/consts.c:4,107-109 (new)؛ fotaVersion، FTP_*_DEFAULT</span></td>
+            <td>بعد از ارتقا، #GETVER هنوز 00.02.05 نشان می‌داد (نتیجهٔ FLASH-001 از راه دور قابل‌تأیید نبود) و حسابِ FTPِ پیش‌فرضِ fallback حسابِ قدیمیِ پیش‌فرض بود</td>
+            <td>fotaVersion «00.02.05»→«00.02.06» + FTP_SERV/USER/PASS_DEFAULT به مقادیرِ تولیدیِ جدیدِ B1.06.60. انتظار: #GETVER نسخهٔ FOTA را 00.02.06 گزارش دهد؛ fallback فقط با حسابِ جدیدِ سرور کار می‌کند</td>
+            <td>تست‌شده؛ حسابِ FTP باید هم‌زمان روی سرور ساخته شود</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="af-caption af-push" style="border-top:1px solid var(--af-ink-10);padding-top:2mm">
+      وضعیت تستِ همهٔ ردیف‌های این ثبت: <b>بررسی و تست‌شده توسط تیم فنی + تست میدانی نسخه‌به‌نسخه</b> (ثبت‌شده به‌صورت «تست: میدانی» در دفتر). ارجاع‌ها: «new» = نسخهٔ فعلی <span class="af-ltr">B1.06.60</span>، «old» = نسخهٔ تحویلی <span class="af-ltr">B1.05.20</span>.
+    </div>
+  </div>
+

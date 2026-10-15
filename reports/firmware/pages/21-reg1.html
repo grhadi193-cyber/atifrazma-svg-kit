@@ -1,0 +1,62 @@
+  <div class="a4-content" style="gap:4mm">
+    <div>
+      <div class="af-eyebrow"><span class="n">۱۳</span> پیوست، ثبت جامع تغییرات (۱ از ۶)</div>
+      <h2 class="af-h2">ردیف‌های ۱ تا ۵ — بوت، به‌روزرسانی و حافظه</h2>
+    </div>
+
+    <div class="af-table-wrap reg">
+      <table class="af-table">
+        <thead><tr>
+          <th style="width:9%">شناسه</th><th style="width:8%">زیرسامنه</th><th style="width:26%">فایل / نماد / خط</th>
+          <th style="width:19%">مسئله یا ریسک هدف</th><th style="width:28%">تغییر و رفتار مورد انتظار</th><th style="width:10%">تست و ملاحظه</th>
+        </tr></thead>
+        <tbody>
+
+          <tr>
+            <td class="td-id"><span class="idtag">MAIN-001</span><small>ردیف ۱</small></td>
+            <td class="td-bold">بوت</td>
+            <td class="refs"><span class="path">EWARM/startup_stm32g070xx.s:107-122 (new)؛ Reset_Handler</span></td>
+            <td>پشتهٔ به‌ارث‌رسیده از بوت‌لودرِ قدیمی (MSP در 0x200030C0) درون داده‌های برنامه می‌نشست؛ هر OTA روی دستگاهِ 00.02.05 می‌توانست HardFault یا خرابیِ پنهانِ .bss ایجاد کند — ازکارافتادنِ کامل بعد از به‌روزرسانیِ «موفق»</td>
+            <td>خواندن MSP از جدول بردارهای برنامه (0x08002000) و تنظیم SP با سه دستور، پیش از SystemInit. انتظار: هر دستگاه، چه با بوت‌لودر قدیمی و چه جدید، با پشتهٔ درست خودِ تصویرش شروع می‌کند؛ کنترل میدانی: پاسخ #GETVER و ازسرگیریِ رکورد بعد از هر OTA</td>
+            <td>تست‌شده؛ جفتِ ناگسستنی با FOTA-001</td>
+          </tr>
+          <tr>
+            <td class="td-id"><span class="idtag">FOTA-001</span><small>ردیف ۲</small></td>
+            <td class="td-bold">بوت</td>
+            <td class="refs"><span class="path">Fota Program 02.06/Core/Src/boot.c:23-42 (new)؛ jump()</span></td>
+            <td>بوت‌لودرِ 0.2.5 فقط نشانیِ شروع را می‌خواند و با پشتهٔ خودش (BX R0) پرش می‌کرد؛ خطِ خواندن MSP حتی در کد بود اما کامنت شده بود</td>
+            <td>تنظیم MSP با MSR MSP, R0 از 0x08002000 پیش از پرش به Reset_Handler؛ سه مسیرِ صدا (gsmErrorManager، main، FOTA_USER_COMMAND) همهٔ آن‌ها «خروج از بوت‌لودر» هستند و از تغییر بی‌خبر می‌مانند. انتظار: هر دستگاهِ ارتقا یافتهٔ 00.02.06، حتی اگر تصویرِ برنامه نسخهٔ قدیمی‌تر باشد، پشتهٔ درست می‌گیرد</td>
+            <td>تست‌شده</td>
+          </tr>
+          <tr>
+            <td class="td-id"><span class="idtag">FLASH-001</span><small>ردیف ۳</small></td>
+            <td class="td-bold">FOTA</td>
+            <td class="refs"><span class="path">FLASHER_913_02.06 (جدید)؛ main.c:1-114، projectUtility.c:1-619، projectUtility.h:11-18</span></td>
+            <td>بوت‌لودر نمی‌تواند صفحه‌هایی که از رویشان اجرا می‌شود را پاک کند؛ ارتقای بوت‌لودر در میدان فقط با پروگرامر ممکن بود</td>
+            <td>فلشرِ مستقلِ ۱۰٬۱۹۰ بایتی در 0x08002000: اول resetCause=FOTA_WITH_DEFAULT روی W25Q (تا شکستِ بعدی هم به FTP بزند)، بعد پاک‌کردن/نوشتن ۴ صفحهٔ 0x08000000 با تصویرِ ۷٬۴۸۰ بایتیِ 00.02.06، راستی‌آزماییِ بایت‌به‌بایت (۵ تلاش) و ریست. انتظار: کد LED — ۱۰ پالس موفق، ۱۶ پالس شکست W25Q (فلشِ داخلی دست‌نخورده)، ۴ پالس مداوم = نیازمند پروگرامر</td>
+            <td>تست‌شده؛ قطعِ برقِ میانِ نوشتن، تنها سناریوی غیرقابلِ خودترمیمی</td>
+          </tr>
+          <tr>
+            <td class="td-id"><span class="idtag">MAIN-002</span><small>ردیف ۴</small></td>
+            <td class="td-bold">AVL</td>
+            <td class="refs"><span class="path">Core/avlProtocol/avlProtocol.h:38-41,195-272؛ avlProtocol.c:1811-1896 (new)؛ AVL_Create_TCP_data_packet()</span></td>
+            <td>بسته‌بندی ۱۵ رکورد، ۵۵ تا ۳۵۵ بایت بیرون از eventsContent[] می‌نوشت: نوشتنِ چندکیلوبایتی روی شمارندهٔ حلقه → ریست؛ یا AT+CIPSEND با طولِ بیش از ۱۴۶ → رد شدن و TCP reconnect؛ یا فریم Codec8 ناقص روی سرور</td>
+            <td>حداکثر ۱۴ رکورد (۱۲ با جعبه‌سیاه)، بافر ۱٬۴۱۵→۱٬۴۶۰ بایت، سقف سیم SERVER_PACKET_WIRE_LIMIT=1460 و آستانهٔ هر دورِ حلقه. انتظار: هیچ بسته‌ای از ظرفیتِ بافر/سیم بزرگ‌تر ساخته نشود؛ هزینه: ≈۶.۷٪ (۲۰٪) تراکنشِ TCP بیشترِ صفِ پر — از این‌رو جعبه‌سیاه اختیاری است</td>
+            <td>تست‌شده؛ نوارِ رکورد کمتر، فریمِ ناقص صفر</td>
+          </tr>
+          <tr>
+            <td class="td-id"><span class="idtag">MAIN-003</span><small>ردیف ۵</small></td>
+            <td class="td-bold">Flash</td>
+            <td class="refs"><span class="path">Core/w25q32jv/w25Protocol.c:639-681 (new)؛ checkSettingsBand()</span></td>
+            <td>کاراکترِ اولِ آدرس (مُد: '#' = URL یا 0xFF = IP) در هر روشن‌شدن با DEFAULT_SERVER_URL بازنویسی می‌شد و به 'a' تبدیل می‌شد؛ یک قطع‌ووصلِ برق، دستگاهِ IP-محور را برای همیشه آفلاین می‌کرد (درحالی‌که به SMS جواب می‌داد)</td>
+            <td>اعتبارسنجیِ URL فقط در مُد URL؛ مسیرِ ترمیم مُد را حفظ می‌کند و آدرس را از &server_url[1] می‌نویسد؛ شاخهٔ خودترمیم برای دستگاه‌هایی که مُدشان قبلاً خراب شده. انتظار: #GET:191/#GET:110 قبل و بعد از هر بوت، مُدِ یکسان</td>
+            <td>تست‌شده؛ سازگاریِ معکوس: خرابیِ گذشته را هم ترمیم می‌کند</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="af-caption af-push" style="border-top:1px solid var(--af-ink-10);padding-top:2mm">
+      وضعیت تستِ همهٔ ردیف‌های این ثبت: <b>بررسی و تست‌شده توسط تیم فنی + تست میدانی نسخه‌به‌نسخه</b> (ثبت‌شده به‌صورت «تست: میدانی» در دفتر). ارجاع‌ها: «new» = نسخهٔ فعلی <span class="af-ltr">B1.06.60</span>، «old» = نسخهٔ تحویلی <span class="af-ltr">B1.05.20</span>.
+    </div>
+  </div>
+

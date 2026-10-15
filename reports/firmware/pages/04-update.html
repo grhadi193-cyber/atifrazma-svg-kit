@@ -1,0 +1,73 @@
+  <div class="a4-content" style="gap:4.2mm">
+    <div>
+      <div class="af-eyebrow"><span class="n">۰۳</span> زنجیرهٔ به‌روزرسانی از راه دور</div>
+      <h2 class="af-h2">بوت‌لودر بالاخره می‌تواند خودش را هم ارتقا دهد؛ و هر گامِ این زنجیره، نقطهٔ شکستش شناخته شده است</h2>
+    </div>
+
+    <p class="af-lead">در نسخهٔ تحویلی، بوت‌لودر (<span class="af-ltr">00.02.05</span>) نمی‌توانست خودش را جایگزین کند: بوت‌لودری نمی‌تواند صفحه‌های فلشی که از رویشان در حال اجراست را پاک کند. راه‌حل، یک «فلشر» مستقل است: بوت‌لودر قدیمی فایل فلشر را در محل برنامه می‌نویسد؛ فلشر بوت‌لودر جدید را در محل قدیمی می‌نویسد و دستگاه را ریست می‌کند؛ و بوت‌لودر جدید (<span class="af-ltr">02.06</span>) برنامهٔ اصلی را از سرور FTP می‌کشد. زنجیرهٔ کامل در شکل ۲ آمده است.</p>
+
+    <figure class="af-diagram">
+      <div class="af-figure-head">
+        <div><div class="af-figure-title">مسیر کامل به‌روزرسانی دو مرحله‌ای از یک پیامک</div><div class="af-figure-sub">فلشر فقط یک چیز می‌نویسد: بوت‌لودر جدید. برنامهٔ اصلی را همیشه بوت‌لودر جدید از FTP می‌کشد.</div></div>
+        <span class="af-figure-fig">شکل ۲ ـ جریان نرم‌افزار</span>
+      </div>
+      <div class="af-flow">
+        <div class="af-flow-step sig">
+          <div class="af-flow-num">گام ۱ — فرمان</div>
+          <div class="af-flow-title">پیامک <span class="af-ltr">#COM:913</span></div>
+          <ul class="af-flow-list"><li>برنامه، نشست GPRS را می‌بندد (<span class="af-ltr">CIPSHUT+SAPBR</span>)</li><li>ریستِ گرم با وضعیت «به‌روزرسانی» — <span class="idtag">MAIN-011</span></li></ul>
+        </div>
+        <div class="af-flow-arrow"><span class="a">←</span><span class="p">ریست</span></div>
+        <div class="af-flow-step">
+          <div class="af-flow-num">گام ۲ — دانلود فلشر</div>
+          <div class="af-flow-title">بوت‌لودرِ قدیمی <span class="af-ltr">00.02.05</span></div>
+          <ul class="af-flow-list"><li>لاگین FTP با اعتبارنامهٔ ذخیره‌شده در W25Q</li><li>دانلود <span class="af-ltr">FLASHER.bin</span> و نوشتن در <span class="af-ltr">0x08002000</span></li></ul>
+        </div>
+        <div class="af-flow-arrow"><span class="a">←</span><span class="p">پرش</span></div>
+        <div class="af-flow-step">
+          <div class="af-flow-num">گام ۳ — فلشر</div>
+          <div class="af-flow-title">نوشتن بوت‌لودر جدید</div>
+          <ul class="af-flow-list"><li>پاک‌کردن ۴ صفحهٔ بوت‌لودر و نوشتن <span class="af-ltr">02.06</span></li><li>راستی‌آزماییِ بایت‌به‌بایت — حداکثر ۵ تلاش</li></ul>
+        </div>
+        <div class="af-flow-arrow"><span class="a">←</span><span class="p">ریست</span></div>
+        <div class="af-flow-step">
+          <div class="af-flow-num">گام ۴ — بوت‌لودر جدید</div>
+          <div class="af-flow-title"><span class="af-ltr">00.02.06</span> در کنترل</div>
+          <ul class="af-flow-list"><li>دانلود و راستی‌آزماییِ برنامهٔ <span class="af-ltr">B1.06.60</span></li><li>تنظیمِ پشته (MSP) و پرش به برنامه — <span class="idtag">FOTA-001</span></li></ul>
+        </div>
+      </div>
+      <div class="fota-map">
+        <div class="fm-seg">
+          <div class="fm-addr">0x08000000 – 0x08001FFF</div>
+          <div class="fm-name">بوت‌لودر — ۴ صفحهٔ فلش</div>
+          <div class="fm-sub">فلشر همین ناحیه را با تصویرِ <span class="af-ltr">02.06</span> (۷٬۸۰ بایت) بازنویسی می‌کند</div>
+        </div>
+        <div class="fm-seg sig">
+          <div class="fm-addr">0x08002000 …</div>
+          <div class="fm-name">ناحیهٔ برنامه</div>
+          <div class="fm-sub">در هنگامِ به‌روزرسانی، فلشر (۱۰٬۱۹۰ بایت) اینجا اجرا می‌شود؛ بعد بوت‌لودر جدید برنامهٔ اصلی را همین‌جا می‌نویسد</div>
+        </div>
+      </div>
+      <figcaption class="af-figure-foot"><span>منبع: بخش عمیق‌خوانی زنجیرهٔ FOTA/FLASH در دفتر ثبت تغییرات؛ نشانی‌ها و اندازه‌ها از کد</span><span class="af-ltr">0x08000000 / 0x08002000</span></figcaption>
+    </figure>
+
+    <div class="af-table-wrap reg">
+      <div class="af-h3" style="padding:3mm 3.5mm 0">مهاره‌هایی که این زنجیره نسبت به روش قدیمی به دستگاه داد</div>
+      <table class="af-table">
+        <thead><tr><th style="width:34%">مهارت</th><th style="width:30%"><span class="af-ltr">00.02.05</span> (قدیم)</th><th style="width:36%"><span class="af-ltr">02.06</span> + فلشر (جدید)</th></tr></thead>
+        <tbody>
+          <tr><td class="td-bold">جایگزینی خودِ بوت‌لودر در میدان</td><td>غیرممکن — بوت‌لودر نمی‌تواند از روی خودش پاک شود</td><td>ممکن با همان زنجیرهٔ شکل ۲، بدون دسترسی فیزیکی (SWD)</td></tr>
+          <tr><td class="td-bold">اعتبارنامهٔ FTP ذخیره‌شده در مسیرهای بازیابی</td><td>فقط در حالت «دستور کاربر»؛ در حالت‌های شکست، حسابِ پیش‌فرضِ قدیمی (احتمالاً اشتباه)</td><td>در <b>همه</b> حالت‌ها از W25Q خوانده می‌شود — <span class="idtag">FOTA-002</span></td></tr>
+          <tr><td class="td-bold">تنظیم MSP پیش از پرش به برنامه</td><td>خیر — پرش با پشتهٔ خودِ بوت‌لودر (<span class="idtag">FOTA-001</span>)</td><td>بلی — <span class="af-ltr">MSR MSP</span> از <span class="af-ltr">0x08002000</span></td></tr>
+          <tr><td class="td-bold">نام فایل FTP بلندتر از ۳۰ کاراکتر</td><td>غیرممکن — بافر ۳۱ بایتی بدون پایان‌دهنده</td><td>تا ۳۹ کاراکتر — بافر ۴۰ بایتی، همیشه ختم‌شده — <span class="idtag">FOTA-003</span></td></tr>
+          <tr><td class="td-bold">بازگشت به برنامهٔ سالم اگر فلش ناقص بماند</td><td>همیشه به محل برنامه پرش می‌کرد، حتی اگر خراب باشد</td><td>حالت‌های <span class="af-ltr">FOTA_WITH_DEFAULT</span>/<span class="af-ltr">FOTA_WRITE_FAIL</span> به پرش امتناع می‌کنند و برنامه را دوباره از FTP می‌کشند</td></tr>
+          <tr><td class="td-bold">مشاهدهٔ نتیجهٔ ارتقا از راه دور</td><td>همیشه <span class="af-ltr">00.02.05</span> گزارش می‌داد</td><td><span class="af-ltr">#GETVER</span> همان <span class="af-ltr">00.02.06</span> را نشان می‌دهد — <span class="idtag">FOTA-004</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="af-note af-push">
+      <div class="af-note-title"><span class="dot warn"></span>کجا ممکن است فلشر «آجر» بگذارد؟ — فقط یک سناریو</div>
+      <p>قطع برق <b>دقیقاً در میانِ</b> پاک‌کردن/نوشتن ۴ صفحهٔ بوت‌لودر، تنها شکستی است که خودبه‌خود جبران نمی‌شود: دستگاه با بردارهای ناقص گیر می‌کند و حلقهٔ ۴ پالس چراغ با کد «نیازمند پروگرامر» می‌ماند. همهٔ شکست‌های دیگر طراحی‌شده‌اند که جبران شوند: شکست FTP یا W25Q یعنی دستگاه بوت‌لودر قدیمیِ سالم را نگه می‌دارد و بعداً دوباره تلاش می‌کند؛ و فلشر خودش پیش از هر نوشتن، تصویر را با فایل مقصد بایت‌به‌بایت مقایسه می‌کند تا «بازیابی» هرگز بر پایهٔ دادهٔ نادرست نباشد. کد چراغ‌ها: ۱۰ پالس = موفقیت، ۱۶ پالس = شکست W25Q، ۴ پالس مداوم = فلش ناقص. <span class="ev test">وضعیت: فلشر به‌عنوان قابلیت جدید اعمال و تست شده؛ سناریوی قطع برق میان نوشتن، سناریوی کم‌احتمالِ باقی‌مانده است</span></p>
+    </div>
+  </div>

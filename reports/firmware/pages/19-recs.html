@@ -1,0 +1,38 @@
+  <div class="a4-content" style="gap:4.4mm">
+    <div>
+      <div class="af-eyebrow"><span class="n">۱۲</span> گام‌های مهندسیِ بعدی</div>
+      <h2 class="af-h2">فهرستِ اقدام — چه کاری در چه ترتیبی، و با چه معیارِ تکمیلی</h2>
+    </div>
+
+    <p class="af-lead">این فهرست از مسائلِ بازِ صفحهٔ ۱۷ و ملاحظاتِ بهره‌برداریِ صفحهٔ ۱۸ ساخته شده و بر اساسِ «چه چیزی بیش‌تر ریسک را از بین می‌برد» مرتب است؛ ردیفِ اول تنها موردی است که می‌تواند یک مسیرِ به‌روزرسانیِ واقعی را شکست دهد.</p>
+
+    <table class="af-ptable">
+      <thead><tr><th style="width:34%">اقدام</th><th style="width:26%">خروجیِ مورد انتظار</th><th style="width:13%">اولویت</th><th style="width:13%">مبنا</th><th style="width:14%">وضعیت</th></tr></thead>
+      <tbody>
+        <tr><td>بستنِ نشستِ داده در مسیر <span class="af-ltr">autoRestart</span> (صدا زدنِ <span class="af-ltr">simReleaseDataSessionBeforeReset()</span> از شاخهٔ پرچمِ <span class="af-ltr">autoRestartFlag</span>)</td><td>هیچ ریستِ داخلی‌ای — زمان‌بندی‌شده یا دستور — دیگر با نشستِ باز به بوت‌لودر وارد نشود؛ FOTA پس از ریستِ زمان‌دار هم «An error occurred!» نگیرد</td><td class="td-num">بالا</td><td class="td-num">F.4-۱ / <span class="idtag">MAIN-011</span></td><td><span class="af-status"><span class="dot warn"></span>در برنامهٔ نسخهٔ بعدی</span></td></tr>
+        <tr><td>مهلت‌گذاریِ حلقه‌های انتظارِ لایهٔ SPIِ برنامه (<span class="path">w25qxx.c</span>) با الگوی همان <span class="af-ltr">FL_SPI_TIMEOUT</span> که درایورِ فلشر دارد</td><td>هیچ مسیرِ حافظه‌ای دیگر «گیرکردنِ بدونِ ریستِ واچ‌داگ» نسازد؛ هر انتظارِ SPI با خروجِ خطا تمام شود</td><td class="td-num">بالا</td><td class="td-num">F.4-۲</td><td><span class="af-status"><span class="dot warn"></span>در برنامهٔ نسخهٔ بعدی</span></td></tr>
+        <tr><td>پایشِ بهره‌برداریِ دو هفته‌ایِ «ریست + GPS» با جعبه‌سیاهِ فعال روی نمونه‌ای از ناوگان</td><td>یک لاگِ ساختارمند: آیا الگوی ریست ادامه دارد؟ در چه شرایطی؟ آمارِ ماهواره در نقاطِ مرزی</td><td class="td-num">بالا</td><td class="td-num">صفحهٔ ۱۹</td><td><span class="af-status"><span class="dot s2"></span>منتظارِ شروع</span></td></tr>
+        <tr><td>پاک‌سازیِ شاخه‌هایِ دیباگِ سخت‌کدشده (<span class="path">sim868.c:8194/8201/7575/13571</span>) و تصمیمِ آگاهانه دربارهٔ محافظتِ RDP</td><td>فریم‌ورِ انتشارِ تولیدی بدونِ راه‌هایِ دیباگِ پنهان و با تصمیمِ مستندِ امنیتی</td><td class="td-num">متوسط</td><td class="td-num">F.4-۴/۵</td><td><span class="af-status"><span class="dot s2"></span>در برنامهٔ نسخهٔ بعدی</span></td></tr>
+        <tr><td>تولیدِ لاگِ آزمونِ معیاریِ قابل‌بازتولید برای هر تصویر (به‌جای اتکا به تأییدِ میدانیِ شفاهی)</td><td>هر تصویرِ آینده با یک بستهٔ لاگِ آزمون همراه باشد که تیمِ بعدی بتواند تکرار کند</td><td class="td-num">متوسط</td><td class="td-num">F.4-۸</td><td><span class="af-status"><span class="dot s2"></span>در برنامهٔ نسخهٔ بعدی</span></td></tr>
+        <tr><td>بررسیِ رفتارِ <span class="af-ltr">$GNGSA</span> در مُدِ فقط-GLONASS (تست با ماژولِ واقعی + بیتِ <span class="af-ltr">DIAG_GPS_GLGSA_OVERWROTE</span>)</td><td>قطعیت دربارهٔ این‌که آیا <span class="af-ltr">fix_mode</span> در آن پیکربندی به‌روز می‌شود یا خیر</td><td class="td-num">کم</td><td class="td-num">F.4-۳</td><td><span class="af-status"><span class="dot s2"></span>فقط در صورتِ استفاده از آن مُد</span></td></tr>
+      </tbody>
+    </table>
+
+    <div class="af-grid-2 af-push">
+      <div class="af-note"><div class="af-note-title"><span class="dot sig"></span>تکلیفِ تیمِ سرور/پلتفرم</div>
+        <ul class="af-bul">
+          <li>قوانینِ پلتفرمی که روی IO <span class="af-ltr">66</span> تعریف شده را به IO <span class="af-ltr">252</span> منتقل کنید (یا موازی نگه دارید تا مطمئن شوید)</li>
+          <li>اگر سرور شما هنوز فقط روی درگاه <span class="af-ltr">5040</span> شنود می‌کند، درگاهِ <span class="af-ltr">5027</span> را هم باز کنید — وگرنه دستگاه‌های بازنشانی‌شده به تنظیماتِ اولیه وصل نمی‌شوند</li>
+          <li>حسابِ FTPِ پشتیبانِ جدید را پیش از هر ارتقایِ بوت‌لودر روی سرورِ FTP بسازید</li>
+        </ul>
+      </div>
+      <div class="af-note"><div class="af-note-title"><span class="dot sig"></span>تکلیفِ بهره‌بردارِ میدانی</div>
+        <ul class="af-bul">
+          <li>بعد از هر ارتقا: <span class="af-ltr">#GETVER</span> — باید <span class="af-ltr">B1.06.60</span> و <span class="af-ltr">00.02.06</span> را نشان دهد</li>
+          <li>بعد از هر ارتقا: مقایسهٔ <span class="af-ltr">#GET:110..113</span> و <span class="af-ltr">APN</span> با مقادیرِ پیش از ارتقا — باید یکسان باشند</li>
+          <li>اگر یک دستگاه «آنلاین ولی رکورد نمی‌دهد» شد: اول <span class="af-ltr">#GET:191</span>، بعد فعال‌سازیِ جعبه‌سیاه، بعد ارسالِ لاگ</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
